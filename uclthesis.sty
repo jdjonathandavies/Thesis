@@ -1,0 +1,140 @@
+\ProvidesPackage{uclthesis}[2010/09/28]
+\RequirePackage{hepnicenames,hepunits,maybemath,fontenc}
+
+%% Units
+\let\@OldTeV\TeV\renewcommand{\TeV}{\@OldTeV\xspace}
+\let\@OldGeV\GeV\renewcommand{\GeV}{\@OldGeV\xspace}
+\let\@OldMeV\MeV\renewcommand{\MeV}{\@OldMeV\xspace}
+\let\@OldkeV\keV\renewcommand{\keV}{\@OldkeV\xspace}
+\let\@OldeV\eV\renewcommand{\eV}{\@OldeV\xspace}
+%% Acroynms
+\DeclareRobustCommand{\PhD}{\textbf{Doctor of Philosophy}}
+\DeclareRobustCommand{\UCL}{University College London\xspace}
+\DeclareRobustCommand{\LEP}{LEP\xspace}
+\DeclareRobustCommand{\Tevatron}{Tevatron\xspace}
+\DeclareRobustCommand{\ATLAS}{ATLAS\xspace}
+\DeclareRobustCommand{\CMS}{CMS\xspace}
+\DeclareRobustCommand{\LHC}{LHC\xspace}
+\DeclareRobustCommand{\CERN}{CERN\xspace}
+\DeclareRobustCommand{\GEANT}{\textsc{GEANT}4\xspace}
+\DeclareRobustCommand{\fastjet}{FastJet\xspace}
+\DeclareRobustCommand{\MC}{Monte Carlo\xspace}
+\DeclareRobustCommand{\BFKL}{BFKL\xspace}
+%% Maths
+\DeclareRobustCommand{\thesismath}[1]{\ensuremath{\maybebmsf{#1}}}
+\DeclareRobustCommand{\parenths}[1]{\thesismath{\left({#1}\right)}}
+\DeclareRobustCommand{\braces}[1]{\thesismath{\left\{{#1}\right\}}}
+\DeclareRobustCommand{\angles}[1]{\thesismath{\left\langle{#1}\right\rangle}}
+\DeclareRobustCommand{\sqbracs}[1]{\thesismath{\left[{#1}\right]}}
+\DeclareRobustCommand{\mods}[1]{\thesismath{\left\lvert{#1}\right\rvert}}
+\DeclareRobustCommand{\modsq}[1]{\thesismath{\mods{#1}^2}}
+\DeclareRobustCommand{\dblmods}[1]{\thesismath{\left\lVert{#1}\right\rVert}}
+\DeclareRobustCommand{\expOf}[1]{\thesismath{\exp{\!\parenths{#1}}}}
+\DeclareRobustCommand{\eexp}[1]{\thesismath{e^{#1}}}
+\DeclareRobustCommand{\plusquad}{\thesismath{\oplus}}
+\DeclareRobustCommand{\logOf}[1]{\log\!\parenths{#1}}
+\DeclareRobustCommand{\lnOf}[1]{\ln\!\parenths{#1}}
+\DeclareRobustCommand{\ofOrder}[1]{\thesismath{ \mathcal{O}\parenths{#1} }}
+\DeclareRobustCommand{\dif}[2]{\frac{\operatorname{d}\!{#1}}{\operatorname{d}\!{#2}}}
+\DeclareRobustCommand{\difDouble}[3]{\frac{\operatorname{d}^2\!{#1}}{\operatorname{d}\!{#2}\operatorname{d}\!{#3}}}
+%% Physics terminology
+%% Theory
+\DeclareRobustCommand{\QED}{QED\xspace}
+\DeclareRobustCommand{\QCD}{QCD\xspace}
+\DeclareRobustCommand{\gQCD}{\thesismath{g_s}\xspace}
+\DeclareRobustCommand{\pQCD}{pQCD\xspace}
+\DeclareRobustCommand{\SUgroup}[1]{\thesismath{SU(#1)}\xspace}
+\DeclareRobustCommand{\Lagrangian}{\thesismath{\mathcal{L}}\xspace}
+\DeclareRobustCommand{\alphaS}{\thesismath{\alpha_{\mathrm{S}}}\xspace}
+\DeclareRobustCommand{\Qsquared}{\thesismath{Q^2}\xspace}
+\DeclareRobustCommand{\F}[1]{\thesismath{F_{#1}\left(x,\Qsquared\right)}\xspace}
+\DeclareRobustCommand{\PDF}[1]{\thesismath{f_{#1}}\xspace}
+\DeclareRobustCommand{\PDFq}{\PDF{q}}
+\DeclareRobustCommand{\PDFg}{\PDF{g}}
+\DeclareRobustCommand{\luminosity}{\thesismath{\mathcal{L}}\xspace}
+\DeclareRobustCommand{\Sigmax}{\thesismath{\Sigma_x}\xspace}
+\DeclareRobustCommand{\Sigmay}{\thesismath{\Sigma_y}\xspace}
+%% Monte Carlo
+\DeclareRobustCommand{\Pythia}{\textsc{pythia}\xspace}
+\DeclareRobustCommand{\Perugia}{Perugia\xspace}
+\DeclareRobustCommand{\HEJ}{\textsc{hej}\xspace}
+\DeclareRobustCommand{\Ariadne}{\textsc{ariadne}\xspace}
+\DeclareRobustCommand{\Powheg}{\textsc{powheg}\xspace}
+\DeclareRobustCommand{\Herwig}{\textsc{herwig}\xspace}
+\DeclareRobustCommand{\Herwigpp}{\textsc{herwig++}\xspace}
+\DeclareRobustCommand{\Jimmy}{\textsc{jimmy}\xspace}
+\DeclareRobustCommand{\Alpgen}{\textsc{alpgen}\xspace}
+\DeclareRobustCommand{\NLOjetpp}{\textsc{nlojet++}\xspace}
+%% Experimental definitions
+\DeclareRobustCommand{\rootS}{\thesismath{\sqrt{s}}\xspace}
+\DeclareRobustCommand{\intlumipb}[1]{\unit{\thesismath{#1}}{\invpicobarn}\xspace}
+\DeclareRobustCommand{\instlumi}[1]{\unit{\thesismath{10^{#1}}}{\lumiunits}\xspace}
+\DeclareRobustCommand{\begL}{\instlumi{31}}
+\DeclareRobustCommand{\lowL}{\instlumi{33}}
+\DeclareRobustCommand{\highL}{\instlumi{34}}
+\DeclareRobustCommand{\peakLumi}{\thesismath{2.1\times\instlumi{32}}\xspace}   %3.65\times\instlumi{34}}\xspace}
+\DeclareRobustCommand{\twentytenlumi}{\intlumipb{37.3\pm1.2}\xspace}
+\DeclareRobustCommand{\xs}{cross-section\xspace}
+\DeclareRobustCommand{\Xs}{Cross-section\xspace}
+%% Co-ordinates
+\DeclareRobustCommand{\pseudorap}{\thesismath{\eta}\xspace}
+\DeclareRobustCommand{\rap}{\thesismath{y}\xspace}
+\DeclareRobustCommand{\DeltaEta}{\thesismath{\Delta \eta}\xspace}
+\DeclareRobustCommand{\DeltaPhi}{\texorpdfstring{\thesismath{\Delta\phi}}{DeltaPhi}\xspace}
+\DeclareRobustCommand{\DeltaR}{\texorpdfstring{\thesismath{\Delta R}}{DeltaR}\xspace}
+\DeclareRobustCommand{\DeltaY}{\thesismath{\Delta y}\xspace}
+\DeclareRobustCommand{\etaphi}{\thesismath{\pseudorap-\phi}\xspace}
+\DeclareRobustCommand{\yphi}{\thesismath{\rap-\phi}\xspace}
+\DeclareRobustCommand{\absRap}{\thesismath{|y|}\xspace}
+\DeclareRobustCommand{\absEta}{\thesismath{|\eta|}\xspace}
+\DeclareRobustCommand{\yStar}{\thesismath{y^*}\xspace}
+%% Jets
+\DeclareRobustCommand{\kt}{\thesismath{k_\perp}\xspace}
+\DeclareRobustCommand{\akt}{\thesismath{\hbox{anti-${k_t}$}}\xspace}
+\DeclareRobustCommand{\Akt}{\thesismath{\hbox{Anti-${k_t}$}}\xspace}
+\DeclareRobustCommand{\CA}{Cambridge/Aachen\xspace}
+\DeclareRobustCommand{\dijet}{dijet\xspace}
+\DeclareRobustCommand{\Dijet}{Dijet\xspace}
+\DeclareRobustCommand{\mDijet}{\thesismath{m_{12}}\xspace}
+%% Transverse quantities - Subscript roman not italic (EE)
+\DeclareRobustCommand{\pT}{\thesismath{p_{\mathrm{T}}}\xspace} 
+\DeclareRobustCommand{\ET}{\thesismath{E_{\mathrm{T}}}\xspace} 
+\DeclareRobustCommand{\ETEM}{\thesismath{E_{\mathrm{T}}^{\mathrm{EM}}}\xspace} 
+\DeclareRobustCommand{\ETmiss}{\thesismath{E_{\mathrm{T}}^\mathrm{miss}}\xspace} 
+\DeclareRobustCommand{\ETtotal}{\thesismath{E_{\mathrm{T}}^\mathrm{total}}\xspace} 
+\DeclareRobustCommand{\HT}{\thesismath{H_{\mathrm{T}}}\xspace} 
+\DeclareRobustCommand{\pTsq}{\thesismath{p^2_{\mathrm{T}}}\xspace} % Fixed so it works correctly
+\DeclareRobustCommand{\pTrecomb}[1]{\thesismath{p^{2p}_{\mathrm{T},#1}}\xspace} % Fixed so it works correctly
+\DeclareRobustCommand{\pTprobe}{\thesismath{p_\mathrm{T}^{\mathrm{probe}}}\xspace}
+\DeclareRobustCommand{\pTref}{\thesismath{p_\mathrm{T}^{\mathrm{ref}}}\xspace}
+\DeclareRobustCommand{\pTavg}{\thesismath{p_\mathrm{T}^{\mathrm{avg}}}\xspace}
+\DeclareRobustCommand{\pTbar}{\thesismath{\overline{\pT}}\xspace}
+\DeclareRobustCommand{\pTthree}{\thesismath{p_\mathrm{T,3}}\xspace}
+\DeclareRobustCommand{\pTmax}{\thesismath{p_\mathrm{T}^{\mathrm{max}}}\xspace}
+%% Eta-intercalibration
+\DeclareRobustCommand{\etaint}{\texorpdfstring{\thesismath{\eta}}{eta}-intercalibration\xspace}
+\DeclareRobustCommand{\Asymmetry}{\thesismath{\mathcal{A}}\xspace}
+\DeclareRobustCommand{\Aik}{\thesismath{\Asymmetry_{ik}}\xspace}
+\DeclareRobustCommand{\relResponse}{\thesismath{c}\xspace}
+\DeclareRobustCommand{\etaProbe}{\thesismath{\eta_\mathrm{probe}}\xspace}
+%% Inclusive dijets
+\DeclareRobustCommand{\mdijet}{\thesismath{m_{12}}\xspace}
+%% Gaps between jets
+\DeclareRobustCommand{\gbj}{gaps between jets\xspace}
+\DeclareRobustCommand{\Qnought}{\thesismath{Q_0}\xspace}
+%% Azimuthal decorrelation
+\DeclareRobustCommand{\cosPiMinusDPhi}{\thesismath{\cos{\left(\pi - \DeltaPhi\right)}}\xspace}
+\DeclareRobustCommand{\cosDPhi}{\thesismath{\cos{\left(\DeltaPhi\right)}}\xspace}
+\DeclareRobustCommand{\cosTwoDPhi}{\thesismath{\cos{\left(2\DeltaPhi\right)}}\xspace}
+\DeclareRobustCommand{\meanCosDPhi}{\thesismath{\langle \cosPiMinusDPhi \rangle}\xspace}
+\DeclareRobustCommand{\meanCosTwoDPhi}{\thesismath{\langle \cosTwoDPhi \rangle}\xspace}
+%% Processes
+\DeclareRobustCommand{\qqbar}{\HepProcess{\Pquark\APquark}\xspace}
+\DeclareRobustCommand{\pp}{\HepProcess{\Pproton\Pproton}\xspace}
+\DeclareRobustCommand{\ep}{$e^{\pm}$\Pproton\xspace}
+\DeclareRobustCommand{\emu}{\HepProcess{ \Pelectron \, \Pmuon \to \Pelectron \, \Pmuon }\xspace}
+\DeclareRobustCommand{\yqgq}{\HepProcess{ \Pphoton \, \Pquark \to \Pgluon \, \Pquark }\xspace}
+%% General utility defns
+\DeclareRobustCommand{\arXivCode}[1]{arXiv:#1}
+%% Allow invpicobarn to be used in captions
+\DeclareRobustCommand{\ipb}{\invpicobarn\xspace}

@@ -1,0 +1,134 @@
+%% The "\appendix" call has already been made in the declaration
+%% of the "appendices" environment (see thesis.tex).
+\chapter{Combining Multiple Triggers}
+\label{chap:appendix:trigger_efficiencies}
+
+\chapterquote{It should be done with the same degree of alacrity and nonchalance 
+              that you would display in authorising a highly intelligent trained
+              bear to remove your appendix.}
+{Daniel S. Greenberg}
+
+Consider the case in which there are two triggers of interest, one for each of the two leading jets.
+The case in which the leading jet passes the appropriate trigger is denoted $T_{10}$ and the case where the second jet passes its trigger as $T_{01}$ while the case in which both do is labelled $T_{11}$.
+In the absence of any prescales or inefficiencies, we would expect all $N$ of our events to be in category $T_{11}$, since our trigger boundaries are chosen to ensure that all jets fall on the trigger efficiency plateau.
+If the amount of data taken corresponds to a luminosity $\luminosity_{true}$ then we have a \xs of $\sigma_{true} = N / \luminosity_{true}$.
+
+\section{Correcting for Inefficiency in the Absence of Prescale}
+Taking specific detector effects into account, which may lower the efficiencies of the leading and subleading triggers to $e_L$ and $e_S$ respectively, we can see that the distribution of events will be as summarised in \TableRef{tab:appendix:trig_inefficiencies}.
+
+\begin{table}
+\begin{center}
+  \begin{tabular}{ c c }
+    Trigger Category & Number of events  \\
+    \midrule
+    $T_{00}$         & $N(1-e_L)(1-e_S)$ \\
+    $T_{10}$         & $N e_L (1-e_S)$   \\ 
+    $T_{01}$         & $N e_S (1-e_L)$   \\
+    $T_{11}$         & $N e_L e_S$       \\       
+  \end{tabular}
+  \caption{Number of events in each trigger category after allowing for trigger
+           inefficiencies}
+  \label{tab:appendix:trig_inefficiencies}
+\end{center}
+\end{table}
+
+Obviously events in the category $T_{00}$ are not recorded, but we still see $N_{visible} = N(e_L + e_S - e_L e_S)$ events. Multiplying the luminosity by an overall efficiency correction of $e_{eff} = e_L + e_S - e_L e_S$ allows us to recover the correct \xs:
+
+\begin{equation}
+  \sigma_{corrected} = \frac{N_{visible}}{e_{eff} \luminosity_{true}} = \frac{N(e_L + e_S - e_L e_S)}{(e_L + e_S - e_L e_S) \luminosity_{true}} = \sigma_{true}
+\end{equation}
+
+\section{Correcting for Prescale in the Absence of Inefficiency}
+\label{sec:appendix:prescale_only}
+Allowing now for prescales of $P_L$ and $P_S$ for the leading and subleading triggers respectively, we can see that the distribution of events will be as summarised in \TableRef{tab:appendix:trig_prescales}.
+
+\begin{table}
+\begin{center}
+  \begin{tabular}{ c c }
+    Trigger Category & Number of events      \\
+    \midrule
+    $T_{00}$         & $N(1-1/P_L)(1-1/P_S)$ \\
+    $T_{10}$         & $N/P_L (1-1/P_S)$     \\ 
+    $T_{01}$         & $N/P_S (1-1/P_L)$     \\
+    $T_{11}$         & $N/(P_L P_S)$          \\       
+  \end{tabular}
+  \caption{Number of events in each trigger category after allowing for trigger
+           prescales}
+  \label{tab:appendix:trig_prescales}
+\end{center}
+\end{table}
+
+Analogously to the trigger efficiency case, we can apply a prescale correction of $1/P_{eff} = 1/P_L + 1/P_S - 1/(P_L P_S)$ to the luminosity to recover the correct \xs. 
+
+\begin{equation}
+  \sigma_{corrected} = \frac{N_{visible}}{\luminosity_{true}/P_{eff}} = \frac{N(1/P_L + 1/P_S - 1/(P_L P_S))}{\luminosity_{true} (1/P_L + 1/P_S - 1/(P_L P_S))} = \sigma_{true}
+\end{equation}
+
+In general, statistical precision will be improved by instead dividing events into separately weighted trigger categories, based on the trigger decision that would have been taken in the absence of prescale.
+
+\section{Correcting for Inefficiency and Prescale Simultaneously}
+In the case in which efficiencies of $e_L$ and $e_S$ are present together with prescales of $P_L$ and $P_S$, recovering the correct \xs becomes more complicated.
+
+If we could recover the prescale-only (PO) numbers, then recovering the correct \xs would be a matter of following the prescription from \SectionRef{sec:appendix:prescale_only}.
+In fact, using the simplified approach presented there, knowing only $N^{PO}_{visible} = N^{PO}_{11} + N^{PO}_{10} + N^{PO}_{01}$ would be sufficient.
+
+Consider the relationships, shown in \EquationRef{eq:appendix:relationships}, between the final observed (F) numbers of events observed and the numbers after prescale-only, where $L$ denotes events passing the leading jet trigger and $S$ denotes those passing the second trigger, while $LS$ denotes those passing both triggers.
+
+\begin{equation}
+\begin{split}
+  N^{F}_{L}  &= N^{PO}_{L} e_L \\
+  N^{F}_{S}  &= N^{PO}_{S} e_S \\
+  N^{F}_{LS} &= N^{PO}_{LS} e_L e_S
+  \label{eq:appendix:relationships}
+\end{split}
+\end{equation}
+
+\noindent Expanding the first two of these equations out, we can see that
+
+\begin{equation}
+\begin{split}
+  N^{F}_{10} + N^{F}_{11} &= ( N^{PO}_{10} + N^{PO}_{11} ) e_L \\
+  N^{F}_{10} / e_L + N^{F}_{11} / e_L &= N^{PO}_{10} + N^{PO}_{11}
+  \label{eq:appendix:leading_only}
+\end{split}
+\end{equation}
+
+\noindent and
+
+\begin{equation}
+\begin{split}
+  N^{F}_{01} + N^{F}_{11} &= ( N^{PO}_{01} + N^{PO}_{11} ) e_S \\
+  N^{F}_{01} / e_S + N^{F}_{11} / e_S &= N^{PO}_{01} + N^{PO}_{11}
+  \label{eq:appendix:subleading_only}
+\end{split}
+\end{equation}
+
+\noindent Combining \EquationRef{eq:appendix:leading_only} and \EquationRef{eq:appendix:subleading_only}
+we have
+
+\begin{gather}
+  \label{eq:appendix:final_PO_connection}
+  N^{PO}_{10} + N^{PO}_{11} + N^{PO}_{01} + N^{PO}_{11} = N^{F}_{10} / e_L + N^{F}_{11} / e_L + N^{F}_{01} / e_S + N^{F}_{11} / e_S \\
+  N^{PO}_{10} + N^{PO}_{11} + N^{PO}_{01} + (N^{F}_{11}/(e_L e_S)) = N^{F}_{10} / e_L + N^{F}_{01} / e_S + N^{F}_{11} ( 1 / e_L + 1 / e_S ) \\
+  N^{PO}_{10} + N^{PO}_{01} + N^{PO}_{11}  = N^{F}_{10} / e_L + N^{F}_{01} / e_S + N^{F}_{11} ( 1 / e_L + 1 / e_S - 1/(e_L e_S) )
+\end{gather}
+
+\noindent so the sum $N^{PO}_{10} + N^{PO}_{01} + N^{PO}_{11}$ can be reconstructed
+if events are weighted based on their final trigger category as shown in \TableRef{tab:appendix:trig_weights}.
+
+\begin{table}
+\begin{center}
+  \begin{tabular}{ c c }
+    Trigger Category & Required weight \\
+    \midrule
+    $T_{00}$         & 0               \\
+    $T_{10}$         & $1/e_L$         \\ 
+    $T_{01}$         & $1/e_S$         \\
+    $T_{11}$         & $1/e_L/e_S$     \\       
+  \end{tabular}
+  \caption{Required weights for each trigger category necessary to allow reconstruction
+           of the total number of events that would have been observed without trigger
+           inefficiency.}
+  \label{tab:appendix:trig_weights}
+\end{center}
+\end{table}

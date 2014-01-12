@@ -1,0 +1,41 @@
+% Title
+\titlepage[\UCL]%
+{Submitted to \UCL in fulfilment\\
+of the requirements for the award of the\\
+degree of \PhD}
+
+%% Declaration
+\begin{declaration}
+  \input{chapters/introduction/declaration}
+\end{declaration}
+
+%% Abstract
+\begin{abstract}
+  \input{chapters/introduction/abstract}
+\end{abstract}
+
+%% Acknowledgements
+\begin{acknowledgements}
+  \input{chapters/introduction/acknowledgements}
+\end{acknowledgements}
+
+%% Preface
+\begin{preface}
+  \input{chapters/introduction/preface}
+\end{preface}
+
+%% ToC
+\tableofcontents
+
+%%% Technically UCL want these here - let's see if they care
+\listoffigures
+\listoftables
+
+%% Strictly optional
+\frontquote%
+{God does not play dice with the universe; He plays an ineffable game of His own
+devising, which might be compared, from the perspective of any of the other
+players [i.e. everybody], to being involved in an obscure and complex variant of
+poker in a pitch-dark room, with blank cards, for infinite stakes, with a Dealer
+who won't tell you the rules, and who \emph{smiles all the time}.}
+{Terry Pratchett, \emph{Good Omens}}

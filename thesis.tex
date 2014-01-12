@@ -1,0 +1,50 @@
+\documentclass[final]{uclthesis} % Options here are: final draft web
+\RequirePackage{uclthesis}
+
+% PDF metadata - not essential, but nice
+\makeatletter
+\@ifpackageloaded{hyperref}{%
+  \hypersetup{%
+    pdftitle = {A Search for Cosmogenic Neutrinos With the Askaryan Radio Array},
+    pdfsubject = {Jonathan Davies PhD thesis},
+    pdfkeywords = {neutrino, particle, astronomy, physics},
+    pdfauthor = {\textcopyright\ Jonathan Davies}
+  }
+}{}
+\makeatother
+
+%% Define the thesis title and author
+\title{A Search for Cosmogenic Neutrinos with the Askaryan Radio Array}
+\author{Jonathan Paul Davies\xspace}
+\DeclareRobustCommand{\shortAuthor}{Jonathan Davies\xspace}
+\date{\today}
+
+%% Start the document
+\begin{document}
+
+%% Define the un-numbered front matter (cover pages, rubric and table of contents)
+\begin{frontmatter}
+  \input{structure/frontmatter}
+\end{frontmatter}
+
+%% Start the content body of the thesis
+\begin{mainmatter}
+  \include{chapters/introduction/introduction}
+  \include{chapters/particle-physics/particle-physics}
+  \include{chapters/uhe-app/uhe-app}
+  \include{chapters/ara-detector/ara-detector}
+\end{mainmatter}
+
+%% Produce the appendices if there are any
+\begin{appendices}
+  \include{structure/appendices}
+\end{appendices}
+
+%% Produce the un-numbered back matter (e.g. colophon,
+%% bibliography, tables of figures etc., index...)
+\begin{backmatter}
+  \include{structure/backmatter}
+\end{backmatter}
+
+%% Close
+\end{document}
