@@ -50,3 +50,59 @@ The Standard Model is a  \SUgroup{2} \CrossProduct \Ugroup{1} gauge theory consi
 
 \section{The neutrino}
 
+\begin{figure}[htpb]
+  \centering
+  \parbox{99.9mm}{
+    \subfloat{
+      \begin{fmffile}{nu-e-NC}
+        \begin{fmfgraph*}(100, 100)
+          \fmfleft{ip,iq}
+          \fmfright{op,oq}
+          \fmf{fermion,label=$\nu_{e,,\mu,,\tau}$}{iq,v2}
+          \fmf{fermion,label=$\nu_{e,,\mu,,\tau}$}{v2,oq}
+          \fmf{fermion,label=$e^{-}$}{ip,v1}
+          \fmf{fermion,label=$e^{-}$}{v1,op}
+          \fmf{boson,label=$Z^{0}$}{v1,v2}
+        \end{fmfgraph*}
+      \end{fmffile}
+      \label{fig:particle-physics:nu-e-NC}
+    }
+    \subfloat{
+      \begin{fmffile}{nu-e-CC}
+        \begin{fmfgraph*}(100, 100)
+          \fmfleft{ip,iq}
+          \fmfright{op,oq}
+          \fmf{fermion,label=$\nu_{e}$}{iq,v2}
+          \fmf{fermion,label=$e^{-}$}{v2,oq}
+          \fmf{fermion,label=$e^{-}$}{ip,v1}
+          \fmf{fermion,label=$\nu_{e}$}{v1,op}
+          \fmf{boson,label=$W^{+}$}{v1,v2}
+        \end{fmfgraph*}
+      \end{fmffile}
+      \label{fig:particle-physics:nu-e-CC}
+    }
+  }
+\end{figure}
+
+%%\begin{figure}[htpb]
+%%  \centering
+%%  \parbox{99.9mm}{
+%%    \vspace*{5mm}
+%%    \unitlength=1mm
+%%    \begin{fmffile}{nu-e-CC}
+%%      \begin{fmfgraph*}(100,50)
+%%         \fmfleft{ip,iq}
+%%         \fmfright{op,oq}
+%%         \fmf{fermion,label=$\nu_{e}$}{iq,v2}
+%%         \fmf{fermion,label=$e^{-}$}{v2,oq}
+%%         \fmf{fermion,label=$e^{-}$}{ip,v1}
+%%         \fmf{fermion,label=$\nu_{e}$}{v1,op}
+%%         \fmf{boson,label=$W^{+}$}{v1,v2}
+%%      \end{fmfgraph*}
+%%    \end{fmffile}
+%%    \vspace*{5mm}
+%%  }
+%%  \caption{Neutrino-electron scattering.}
+%%  \label{fig:particle-physics:nu-e-CC}
+%%\end{figure}
+
