@@ -5,9 +5,17 @@
 
 The Standard Model of particle physics was created to describe the observed interactions of fundamental particles and has been incredibly successful in this aim. It is, however, incomplete. For one it makes no attempt to include gravity. There are also a number of observed phenomena that the model is unable to explain. One such phenomenum is neutrino oscillations and the associated non-zero masses of the neutrinos. 
 
-The Standard Model is a  \SUgroup{2} \CrossProduct \Ugroup{1} gauge theory consisting of fermions (quarks and leptons) and fundamental forces (electromagnetic, weak nuclear and strong nuclear) which are mediated by force carrying bosons.
+The Standard Model is a  \SUgroup{2} \CrossProduct \Ugroup{1} gauge theory consisting of fermions (quarks and leptons), which are the constituents of matter, and fundamental forces (electromagnetic, weak nuclear and strong nuclear) which are mediated by force carrying bosons.
+
+The fermions, which have spin +1/2, are grouped into generations which exhibit similar physical properties. Each fermion also has an associated anti-particle with the same mass. 
+
+
 
 \subsection{The quarks}
+
+There are 6 quarks grouped into three generations. The quarks each carry fractional electric charge. The up (\Pup), charm (\Pcharm) and top (\Ptop) quarks carry +2/3 whilst the down (\Pdown), strange (\Pstrange) and bottom (\Pbottom) quarks carry -1/3 the charge of the electron.
+
+They are arranged as follows
 
 \begin{equation}
   \begin{pmatrix}
@@ -24,85 +32,184 @@ The Standard Model is a  \SUgroup{2} \CrossProduct \Ugroup{1} gauge theory consi
     t \\
     b
   \end{pmatrix}
+.
 \end{equation}
+
+In addition to electric charge, the quarks carry both weak and colour charge. Each quark can take on one of three colour charges named red, green and blue. Quarks are not found in isolation due to colour confinement a property of quantum chromo-dynamics. Instead they form hadrons, colourless objects consisting of two or three quarks. Hadrons with three quarks are known as baryons, typical examples are the proton (\Pup\Pup\Pdown) and the neutron (\Pup\Pdown\Pdown). Two quark hadrons are known as mesons, a typical example being the  \Ppiplus (\Pup\APdown).
 
 \subsection{The leptons}
 
+The leptons are a family of fermions, similar to the quarks, but only interact via the electromagnetic and weak forces. They are grouped into three generations analogous to the quarks
+
+
 \begin{equation}
   \begin{pmatrix}
-    e \\
-    \nu_{e}
+    e^{-} \\
+    \Pnue
   \end{pmatrix}
   ,
   \begin{pmatrix}
-    \mu \\
-    \nu_{\mu}
+    \mu^{-} \\
+    \Pnum
   \end{pmatrix}
   ,
   \begin{pmatrix}
-    \tau \\
-    \nu_{\tau}
+    \tau^{-} \\
+    \Pnut
   \end{pmatrix}
+.
 \end{equation}
+
+The electron, muon and tau all carry an electric charge of -1. Each of the charged leptons has an associated neutrino, a particle with no electric charge. In the standard model neutrinos have no mass and therefore travel at the speed of light.
 
 
 \subsection{The bosons}
 
+In the standard model the interactions of fundamental particles are described through the exchange of particles with integer spin called bosons. Properties of the bosons influence the macroscopic characteristics of the forces. For example the mass of the bosons influences the effective range of the forces.
+
+The standard model describes three of the four fundamental forces. Gravity is not described in the standard model due in part to its relatively small strength, making its effects negligeable compared with other fundamental particle interactions.
+
+The electromagnetic force is mediated through the exchange of a massless spin 1 particle called the photon, \Pphoton. The \Pphoton couples to particles with non-zero electric charge hence all fermions, other than neutrinos, interact electromagnetically. As the \Pphoton has no mass the effective range of the electromagnetic force is infinite. The weak nuclear force is mediated through the charged \PWplus, \PWminus and chargeless \PZzero bosons, which couple to weak isospin. All fermions have non-zero weak isospin and so they all interact via the weak force. The \PWpm have masses of 80.45 \GeV and the \PZzero has a mass of 91.2 \GeV. Although the weak and electromagnetic forces have similar strength the relatively large mass of these bosons makes the force appear weak and short ranged. The strong nuclear force is mediated via 8 massless gluons, \Pgluon, which couple to particles with colour charge. Since quarks are the only fermions with colour charge they are the only constituents of matter that feel the strong force. Although gluons are massless the properties of quantum chromodynamics mean that the strength of the force increases with seperation, leading to the absence of isolated quarks (or coloured objects) in nature.
+
+%REFERENCE -- W+- Z0 masses
+
+
 \section{The neutrino}
 
+As neutrinos are electrically neutral and posses no colour charge they only interact via the weak force, making their detection more difficult than electrically charged particles such as the electron. The existence of the neutrino was first postulated in 1930 by Wolfgang Pauli, who named it the \textit{neutron}, to facilitate the conservation of energy and momentum in beta decays. In 1934 Enrico Fermi coined the name \textit{neutrino}, meaning little neutral one, after the discovery by James Chadwick of a heavier neutral particle known to this day as the neutron.
+
+The absence of electrical and colour charge for neutrinos means that they are only able to interact via the exchange of the \PWpm and \PZzero bosons. Example feynman diagrams of charged current (involving the exchange of \PWpm) and neutral current (invloving the exchange of \PZzero) neutrino interaction are shown in \FigureRef{fig:particle-physics:neutrino-interactions}. By observing charged leptons or hadronic recoils produced in these interactions it is possible to detect neutrions and study their properties.
+
 \begin{figure}[htpb]
-  \centering
-  \parbox{99.9mm}{
-    \subfloat{
-      \begin{fmffile}{nu-e-NC}
-        \begin{fmfgraph*}(100, 100)
-          \fmfleft{ip,iq}
-          \fmfright{op,oq}
-          \fmf{fermion,label=$\nu_{e,,\mu,,\tau}$}{iq,v2}
-          \fmf{fermion,label=$\nu_{e,,\mu,,\tau}$}{v2,oq}
-          \fmf{fermion,label=$e^{-}$}{ip,v1}
-          \fmf{fermion,label=$e^{-}$}{v1,op}
-          \fmf{boson,label=$Z^{0}$}{v1,v2}
-        \end{fmfgraph*}
+  \parbox{100mm}{
+    \unitlength=1mm
+    \vspace*{5mm}
+    \subfloat[CC $\nu$-$e^-$ Scattering]{
+      \begin{fmffile}{CC-Electron}
+	\fmfframe(0,0)(0,5){
+	  \begin{fmfgraph*}(35,40)
+	    \fmfstraight
+            \fmfleft{i1,i2}
+            \fmfright{o1,o2}
+            \fmf{fermion}{i1,v1,o1}
+            \fmf{fermion}{i2,v2,o2}
+            \fmf{photon,tension=1.0,label=$W^{\pm}$, label.side=left}{v1,v2}
+            \fmflabel{$e^{-}$}{i1}
+            \fmflabel{$\nu_\alpha$}{i2}
+            \fmflabel{$\nu_e$}{o1}
+            \fmflabel{$l^-_\alpha$}{o2}
+	  \end{fmfgraph*}
+	}
       \end{fmffile}
-      \label{fig:particle-physics:nu-e-NC}
+      \label{fig:particle-physics:CC-Electron}
     }
-    \subfloat{
-      \begin{fmffile}{nu-e-CC}
-        \begin{fmfgraph*}(100, 100)
-          \fmfleft{ip,iq}
-          \fmfright{op,oq}
-          \fmf{fermion,label=$\nu_{e}$}{iq,v2}
-          \fmf{fermion,label=$e^{-}$}{v2,oq}
-          \fmf{fermion,label=$e^{-}$}{ip,v1}
-          \fmf{fermion,label=$\nu_{e}$}{v1,op}
-          \fmf{boson,label=$W^{+}$}{v1,v2}
-        \end{fmfgraph*}
+    \hfill
+    \subfloat[NC $\nu$-$e^-$ Scattering]{
+      \begin{fmffile}{NC-Electron}
+	\fmfframe(0,0)(0,5){
+	  \begin{fmfgraph*}(35,40)
+	    \fmfstraight
+            \fmfleft{i1,i2}
+            \fmfright{o1,o2}
+            \fmf{fermion}{i1,v1,o1}
+            \fmf{fermion}{i2,v2,o2}
+            \fmf{photon,tension=1.0,label=$Z^0$, label.side=left}{v1,v2}
+            \fmflabel{$e^{-}$}{i1}
+            \fmflabel{$\nu_\alpha$}{i2}
+            \fmflabel{$e^{-}$}{o1}
+            \fmflabel{$\nu_\alpha$}{o2}
+	  \end{fmfgraph*}
+	}
       \end{fmffile}
-      \label{fig:particle-physics:nu-e-CC}
+      \label{fig:particle-physics:NC-Electron}
+    }
+    \vspace*{8mm}
+    \\
+    \subfloat[CC $\nu$-$N$ Scattering]{
+      \begin{fmffile}{CC-Nucleon}
+	\fmfframe(0,0)(0,5){
+          \begin{fmfgraph*}(35,40)
+  	    \fmfstraight
+            \fmfleft{i1,i2}
+            \fmfright{o1,o2}
+            \fmf{fermion}{i1,v1}
+            \fmf{fermion}{v1,o1}
+            \fmf{fermion}{i2,v2,o2}
+            \fmf{photon,tension=1.0,label=$W^{\pm}$, label.side=left}{v1,v2}
+            \fmflabel{$N$}{i1}
+            \fmflabel{$\nu_\alpha$}{i2}
+            \fmflabel{$Shower$}{o1}
+            \fmflabel{$l^-_\alpha$}{o2}
+            \fmfblob{.20w}{v1}
+            \fmffreeze
+            \fmfi{plain}{vpath (__i1,__v1) shifted (thick*(1,-2))}
+            \fmfi{plain}{vpath (__v1,__o1) shifted (thick*(-1,-2))}
+            \fmfi{plain}{vpath (__i1,__v1) shifted (thick*(-1,2))}
+            \fmfi{plain}{vpath (__v1,__o1) shifted (thick*(1,2))}
+          \end{fmfgraph*}
+	}
+      \end{fmffile}
+      \label{fig:particle-physics:CC-Nucleon}
+    }
+    \hfill
+    \subfloat[NC $\nu$-$N$ Scattering]{
+      \begin{fmffile}{NC-Nucleon}
+	\fmfframe(0,0)(0,5){
+          \begin{fmfgraph*}(35,40)
+  	    \fmfstraight
+            \fmfleft{i1,i2}
+            \fmfright{o1,o2}
+            \fmf{fermion}{i1,v1}
+            \fmf{fermion}{v1,o1}
+            \fmf{fermion}{i2,v2,o2}
+            \fmf{photon,tension=1.0,label=$Z^0$, label.side=left}{v1,v2}
+            \fmflabel{$N$}{i1}
+            \fmflabel{$\nu_\alpha$}{i2}
+            \fmflabel{$Shower$}{o1}
+            \fmflabel{$\nu_\alpha$}{o2}
+            \fmfblob{.20w}{v1}
+            \fmffreeze
+            \fmfi{plain}{vpath (__i1,__v1) shifted (thick*(1,-2))}
+            \fmfi{plain}{vpath (__v1,__o1) shifted (thick*(-1,-2))}
+            \fmfi{plain}{vpath (__i1,__v1) shifted (thick*(-1,2))}
+            \fmfi{plain}{vpath (__v1,__o1) shifted (thick*(1,2))}
+          \end{fmfgraph*}
+	}
+      \end{fmffile}
+      \label{fig:particle-physics:NC-Nucleon}
     }
   }
+  \caption[Charged current and neutral current neutrino interactions]{Two charged current and two neutral current neutrino interactions via which it is possible to detect neutrinos.}
+  \label{fig:particle-physics:neutrino-interactions}
 \end{figure}
 
-%%\begin{figure}[htpb]
-%%  \centering
-%%  \parbox{99.9mm}{
-%%    \vspace*{5mm}
-%%    \unitlength=1mm
-%%    \begin{fmffile}{nu-e-CC}
-%%      \begin{fmfgraph*}(100,50)
-%%         \fmfleft{ip,iq}
-%%         \fmfright{op,oq}
-%%         \fmf{fermion,label=$\nu_{e}$}{iq,v2}
-%%         \fmf{fermion,label=$e^{-}$}{v2,oq}
-%%         \fmf{fermion,label=$e^{-}$}{ip,v1}
-%%         \fmf{fermion,label=$\nu_{e}$}{v1,op}
-%%         \fmf{boson,label=$W^{+}$}{v1,v2}
-%%      \end{fmfgraph*}
-%%    \end{fmffile}
-%%    \vspace*{5mm}
-%%  }
-%%  \caption{Neutrino-electron scattering.}
-%%  \label{fig:particle-physics:nu-e-CC}
-%%\end{figure}
+
+\subsection{Neutrino oscillations and mass}
+
+The phenomenon of neutrino oscillations was first observed by Ray Davis in an experiment at the Homestake mine in 1968. The experiment observed a flux deficit of Solar \Pnue compared to theoretical predictions based upon the Standard Solar Model. The deficit was best explained by neutrinos oscillating between flavour states in transit from the Sun, however, this is not possible in the standard model as neutrinos do not have mass, and hence their flavour and mass eigenstates are the same.
+
+%REFERENCE -- Ray Davis
+%REFERENCE -- Standard Solar Model
+
+The current theoretical understanding of neutrino oscillations is that it is caused by the three known neutrino flavour states being a superposition of three mass states \textit{$m_{1}$}, \textit{$m_{2}$} and \textit{$m_{3}$}. The relationship between the weak and mass eigenstates is given in 
+
+%\EquationRed{eq:particle-physics:neutrino-flavour-mass-relation}.
+%
+%\begin{gather}
+%  \bra{hello}\ket{goodbye}
+%
+%  
+%  \intertext{where for a photon field $A_{\mu}$,}
+%
+%  \label{eq:particle-physics:neutrino-flavour-mass-relation}
+%\end{gather}
+%
+
+
+
+
+
+
+
+
 
