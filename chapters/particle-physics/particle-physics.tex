@@ -191,25 +191,98 @@ The phenomenon of neutrino oscillations was first observed by Ray Davis in an ex
 %REFERENCE -- Ray Davis
 %REFERENCE -- Standard Solar Model
 
-The current theoretical understanding of neutrino oscillations is that it is caused by the three known neutrino flavour states being a superposition of three mass states \textit{$m_{1}$}, \textit{$m_{2}$} and \textit{$m_{3}$}. The relationship between the weak and mass eigenstates is given in 
+The current theoretical understanding of neutrino oscillations is that it is caused by the three known neutrino flavour states being a superposition of three mass states \textit{$m_{1}$}, \textit{$m_{2}$} and \textit{$m_{3}$}. The relationship between the weak and mass eigenstates is given in \EquationRef{eq:particle-physics:neutrino-flavour-mass-relation}.
 
-%\EquationRed{eq:particle-physics:neutrino-flavour-mass-relation}.
-%
-%\begin{gather}
-%  \bra{hello}\ket{goodbye}
-%
-%  
-%  \intertext{where for a photon field $A_{\mu}$,}
-%
-%  \label{eq:particle-physics:neutrino-flavour-mass-relation}
-%\end{gather}
-%
+\begin{gather}
+  |\nu_{\alpha}\rangle = \sum\limits_{i=1,2,3}U_{\alpha i}^{*}|\nu_{i}\rangle
+  \label{eq:particle-physics:neutrino-flavour-mass-relation}
+\end{gather}
 
 
+\textit{U} is known as the PMNS matrix, where the matrix element $U_{\alpha i}^{*}$ gives the relative amplitude of mass eigenstate $\nu_{i}$ ($\nu_{i}=\nu_{1},\nu_{2},\nu_{3}$) found in flavour eigenstate $\nu_{\alpha}$ ($\nu_{\alpha}=\Pnue,\Pnum,\Pnut$). Neutrinos can only be produced in weak interactions (as they have no electric or colour charge) and will be in a specific flavour eigenstate which by \EquationRef{eq:particle-physics:neutrino-flavour-mass-relation} is a superposition of mass eigenstates. Each of the mass eigenstates travels with a different speed, consequently becoming out of phase some time later. A subsequent weak interaction will find the neutrino not in a single flavour state, as it was created, but a superposition. The upshot is that there is that neutrino can apparently osciallate between flavour states as it travels. 
 
+The PMNS matrix is usually decomposed in the following fashion:
+%REFERENCE -- PMNS matrix
+\begin{equation}
+  U = 
+  \begin{pmatrix}
+    1 & 0 & 0 \\
+    0 & c_{23} & s_{23} \\
+    0 & -s_{23} & c_{23} \\
+  \end{pmatrix}
+  \begin{pmatrix}
+    c_{13} & 0 & s_{13}e^{-i\delta} \\
+    0 & 1 & 0 \\
+    -s_{13}e^{-i\delta} & 0 & c_{13} \\
+  \end{pmatrix}
+  \begin{pmatrix}
+    c_{12} & s_{12} & 0 \\
+    -s_{12} & c_{12} & 0 \\
+    0 & 0 & 1 \\
+  \end{pmatrix}
+  \begin{pmatrix}
+    1 & 0 & 0 \\
+    0 & e^{i\alpha} & 0 \\
+    0 & 0 & e^{i\beta} 
+  \end{pmatrix}
+  \label{eq:particle-physics:pmns_matrix}
+\end{equation}
 
+An illustrative example to demonstrate this phenomenon is to take a two flavour approximation. In such an approximation we have two flavour and two mass states which are related by:
 
+\begin{equation}
+  \begin{pmatrix}
+    \nu_{\alpha} \\
+    \nu_{\beta} \\
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    cos(\theta) & sin(\theta) \\
+    -sin(\theta) & cos(\theta) \\
+  \end{pmatrix}
+  \begin{pmatrix}
+    \nu_{1} \\
+    \nu_{2} \\
+  \end{pmatrix}.
+  \label{eq:particle-physics:neutrino-oscillation-two-flavour}
+\end{equation}
 
+A neutrino is produced by a weak interaction in a state $\nu_{\alpha}$ with an energy $E$, then travels a distance $L$. At the source we have:
 
+\begin{equation}
+  |\nu_{(x=0)} \rangle = |\nu_{\alpha} \rangle = cos(\theta) |\nu_{1}\rangle + sin(\theta) |\nu_{2}\rangle
+\end{equation}
 
+and after travelling a distance $L$:
+
+\begin{equation}
+  |\nu_{(x=L)} \rangle = |\nu_{\alpha} \rangle = cos(\theta) e^{ip_{1}L} |\nu_{1}\rangle + sin(\theta) e^{ip_{2}L} |\nu_{2}\rangle.
+\end{equation}
+
+Then the probability of the neutrino being in flavour state $\nu_{\beta}$ at the distance $L$ is given by:
+
+\begin{equation}
+  \begin{split}
+    P(\nu_{\alpha} \rightarrow \nu_{\beta}) & = |\langle\nu_{\beta}|\nu_{\alpha}\rangle|^{2} \\
+    & = | ( -sin( \theta ) \langle \nu_{1} | + cos( \theta ) \langle \nu_{2} | )*(cos(\theta) e^{ip_{1}L} |\nu_{1}\rangle + sin(\theta) e^{ip_{2}L} |\nu_{2}\rangle)|^{2}
+  \end{split}
+  \intertext{and since}
+  \langle \nu_{i} | \nu_{j} \rangle & = \begin{cases} 
+    1,      i = j\\
+    0,      i \neq j
+  \end{cases}      
+  \intertext{we have}
+  \begin{split}
+    P(\nu_{\alpha} \rightarrow \nu_{\beta}) & = | sin(\theta)cos(\theta)(-e^{ip_{1}L}+e^{ip_{2}L}) | ^{2} \\
+    & = sin^{2}(2\theta)sin^2(\frac{(p_{1}-p_{2})L}{2}).
+  \end{split}
+  \intertext{In the limit that $E_{i} \gg m_{i}$ we arrive at:}
+  \begin{split}
+    P(\nu_{\alpha} \rightarrow \nu_{\beta}) & = sin^{2}(2\theta)sin^2(\frac{(1.27\Delta m_{21}^{2})L}{4E}).\\
+  \end{split}
+  \label{eq:particle-physics:neutrino-oscialltions:two-flavour}
+\end{equation}
+
+Wgere $\Delta m_{12}$ is the difference in mass squared between the two mass states in \eV, $L$ is the distance travelled measured in km and finally $E$ is the neutrino energy in \GeV.
+  %  \intertext{Since $p_{i}=E\sqrt{1-\frac{m_{i}^{2}}{E_{i}^{2}}}$ we get $p_{i}=E_{i}-\frac{m_{i}^2}{2E_{i}}$ in the limit that $E_{i}\gg m_{i}$. In this limit $E_{1}=E_{2}=E$ so $p_{i}=E-\frac{m_{i}^2}{2E}$}
 

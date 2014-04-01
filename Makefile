@@ -1112,6 +1112,8 @@ all_files.jpg		?= $(wildcard *.jpg)
 all_files.jpeg		?= $(wildcard *.jpeg)
 all_files.eps.gz	?= $(wildcard *.eps.gz)
 all_files.eps		?= $(wildcard *.eps)
+all_files.mf		?= $(wildcard *.mf)
+
 
 # Utility function for obtaining all files not specified in $(neverclean)
 # $(call cleanable-files,file1 file2 file3 ...)
@@ -2352,7 +2354,8 @@ convert-dot-tex		= $(DOT2TEX) '$1' > '$2'
 # Converts svg files into .eps files
 #
 # $(call convert-svg,<svg file>,<eps/pdf file>,[gray])
-convert-svg	= $(INKSCAPE) --without-gui $(if $(filter %.pdf,$2),--export-pdf,--export-eps)='$2' '$1'
+convert-svg	= echo "Not converting svg file to pdf - Change in MakeFile if necessary..."
+#convert-svg	= $(INKSCAPE) --without-gui $(if $(filter %.pdf,$2),--export-pdf,--export-eps)='$2' '$1'
 
 # Converts xvg files into .eps files
 #
@@ -2831,8 +2834,8 @@ endif
 	$(QUIET)$(call convert-fig,$<,$@,$(GRAY))
 
 %.pdf:	%.svg
-	$(QUIET)$(call echo-graphic,$^,$@)
-	$(QUIET)$(call convert-svg,$<,$@,$(GRAY))
+#	$(QUIET)$(call echo-graphic,$^,$@)
+#	$(QUIET)$(call convert-svg,$<,$@,$(GRAY))
 endif
 
 ifeq "$(strip $(BUILD_STRATEGY))" "xelatex"
