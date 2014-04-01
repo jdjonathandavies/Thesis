@@ -1,0 +1,7 @@
+%FIXME -- this will be the tag for bits that need fixing
+
+%PLOT -- this will be the tag for where plots should be
+
+%INSERT -- this will be the tag for where we should insert something like text
+
+%REFERENCE -- this will be the tag for a reference
