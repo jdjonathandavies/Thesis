@@ -2,6 +2,9 @@
 \RequirePackage{hepnicenames,hepunits,maybemath,fontenc}
 
 %% Units
+
+\DeclareRobustCommand{\EeV}{\thesismath{~\exa \electronvolt}\xspace}
+\DeclareRobustCommand{\PeV}{\thesismath{~\peta \electronvolt}\xspace}
 \let\@OldTeV\TeV\renewcommand{\TeV}{\@OldTeV\xspace}
 \let\@OldGeV\GeV\renewcommand{\GeV}{\@OldGeV\xspace}
 \let\@OldMeV\MeV\renewcommand{\MeV}{\@OldMeV\xspace}
@@ -23,6 +26,7 @@
 
 \DeclareRobustCommand{\MC}{Monte Carlo\xspace}
 \DeclareRobustCommand{\BFKL}{BFKL\xspace}
+
 %% Maths
 \DeclareRobustCommand{\thesismath}[1]{\ensuremath{\maybebmsf{#1}}}
 \DeclareRobustCommand{\parenths}[1]{\thesismath{\left({#1}\right)}}
