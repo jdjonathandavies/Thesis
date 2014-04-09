@@ -3,8 +3,15 @@
 
 %% Units
 
+\DeclareRobustCommand{\Mpc}{\thesismath{~\mega \parsec}\xspace}
 \DeclareRobustCommand{\EeV}{\thesismath{~\exa \electronvolt}\xspace}
 \DeclareRobustCommand{\PeV}{\thesismath{~\peta \electronvolt}\xspace}
+
+\DeclareRobustCommand{\km}{\thesismath{~\kilo \meter}\xspace}
+\DeclareRobustCommand{\yearunit}{\thesismath{~\mbox{year}}\xspace}
+\DeclareRobustCommand{\yr}{\thesismath{~\mbox{yr}}\xspace}
+\DeclareRobustCommand{\parsec}{\thesismath{~\mbox{pc}}\xspace}
+
 \let\@OldTeV\TeV\renewcommand{\TeV}{\@OldTeV\xspace}
 \let\@OldGeV\GeV\renewcommand{\GeV}{\@OldGeV\xspace}
 \let\@OldMeV\MeV\renewcommand{\MeV}{\@OldMeV\xspace}
@@ -46,6 +53,7 @@
 \DeclareRobustCommand{\difDouble}[3]{\frac{\operatorname{d}^2\!{#1}}{\operatorname{d}\!{#2}\operatorname{d}\!{#3}}}
 %% Physics terminology
 %% Theory
+
 \DeclareRobustCommand{\QED}{QED\xspace}
 \DeclareRobustCommand{\QCD}{QCD\xspace}
 \DeclareRobustCommand{\gQCD}{\thesismath{g_s}\xspace}

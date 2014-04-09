@@ -125,7 +125,11 @@ Considering the GZK process in \EquationRef{eq:uhe-app:UHECR:GZK} it is clear th
 
 Due to the production mechanism there is strong link between the neutrino and cosmic ray spectra. Observing and measuring the properties of BZ neutrinos would provide otherwise unobtainable information regarding the cosmic ray spectrum. For example it would be possible to infer details of the emission spectra of cosmic rays (such as the maximum energy to which they are accelerated) and information about the sources.
 
-An example predicted flux is shown in \FigureRef{fig:uhe-app:UHEN:UHEN-Flux} and the implications of various compositions for UHE cosmic rays are shown in \FigureRef{fig:uhe-app:UHEN:UHEN-Flux-Composition-Models}. 
+An example predicted flux is shown in \FigureRef{fig:uhe-app:UHEN:UHEN-Flux}. The flux of \Pnum and \APnum come exclusively from the decay of charged pions from the photo-pion production mechanisms discussed previously. Since the UHE cosmic ray spectrum is steeply falling most of these interactions will occur close to the threshold nucleon energy of $6 \times 10^{19} \eV$ and transfer approximately $5\%$ of the energy available to neutrinos, resulting in a single peak between $10^{18}$ and $10^{19}$ \eV in both the electron and muon neutrino fluxes. The lower energy peak between $10^{16}$ and $10^{17}$ \eV is due to neutron decays producing \APnue. For reference the Waxman-Bachall limit is shown on the same axes. This limit is an upper bound on neutrino fluxes caused by photo-pion production in the sources of UHE cosmic rays and is a common reference flux used in the literature.  \FigureRef{fig:uhe-app:UHEN:UHEN-Flux-Composition-Models} shows the effects on the neutrino flux resulting from various compositions for UHE cosmic rays and shows, as expected, a supression in the highest energy flux when moving to higher mass nuclei.
+
+
+
+
 
 \begin{figure}[htpb]
   \centering
@@ -140,26 +144,35 @@ An example predicted flux is shown in \FigureRef{fig:uhe-app:UHEN:UHEN-Flux} and
   \caption{Figure}
   \label{fig:uhe-app:UHEN:UHEN-Flux-Composition-Models}
 \end{figure}
-%UHE Neutrinos
 
-%-> GZK affect
-%-> BZ neutrinos
-%-> UHEN produced at the source
+\subsection{Particle physics with UHE neutrinos}
+\label{sec:uhe-app:UHEN:particle-physics}
 
-%-> BZ fluxes
-%-> Seckel flux expectation 
-%-> Waxman Bachal
+The main interest, from a particle physics perspective, in UHE neutrinos comes from the enormous energies they are expected to have. Neutrinos impacting on stationary protons give rise to center of mass energies an order of magnitude larger than those available at the LHC. For example a $10^{19}$ \eV neutrino would give rise to $\sim 140$ \TeV being available to produce new particles. Studying their interactions and possible divergences from those expected would be a powerful probe for new physics beyond the standard model in a regime that it is difficult to imagine replicating through current accelerator technology.
 
-%-> Unkowns about UHECR can be resolved by measurements of UHEN
-%-> void measurement still interesting as it can rule out some models
+If experiments were able to distinguish between neutrino flavours there is the possibility of observing neutrino oscillations on baselines and energy scales previously inaccesible. With the current understanding of neutrino oscillations the flavour composition described in \SectionRef{sec:uhe-app:UHEN} would be maximally mixed leading to a ratio \Pnue : \Pnum : \Pnut close to 1 : 1 : 1.
 
-%UHE Neutrino detection
-%-> Very hard as the interaction cross-section is low
-%-> The flux is fantastically low as well 
-%-> Optical cherenkov as lead to the first neutrinos of extra galactic origin
-%-> Difficult to scale up for measurements of GZK neutrinos
-%-> Need a new detection technique to get to tera ton scale detectors
-%
+Having established the observational and theoretical motivation for detecting UHE neutrinos the practicalities are now discussed.
+
+\subsection{UHE neutrino detection}
+\label{sec:uhe-app:UHEN:detection}
+
+As neutrinos only interact via the weak force it is not possible to detect them directly, they must interact via processes shown in \FigureRef{fig:particle-physics:neutrino-interactions} and observations made of the by-products. At $10^{19}$ \eV the neutrino nucleon interaction cross-section is expected to be in the region of $0.3 \times 10^{-31} \cm^{2}$ making interactions probable in \cubic\km detectors. The fluxes are extremely low (of the order $10$ $\km^{-2}\yearunit^{-1})$ and necessitate detector volumes $\sim 100\km^{3}$. 
+
+Many experiments rely on detecting neutrinos through the light emitted by the by products they produce in interactions. In, for example, a charged current interaction between a neutrino and nucleon energy is transferred from the neutrino to a charged lepton and a shower of charged particles. Due to the high energies involved these particles will be travelling at super-luminal speeds and Cherenkov light peaked in the optical region. Experiments like IceCube make use of naturally occuring materials, ice in this case, as a detector volume in which the neutrinos interact and subsequently charged particles emit Cherenkov light. This technology has proved useful in observing neutrinos over a wide range of energies, including the first observation of neutrinos believed to be of extra galactic origin, but the attenuation lengths of optical light in naturally occuring media are such that the technology is prohibitively expensive to scale up to $\sim 100 \cubic\km$. A new detection mechanism is necessary in order to achieve the desired sensitivity to the UHE neutrino flux. 
+
+\subsection{The Askaryan effect and radio detection}
+\label{sec:uhe-app:UHEN:Askaryan}
+
+In 1962 Gurgen Askaryan proposed that extremely energetic particle cascades induced by neutrinos interactions in dense dielectrics could produce coherent radio pulses. Secondary electrons, positrons and gama rays cause an electromagnetic shower to develop in the medium. Although the incident neutrino carries no electric charge a net excess in charge builds due to the presence of electrons in the medium. A combination of scattering effects cause electrons to be promoted from the medium into the shower, at the same time positrons annhilate with electrons in the medium, resulting in a net negative charge excess of $\sim 20\%$. The charge excess travels at super-luminal speeds through the medium causing Cherenkov emission which, although peaked in the optical, adds coherently for wavelengths greater than the shower dimensions. The power emitted in radio waves is expected to scale with the incident neutrino energy. 
+
+
+Measurements made at SLAC in some year exmperimentaly confirmed Askaryan radiation in ice, salt and sand. 
+
+
+
+
+
 %Askaryan Effect
 %-> Neutrino interactions in dense dielectrics lead to showers
 %-> These showers have charge excesses as they are in e- dominated environments
