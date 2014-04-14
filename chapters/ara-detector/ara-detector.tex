@@ -1,4 +1,102 @@
 \chapter{The Askaryan Radio Array}
 \label{chap:ara-detector}
 
-This thesis writing lark is pretty easy.
+Radio detection of neutrinos is a promising experimental method in the search for UHE neutrinos. The likes of the ANITA and RICE experiments have shown that it is feasible to instrument large volumes of ice relatively inexpensively. However, to date no UHE neutrinos have been observed with such experiments and next generation detectors must find a way of improving sensitivity by an order of magnitude or more in the $10^{17} - 10^{18}\eV$ region. The Askaryan Radio Array (ARA) is one such experiment that looks to build on the pioneering work by other experiments in the field. ARA will consist of a series of antenna clusters, or stations, buried deep in the ice near the Amundsen-Scott South Pole Station. Each of these anetnna clusters will have dedicated triggering and digitisation electronics to enable them to operate as stand-alone neutrino detectors. This design lends itself to a phased installation that will allow the detector volume to grow as sensitivity is required, with the aim of first establishing an UHE neutrino flux and giving the option to expand to an observatory class detector to make detailed measurements of it.
+
+By burying the antennas in the ice the signal to noise ratio expected from neutrino signals increases significantly compared with balloon born experiments, such as ANITA, leading to a decrease in the energy threshold but with an associated decrease in detector volume due to the attenuation of radio signals within the ice. In addition the stations are able to operate year round and are not limited to the relatively noisy summer season in which human activity is at its peak. The ANITA experiment has to remove significant amounts of anthroprogenic radio signals from their data set. By choosing a location that is relatively isolated, and by collecting data year round ARA will be able to greatly reduce the limitations that this places on live time and hence neutrino sensitivity, whilst greatly reducing the complications this produces in analysis.
+
+The ice sheet upon which the south pole station sits is $\sim 2.8 \km$ thick and has exceptional radio clarity, as observed by the RICE experiment. The top layer of ice, known as the firn, consists of compacted snow of lower density than solid ice, which leads to a varying index of refraction through this layer. This results in ray-bending and shadowing affects that limit the effective volume of a detector deployed within it, whilst complicating triggering and reconstruction of incidnet radio signals' origin. The firn typically extends for $\sim 150 \meter$, below which the index of refraction changes little. There is a clear benefit to installing antennas below this layer to circumvent these effects, but the costs of drilling rise rapidly with depth. The challenge of drilling wide, deep and dry holes to these depths is not insignificant, although ARA is able to draw on the expertise within the IceCube collaboration which succesfully deployed photo-multiplier tubes at depths of $\sim 1 \km$. A balance must be met between increasing the detector volume and the cost of doing so.
+
+
+
+The expected signal from neutrino induced Askaryan radiation is a highly linearly-polarised radio frequency (RF) impulse arriving from any direction. This will either come in the form of a plane wave for distant sources or, for nearby sources, a spherical wavefront. The antennas effectively sample this wavefront and the timing differences between signals received in pairs of antennas can be used to identify both the source direction and the distance from the station. The antennas effectively sample radio emissions on some portion of the Cherenkov cone. By measuring the polarisation of detected signals it is possible that additional information can be obtained about which part of the cone each antenna has sampled, hence providing another observable with which to determine the event topology. The receive antennas used within a station should have a dipole response and be split into polarisation along two orthogonal directions. This allows for detection of RF signals polarised along an arbitrary direction as it is not expected that the neutrino signal would be biased to any particular one.
+
+The impulsive nature of the Askaryan signal, with experimentally observed rise times of $\sim 100 \pico \second$, necessitates high sampling rate digitisation of the analogue signal received by the antennas. Power is at a premium in such remote locations placing a severe constraint on the consumption of the trigger and data acquisition systems. Custom ASICs (Application Specific Integrated Circuits) are designed and used to meet these challenging design goals.
+
+The analysis presented in this document was performed on data collected with a prototype detector and this instrument is described in the following section. 
+
+
+%INSERT -- Askaryan signal rise time
+
+
+\section{ARA 37}
+\label{sec:ara-detector:ARA37}
+
+\begin{figure}[htpb]
+  \centering
+  \includegraphics[width=\textwidth]{chapters/ara-detector/ARA-37.pdf}
+  \caption{Figure.}
+  \label{fig:ara-detector:ARA-37:ARA-37}
+\end{figure}
+
+
+\section{The TestBed}
+\label{sec:ara-detector:TestBed}
+
+During the austral summer of 2010-2011 a prototype station was deployed in the ice designed to provide a tool with which to asses the suitability of the ice, the radio conditions of the environment and to aid the development of future stations. Referred to as the `TestBed', it consists of 14 horizontally (HPol) and vertically (VPol) polarised \footnote{Horizontally (Vertically) polarised antennas will be referred to as HPol (VPol) in this documents.} antennas deployed in the ice, alongside 2 horizontally polarised surface antennas and a dedicated digitisation and trigger unit known as the `DAQ box'. The dedicated hot-water drilling equipment necessary to drill below the firn layer was not yet available limiting the depth of holes to $\sim 30 \meter$. 4 HPol and 4 VPol were deployed at a depth of $30 \meter$, the rest to a depth of $\sim 1 \meter$. 
+
+\subsection{Signal Chain}
+\label{sec:ara-detector:TestBed:Signal-Chain}
+
+Expected askaryan signals expected to have broadband power between 150 and 800 MHz
+
+Limitations in producing deep holes limits the dimensions of antennas to diameter of 15 \centi \meter. 
+
+Each borehole contains multiple antennas, this collection being commonly referred to as a string. The requirement for multiple antennas means that the design must allow for feed through cables for lower antennas whilst retaining azimuthal symmetry required to prevent an asymmetric sensitivity to signal arrival direction.
+
+VPol is a fat-dipole
+
+Difficult to retain azimuthal symmetry
+
+Acheived by having hollow-center bicone design. Feed region is annual around the passthrough cables and is fed at multiple locations alond the annulus with appropriate impedance matching.
+
+HPol - two solutions implemented - Bowtie slotted cylinder (BSC) and quad slotted-cylinder (QSC). QSC was found to have better azimuthal response
+
+
+
+
+The deep antennas are the focus of the aforementioned data analysis, so will focus on these
+
+
+
+
+
+\begin{figure}[htpb]
+  \centering
+  \includegraphics[width=\textwidth]{chapters/ara-detector/TB-Signal-Chain.pdf}
+  \caption{Figure.}
+  \label{fig:ara-detector:TestBed:Signal-Chain}
+\end{figure}
+
+
+
+\subsection{Triggering}
+\label{sec:ara-detector:TestBed:Triggering}
+
+\subsection{Digitisation}
+\label{sec:ara-detector:TestBed:Digitisation}
+
+\subsection{Data Acquisition}
+\label{sec:ara-detector:TestBed:Data-Acquisition}
+
+\begin{figure}[htpb]
+  \centering
+  \includegraphics[width=\textwidth]{chapters/ara-detector/TB-DAQ-Schematic.pdf}
+  \caption{Figure.}
+  \label{fig:ara-detector:TestBed:DAQ-Schematic}
+\end{figure}
+
+\begin{figure}[htpb]
+  \centering
+  \includegraphics[width=\textwidth]{chapters/ara-detector/TB-Antennas.pdf}
+  \caption{Figure.}
+  \label{fig:ara-detector:TestBed:Antennas}
+\end{figure}
+
+
+
+
+
+\section{ARA 1-3}
+\label{sec:ara-detector:ARA1-3}
+
