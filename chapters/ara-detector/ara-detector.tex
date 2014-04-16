@@ -1,22 +1,17 @@
 \chapter{The Askaryan Radio Array}
 \label{chap:ara-detector}
 
-Radio detection of neutrinos is a promising experimental method in the search for UHE neutrinos. The likes of the ANITA and RICE experiments have shown that it is feasible to instrument large volumes of ice relatively inexpensively. However, to date no UHE neutrinos have been observed with such experiments and next generation detectors must find a way of improving sensitivity by an order of magnitude or more in the $10^{17} - 10^{18}\eV$ region. The Askaryan Radio Array (ARA) is one such experiment that looks to build on the pioneering work by other experiments in the field. ARA will consist of a series of antenna clusters, or stations, buried deep in the ice near the Amundsen-Scott South Pole Station. Each of these anetnna clusters will have dedicated triggering and digitisation electronics to enable them to operate as stand-alone neutrino detectors. This design lends itself to a phased installation that will allow the detector volume to grow as sensitivity is required, with the aim of first establishing an UHE neutrino flux and giving the option to expand to an observatory class detector to make detailed measurements of it.
+Radio detection of neutrinos is a promising experimental method in the search for UHE neutrinos. The likes of the ANITA and RICE experiments have shown that it is feasible to instrument large volumes of ice relatively inexpensively. However, to date no UHE neutrinos have been observed with such experiments and next generation detectors must find a way of improving sensitivity by an order of magnitude or more in the $10^{17} - 10^{18}\eV$ region. The Askaryan Radio Array (ARA) is one such experiment that looks to build on the pioneering work by other experiments in the field. ARA will consist of a series of antenna clusters, or stations, buried deep in the ice near the Amundsen-Scott South Pole Station. Each of these anetnna clusters will have dedicated triggering and digitisation electronics to enable them to operate as stand-alone neutrino detectors. This design lends itself to a phased installation that will allow the detector volume to grow as sensitivity is required, with the aim of first establishing an UHE neutrino flux and giving the option to expand to an observatory class detector to make detailed measurements of it. 
 
 By burying the antennas in the ice the signal to noise ratio expected from neutrino signals increases significantly compared with balloon born experiments, such as ANITA, leading to a decrease in the energy threshold but with an associated decrease in detector volume due to the attenuation of radio signals within the ice. In addition the stations are able to operate year round and are not limited to the relatively noisy summer season in which human activity is at its peak. The ANITA experiment has to remove significant amounts of anthroprogenic radio signals from their data set. By choosing a location that is relatively isolated, and by collecting data year round ARA will be able to greatly reduce the limitations that this places on live time and hence neutrino sensitivity, whilst greatly reducing the complications this produces in analysis.
 
-The ice sheet upon which the south pole station sits is $\sim 2.8 \km$ thick and has exceptional radio clarity, as observed by the RICE experiment. The top layer of ice, known as the firn, consists of compacted snow of lower density than solid ice, which leads to a varying index of refraction through this layer. This results in ray-bending and shadowing affects that limit the effective volume of a detector deployed within it, whilst complicating triggering and reconstruction of incidnet radio signals' origin. The firn typically extends for $\sim 150 \meter$, below which the index of refraction changes little. There is a clear benefit to installing antennas below this layer to circumvent these effects, but the costs of drilling rise rapidly with depth. The challenge of drilling wide, deep and dry holes to these depths is not insignificant, although ARA is able to draw on the expertise within the IceCube collaboration which succesfully deployed photo-multiplier tubes at depths of $\sim 1 \km$. A balance must be met between increasing the detector volume and the cost of doing so.
+The ice sheet upon which the south pole station sits is $\sim 2.8 \km$ thick and has exceptional radio clarity, as observed by the RICE experiment. The top layer of ice, known as the firn, consists of compacted snow of lower density than solid ice, which leads to a varying index of refraction through this layer. This results in ray-bending and shadowing affects that limit the effective volume of a detector deployed within it, whilst complicating triggering and reconstruction of incidnet radio signals' origin. The firn typically extends for $\sim 150 \meter$, below which the index of refraction changes little. There is a clear benefit to installing antennas below this layer to circumvent these effects, but the costs of drilling rise rapidly with depth. The challenge of drilling wide, deep and dry holes to these depths is not insignificant, although ARA is able to draw on the expertise within the IceCube collaboration which succesfully deployed photo-multiplier tubes at depths of $\sim 1 \km$.
 
 
-
-The expected signal from neutrino induced Askaryan radiation is a highly linearly-polarised radio frequency (RF) impulse arriving from any direction. This will either come in the form of a plane wave for distant sources or, for nearby sources, a spherical wavefront. The antennas effectively sample this wavefront and the timing differences between signals received in pairs of antennas can be used to identify both the source direction and the distance from the station. The antennas effectively sample radio emissions on some portion of the Cherenkov cone. By measuring the polarisation of detected signals it is possible that additional information can be obtained about which part of the cone each antenna has sampled, hence providing another observable with which to determine the event topology. The receive antennas used within a station should have a dipole response and be split into polarisation along two orthogonal directions. This allows for detection of RF signals polarised along an arbitrary direction as it is not expected that the neutrino signal would be biased to any particular one.
+The expected signal from neutrino induced Askaryan radiation is a highly linearly-polarised radio frequency (RF) impulse. This will either come in the form of a plane wave for distant sources or, for nearby sources, a spherical wavefront. The antennas effectively sample this wavefront and the timing differences between signals received in pairs of antennas can be used to identify both the source direction and the distance from the station. By measuring the polarisation of detected signals it is possible that additional information can be obtained about which part of the Cherenkov cone each antenna has sampled, hence providing another observable with which to determine the event topology. The receive antennas used within a station should have a dipole response and be split into polarisation along two orthogonal directions. This allows for detection of RF signals polarised along an arbitrary direction removing any bias to a particular polarisation.
 
 The impulsive nature of the Askaryan signal, with experimentally observed rise times of $\sim 100 \pico \second$, necessitates high sampling rate digitisation of the analogue signal received by the antennas. Power is at a premium in such remote locations placing a severe constraint on the consumption of the trigger and data acquisition systems. Custom ASICs (Application Specific Integrated Circuits) are designed and used to meet these challenging design goals.
 
-The analysis presented in this document was performed on data collected with a prototype detector and this instrument is described in the following section. 
-
-
-%INSERT -- Askaryan signal rise time
 
 
 \section{ARA 37}
@@ -29,36 +24,139 @@ The analysis presented in this document was performed on data collected with a p
   \label{fig:ara-detector:ARA-37:ARA-37}
 \end{figure}
 
+The current proposed design for ARA is a hexagonal arrangement of 37 stations named `ARA37' shown in \FigureRef{fig:ara-detector:ARA-37:ARA-37}. The current design for ARA37 is driven by the aim of observing a flux of UHE neutrinos, and as such this phase will essentially be a counting experiment. The design choices in terms of number of antennas per station and the geometry of stations within the detector as a whole are optimised to maximise detector volume. This does not preclude multi-station events, which would provide extra information to determine event details and energies. These events, however, are expected to be rare in comparison with single station events. Once a UHE neutrino flux is established it would be possible to in-fill with stations to improve energy resolution and better distinguish between classes of neutrino event. \Pnut interactions, for example, can lead to a secondary decay of a \Ptau within the detector volume. Such `double-bang' events could produce two particle showers being reconstructed using seperate stations.
+
+
+The modular design enables the individual detectors to be developed as the array is installed informed by the experience of installation, operation and the data from those previously deployed. A protype station known as the `TestBed' was installed during the austral summer 2010-2011, which is marked in \FigureRef{fig:ara-detector:ARA-37:ARA-37}, and is described in detail in \SectionRef{sec:ara-detector:TestBed}. 
+
+
 
 \section{The TestBed}
 \label{sec:ara-detector:TestBed}
 
-During the austral summer of 2010-2011 a prototype station was deployed in the ice designed to provide a tool with which to asses the suitability of the ice, the radio conditions of the environment and to aid the development of future stations. Referred to as the `TestBed', it consists of 14 horizontally (HPol) and vertically (VPol) polarised \footnote{Horizontally (Vertically) polarised antennas will be referred to as HPol (VPol) in this documents.} antennas deployed in the ice, alongside 2 horizontally polarised surface antennas and a dedicated digitisation and trigger unit known as the `DAQ box'. The dedicated hot-water drilling equipment necessary to drill below the firn layer was not yet available limiting the depth of holes to $\sim 30 \meter$. 4 HPol and 4 VPol were deployed at a depth of $30 \meter$, the rest to a depth of $\sim 1 \meter$. 
+During the austral summer of 2010-2011 a prototype station was deployed in the ice designed to provide a tool with which to asses the suitability of the ice, the radio conditions of the environment and to aid the development of future stations. Referred to as the `TestBed', it consists of 14 horizontally (HPol) and vertically (VPol) polarised \footnote{Horizontally (Vertically) polarised antennas will be referred to as HPol (VPol) in this documents.} antennas deployed in the ice, alongside 2 horizontally polarised surface antennas and a dedicated digitisation, triggering and data recording unit known as the `DAQ box'. The dedicated hot-water drilling equipment necessary to drill below the firn layer was not yet available limiting the depth of holes to $\sim 30 \meter$. 4 HPol and 4 VPol were deployed at a depth of $30 \meter$, the rest to a depth of $\sim 1 \meter$. The requirements for various aspects of the prototype are summarised in \TableRef{tab:ara-detector:TestBed:Specifications} and can be compared to the full station design shown in \TableRef{tab:ara-detector:ARA1-3:Specifications}.
+
+
+%\begin{table}
+%\begin{center}
+%  \begin{tabular}{ p{0.4\textwidth} | p{0.2\textwidth} | p{0.2\textwidth}}
+%    \textbf{Specified Parameter} & \textbf{TestBed Station} & \textbf{Full Station} \\    
+%    \hline
+%    Number of VPol antennas                            & 2 near-surface, 4 in ice           & 8\\
+%    \hline
+%    VPol antenna type                                  & bicone                             & bicone\\
+%    \hline
+%    VPol antenna bandwidth (\mega\hertz)               & 150-850                            & 150-850 \\
+%    \hline
+%    Number of HPol antennas                            & 2 near-surface, 6 in ice           & 8 \\
+%    \hline
+%    HPol antenna type                                  & bowtie-slotted-cylinder            & quad-slotted cylinder \\
+%    \hline
+%    HPol antenna bandwidth (\mega\hertz)               & 250-850                            & 200-800\\
+%    \hline
+%    Surface antenna type                               & fat dipole                         & fat dipole\\
+%    \hline
+%    Surface antenna bandwidth (\mega\hertz)            & 30-300                             & 30-300 \\
+%    \hline
+%    Number of surface antennas                         & 2                                  & 4  \\
+%    \hline
+%    Number of receive antenna boreholes                & 4                                  & 4  \\
+%    \hline
+%    Borehole depth (\meter)                            & 30                                 & 200\\
+%    \hline
+%    Vertical antenna configuration                     & VPol (HPol) above HPol (VPol)      & VPol (HPol) above HPol (VPol)    \\
+%    \hline
+%    Vertical spacing (\meter)                          & 5                                  & 20\\
+%    \hline
+%    Approximate geometry                               & trapezoidal                        & trapezoidal\\
+%    \hline
+%    Approximate radius (\meter)                        & 10                                 & 10\\
+%    \hline
+%    Number of calibration antenna boreholes            & 3                                  & 2\\
+%    \hline
+%    Calibration borehole distance from center (\meter) & 30                                 & 30\\
+%    \hline
+%    Calibration hole geometry                          & equilateral triangle               & facing two sides\\
+%    \hline
+%    Calibration signal type                            & impulse only                       & impulse and noise\\
+%    \hline
+%    LNA noise figure (\kelvin)                         & $< 80$                             & $<80$ \\
+%    \hline
+%    LNA/amplifier dynamic range                        & 30:1                               & 30:1\\
+%    \hline
+%    RF amplifier total gain (dB)                       & $>75$                              & $>75$\\
+%  \end{tabular}
+%  \label{tab:ara-detector:TestBed:Specifications}
+%\end{center}
+%\end{table}
+%
+
+\begin{table}
+\begin{center}
+  \begin{tabular}{ c c }
+    \textbf{Specified Parameter}  & \textbf{Full Station} \\    
+    \hline
+    Number of VPol antennas                            & 2 near-surface, 4 in ice       \\
+    \hline
+    VPol antenna type                                  & bicone                         \\
+    \hline
+    VPol antenna bandwidth (\mega\hertz)               & 150-850                        \\
+    \hline
+    Number of HPol antennas                            & 2 near-surface, 6 in ice       \\
+    \hline
+    HPol antenna type                                  & bowtie-slotted-cylinder        \\
+    \hline
+    HPol antenna bandwidth (\mega\hertz)               & 250-850                        \\
+    \hline
+    Surface antenna type                               & fat dipole                     \\
+    \hline
+    Surface antenna bandwidth (\mega\hertz)            & 30-300                         \\
+    \hline
+    Number of surface antennas                         & 2                              \\
+    \hline
+    Number of receive antenna boreholes                & 4                              \\
+    \hline
+    Borehole depth (\meter)                            & 30                             \\
+    \hline
+    Vertical antenna configuration                     & VPol (HPol) above HPol (VPol)  \\
+    \hline
+    Vertical spacing (\meter)                          & 5                              \\
+    \hline
+    Approximate geometry                               & trapezoidal                    \\
+    \hline
+    Approximate radius (\meter)                        & 10                             \\
+    \hline
+    Number of calibration antenna boreholes            & 3                              \\
+    \hline
+    Calibration borehole distance from center (\meter) & 30                             \\
+    \hline
+    Calibration hole geometry                          & equilateral triangle           \\
+    \hline
+    Calibration signal type                            & impulse only                   \\
+    \hline
+    LNA noise figure (\kelvin)                         & $< 80$                         \\
+    \hline
+    LNA/amplifier dynamic range                        & 30:1                           \\
+    \hline
+    RF amplifier total gain (dB)                       & $>75$                          \\
+  \end{tabular}
+  \caption{TestBed detector specifications.}
+  \label{tab:ara-detector:TestBed:Specifications}
+\end{center}
+\end{table}
+
 
 \subsection{Signal Chain}
 \label{sec:ara-detector:TestBed:Signal-Chain}
 
-Expected askaryan signals expected to have broadband power between 150 and 800 MHz
+The TestBed signal chain is shown in figure \FigureRef{fig:ara-detector:TestBed:Signal-Chain}. A number of different antenna types are used both down-hole and near the surface, the signals from which are used for triggering and digitisation in the DAQ box. The main constraints on antenna design come from the need to fit into drilled boreholes and to allow for multiple antennas in each of these. The feasibility of drilling $15 \centi\meter$ wide holes to depths of $200 \meter$ has been shown and the antennas must fit within a cylinder of this size. To minimise the number of holes necessary per station multiple antennas are placed in each borehole, this means that the antenna design must be such that they allow for feed-through cables from lower antennas. To prevent any directional bias in sensitivity the antennas should have approximate azimuthal summetry in their response. 
 
-Limitations in producing deep holes limits the dimensions of antennas to diameter of 15 \centi \meter. 
-
-Each borehole contains multiple antennas, this collection being commonly referred to as a string. The requirement for multiple antennas means that the design must allow for feed through cables for lower antennas whilst retaining azimuthal symmetry required to prevent an asymmetric sensitivity to signal arrival direction.
-
-VPol is a fat-dipole
-
-Difficult to retain azimuthal symmetry
-
-Acheived by having hollow-center bicone design. Feed region is annual around the passthrough cables and is fed at multiple locations alond the annulus with appropriate impedance matching.
-
-HPol - two solutions implemented - Bowtie slotted cylinder (BSC) and quad slotted-cylinder (QSC). QSC was found to have better azimuthal response
+The VPol antennas used in the boreholes for the TestBed have a hollow-center biconical design shown in \FigureRef{fig:ara-detector:TestBed:Antennas}, where the feed region is annular around the passthrough cable. The HPol antenna design is significantly more challenging than that for the VPol antennas and two designs were implemented for testing in the TestBed: a bowtie-slotted-cylinder (BSC) antenna, and a quad-slotted-cylinder (QSC) antenna with internal ferrite loading to lower its frequency response. The design goal was to produce antennas to cover a frequency range of $150 \mega \hertz$ to $850 \mega \hertz$. This was acheived with the VPol antennas but proved difficult for both designs of HPol antennas, which struggled to obtain the required response below about $200 \mega \hertz$ to $250 \mega \hertz$ in ice as shown in \FigureRef{fig:TestBed:Signal-Chain:Frequency-Response}. Although the performance of the QSC HPol antennas was measured to be significantly better than the BSC antennas the latter were deployed in the boreholes due to manufacturing constraints ahead of deployment.
 
 
+One of the challenges of deploying receive antennas in the ice is to get signals to the DAQ box with little signal degridation. This is acheived in part by placing a low-noise preamplifier unit close to the antenna, serving to minimise insertion loss and thermal noise. The preamplifier unit contains low-pass and high-pass filters to define the band between  $130 \mega \hertz$ and  $850 \mega \hertz$, blocking any out of band signals and reduce thermal noise levels. Another filter is used to block one strong in-band signal from the South Pole communication system at about $450 \mega \hertz$. The output of the filters is then passed into a low-noise amplifier (LNA) to boost the signal before it is passed to the surface. The filters are required for two reasons: firstly to prevent powerful anthroprogenic signals from saturating the LNA and driving it into a non-linear mode of operation that results in compression of signals, and secondly to reduce the sensitivity of the trigger and digitisation systems to them. The output of the preamplifier unit is then fed through shielded coaxial cables to the top of the boreholes where the signal is passed through a second stage amplifier to further boost the signal before being arriving at the DAQ box, at which point it is passed through a two-way splitter into the triggering and digitisation systems.
 
-
-The deep antennas are the focus of the aforementioned data analysis, so will focus on these
-
-
-
+Maybe some stuff about the absolute gain of the system and thermal noise levels
 
 
 \begin{figure}[htpb]
@@ -70,8 +168,32 @@ The deep antennas are the focus of the aforementioned data analysis, so will foc
 
 
 
+
+
 \subsection{Triggering}
 \label{sec:ara-detector:TestBed:Triggering}
+
+The power and data rate restrictions from ARA's lcoation mean that it is not possible to continuously record data from the receive antennas. As a result a trigger is implemented to select interesting events that are then recorded by the DAQ electronics for later analysis. The main backgrounds for ARA are from thermal noise and anthroprogenic signals. ARA's location was chosen to minimise the latter, which is expected to only affect a small fraction of live time for the TestBed and future stations. The trigger is therefore designed to distinguish between impulsive RF signals, such as those expected from Askaryan radiation, and random thermal fluctuations. This is done by requiring that some interesting pattern of RF signals has crossed some intensity threshold in the trigger chain, at which point a trigger is asserted. This triggers the digitisation of the voltage-time waveforms from all of the receive antennas in a window around the time the trigger was asserted, which is referred to as an event.
+
+In the triggering chain of each antenna a coaxial tunnel diode is used to provide a unipolar signal that is proportional to the RF power integrated over a few nano seconds. These signals are then fed into a discriminator which determines whether the RF power has crossed an electronically set threshold. The discriminator is implemented via a field programmable gate array (FPGA) using low-voltage differntial signal comparators. For each antenna that passes the defined threshold a one-shot is generated in the FPGA, these signals can then in tern be assesed by firmware logic to determine if a trigger condition has been met. In the TestBed the trigger condition is that 3 of the 8 borehole VPol and HPol antennas produce signals that pass threshold within a $100 \nano\second$ window. 
+
+The TestBed coincidence trigger leads to a dependance on the individual threshold-crossing rates, or singles-rates $R_{single}$ of each antenna. As thermal noise is essentially random the global trigger rate on thermal signals is given to first order by:
+
+
+\begin{equation}
+  R_{global} = N C^{N}_{M}R_{single}^{N}t^{N-1}
+  \label{eq:ara-detector:TestBed:Trigger-Rate}
+\end{equation}
+
+\noindent for $N$ of $M$ coindidence in a time window $t$, where in the TestBed $N=3$, $M=8$ and $t=100\nano\second$. The trigger efficiency was measured in the laboratory as a function of signal to noise ratio (SNR) for an input impulsive signal and is shown in \FigureRef{fig:ara-detector:TestBed:Trigger-Efficiency}.
+
+\begin{figure}[htpb]
+  \centering
+  \includegraphics[width=\textwidth]{chapters/ara-detector/Global-Trig-Efficiency.pdf}
+  \caption{TestBed trigger efficiency measured as a function of voltage signal to noise ratio (SNR) for an impulsive signal. The SNR is measured with respect to the RMS receiver voltage from baseline thermal noise. The three lines represent the efficiency measurements at different electronically set threshold values for the output of the tunnel diode power detector.}
+  \label{fig:ara-detector:TestBed:Trigger-Efficiency}
+\end{figure}
+
 
 \subsection{Digitisation}
 \label{sec:ara-detector:TestBed:Digitisation}
@@ -100,3 +222,58 @@ The deep antennas are the focus of the aforementioned data analysis, so will foc
 \section{ARA 1-3}
 \label{sec:ara-detector:ARA1-3}
 
+
+
+\begin{table}
+\begin{center}
+  \begin{tabular}{ c c }
+    \textbf{Specified Parameter}  & \textbf{Full Station} \\    
+    \hline
+    Number of VPol antennas                            & 8\\
+    \hline
+    VPol antenna type                                  & bicone\\
+    \hline
+    VPol antenna bandwidth (\mega\hertz)               & 150-850 \\
+    \hline
+    Number of HPol antennas                            & 8 \\
+    \hline
+    HPol antenna type                                  & quad-slotted cylinder \\
+    \hline
+    HPol antenna bandwidth (\mega\hertz)               & 200-800\\
+    \hline
+    Surface antenna type                               & fat dipole\\
+    \hline
+    Surface antenna bandwidth (\mega\hertz)            & 30-300 \\
+    \hline
+    Number of surface antennas                         & 4  \\
+    \hline
+    Number of receive antenna boreholes                & 4  \\
+    \hline
+    Borehole depth (\meter)                            & 200\\
+    \hline
+    Vertical antenna configuration                     & VPol (HPol) above HPol (VPol)    \\
+    \hline
+    Vertical spacing (\meter)                          & 20\\
+    \hline
+    Approximate geometry                               & trapezoidal\\
+    \hline
+    Approximate radius (\meter)                        & 10\\
+    \hline
+    Number of calibration antenna boreholes            & 2\\
+    \hline
+    Calibration borehole distance from center (\meter) & 30\\
+    \hline
+    Calibration hole geometry                          & facing two sides\\
+    \hline
+    Calibration signal type                            & impulse and noise\\
+    \hline
+    LNA noise figure (\kelvin)                         & $<80$ \\
+    \hline
+    LNA/amplifier dynamic range                        & 30:1\\
+    \hline
+    RF amplifier total gain (dB)                       & $>75$\\
+  \end{tabular}
+  \caption{ARA1-3 detector specifications.}
+  \label{tab:ara-detector:ARA1-3:Specifications}
+\end{center}
+\end{table}
