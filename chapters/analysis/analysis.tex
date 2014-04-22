@@ -27,16 +27,65 @@ A blinding strategy was agreed by the experiment to avoid bias of the analyses. 
 \label{sec:Analysis:Calibration-Data}
 
 
+\section{Event Reconstruction}
+\label{sec:Analysis:Reconstruction}
+
+
 \section{Continuous Wave Removal}
 \label{sec:Analysis:CWRemoval}
 
-%CW Filtering
+The frequency band for the TestBed contains a number of frequencies used for communications at the south pole. A particularly strong carrier signal used by the south pole station at $450 \mega \hertz$ is removed by a notch filter placed between the antenna output and low noise amplifiers downhole, but a number of other transmission frequencies remain unfiltered. Due to the TestBed's remote location and the relatively low levels of human activity (which are largely restricted to the summer season) CW signals are not present in the vast majority of RF triggers and minbias events. However, the presence of CW in an event can cause misreconstruction of the incident signal, and in some cases mimic the properties that distinguish neutrino signals from thermal noise. For this reason it is necessary to identify and, due to the low numbers, simply remove the events from the analysis sample.
+
+Prior to analysis of an event a thermal noise baseline is generated using minimum bias data. The frequency content of an event can then be compared with this baseline to asses how un-thermal it is. 
+
+\subsection{Thermal Noise Baselines}
+\label{sec:Analysis:CWRemoval:Baselines}
+
+The frequency domain amplitudes of thermal noise are Rayleigh distributed:
+
+\begin{equation}
+  \mbox{Rayleigh p.d.f.} = \frac{A}{\sigma^{2}}e^{\frac{-A^{2}}{2\sigma^{2}}}
+  \label{eq:Analysis:CWRemoval:Rayleigh-pdf}
+\end{equation}
+
+\noindent where $A$ is the amplitude in a frequency range and $\sigma$ can be used to characterise the distribution. When creating a baseline for a run the fourier transform is taken of the time domain waveforms for each minimum bias event. The resulting frequency domain amplitudes are histogrammed per frequency bin per antenna and fitted with Rayleigh distributions.
 
 
-%CSW Reconstruction
+\begin{figure}[htpb]
+  \centering
+  \includegraphics[width=\largefigwidth]{chapters/analysis/RayleighFit-VPol-Ant1-403.7MHz.pdf}
+  \caption{Thermal noise amplitudes in VPol antenna 1 at 403.7 MHz for minimum bias data taken on 20th May 2011 (black) and a Rayleigh distribution fit to the data (red).}
+  \label{fig:analysis:CWRemoval:Baselines:Rayleigh-Fit}
+\end{figure}
 
-\section{Event Reconstruction}
-\label{sec:Analysis:Reconstruction}
+\FigureRef{fig:analysis:CWRemoval:Baselines:Rayleigh-Fit} shows one such Rayleigh fit to a sample of thermal events in one of the VPol antennas. For each run the $\sigma$ values are recorded as well as the average amplitude per frequency per antenna. Some runs contain a fraction of CW events large enough to distort the Rayleigh distributions and their baselines are rejected as `bad'. Due to the narrow band nature of CW signals it is possible to identify bad baselines by looking for spikes in the average amplitude spectra. 
+
+The baselines calculated in this manner are used to summarise the thermal conditions of the TestBed. As such the baseline chosen to compare events in a given run to is chosen to be the baseline derived from that run. In the case that this baseline is bad, then the closest run in time to this with a good baseline is selected.
+
+
+
+
+\begin{equation}
+  P(A_{measured} \geq A) & = \int \limits_{A}^{\infty}\frac{A^{\prime}}{\sigma^{2}}e^{\frac{-A^{\prime2}}{2\sigma^{2}}}dA^{\prime}\\
+  & = e^{\frac{-A^{2}}{2\sigma^{2}}}
+  \label{eq:Analysis:CWRemoval:Rayleigh-cdf}
+\end{equation}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
