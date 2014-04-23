@@ -53,26 +53,49 @@ The frequency domain amplitudes of thermal noise are Rayleigh distributed:
 
 \begin{figure}[htpb]
   \centering
-  \includegraphics[width=\largefigwidth]{chapters/analysis/RayleighFit-VPol-Ant1-403.7MHz.pdf}
-  \caption{Thermal noise amplitudes in VPol antenna 1 at 403.7 MHz for minimum bias data taken on 20th May 2011 (black) and a Rayleigh distribution fit to the data (red).}
+  \includegraphics[width=\mediumfigwidth]{chapters/analysis/RayleighFit-VPol-Ant1-403.7MHz.pdf}
+  \caption{Thermal noise amplitudes in VPol antenna 1 at 403.7 MHz for minimum bias data taken on 20th May 2011 (black) and a Rayleigh distribution fit to the data (red). The dashed black line is the same histogram but this time populated from a run containing a known CW source operating at $\sim 403 \mega \hertz$.}
   \label{fig:analysis:CWRemoval:Baselines:Rayleigh-Fit}
 \end{figure}
 
-\FigureRef{fig:analysis:CWRemoval:Baselines:Rayleigh-Fit} shows one such Rayleigh fit to a sample of thermal events in one of the VPol antennas. For each run the $\sigma$ values are recorded as well as the average amplitude per frequency per antenna. Some runs contain a fraction of CW events large enough to distort the Rayleigh distributions and their baselines are rejected as `bad'. Due to the narrow band nature of CW signals it is possible to identify bad baselines by looking for spikes in the average amplitude spectra. 
+\FigureRef{fig:analysis:CWRemoval:Baselines:Rayleigh-Fit} shows one such Rayleigh fit to a sample of thermal events in one of the VPol antennas. For each run the $\sigma$ values, which are calculated per frequency range per antenna, are recorded as well as the average power per frequency per antenna. Some runs contain a fraction of CW events large enough to distort the Rayleigh distributions and their baselines are rejected as `bad'. Due to the narrow band nature of CW signals it is possible to identify bad baselines by looking for spikes in the average power spectra. These narrow band excesses in the average power spectrum for each antenna are identified by the second derivative of this spectrum (as a function of frequency) passing a threshold informed by observing spectra from runs containing pure thermal noise and those containing a large fraction of CW contaminated events.
 
-The baselines calculated in this manner are used to summarise the thermal conditions of the TestBed. As such the baseline chosen to compare events in a given run to is chosen to be the baseline derived from that run. In the case that this baseline is bad, then the closest run in time to this with a good baseline is selected.
+\begin{figure}[htpb]
+  \subfloat[VPol Antennas]{\includegraphics[width=0.44\textwidth]{chapters/analysis/Rayleigh-Sigma-VPol.pdf}}\hfill
+  \subfloat[HPol Antennas]{\includegraphics[width=0.44\textwidth]{chapters/analysis/Rayleigh-Sigma-HPol.pdf}}
+  \caption{Rayleigh fit derived $\sigma$ values for two different baselines. The solid lines are for a baseline calculated from a thermal noise sample, and the dashed lines for a baseline containing a known CW source operating at $403 \mega \hertz$.} 
+  \label{fig:analysis:CWRemoval:Baselines:Rayleigh-Sigma}
+\end{figure}
+
+The baselines calculated in this manner are used to summarise the thermal conditions of the TestBed, examples are shown in \FigureRef{fig:analysis:CWRemoval:Baselines:Rayleigh-Sigma}. As such the baseline used for comparison with events in a run is chosen to be the baseline created from that run. In the case that this baseline is bad, then the closest run in time to this with a good baseline is selected.
+
+\begin{figure}[htpb]
+  \subfloat[VPol Antennas]{\includegraphics[width=0.44\textwidth]{chapters/analysis/Rayleigh-Power-VPol.pdf}}\hfill
+  \subfloat[HPol Antennas]{\includegraphics[width=0.44\textwidth]{chapters/analysis/Rayleigh-Power-HPol.pdf}}
+  \caption{Averaged power spectra for (solid lines) a run containing largely thermal events, and (dashed lines) a run containing a CW source. Bad runs, such as that summarised by the dashed lines, are identified by spikes in the averaged power spectra characterised by the second derivative falling below a threshold.}
+  \label{fig:analysis:CWRemoval:Baselines:Averaged-Power}
+\end{figure}
 
 
+\subsection{Filtering Method}
+\label{sec:Analysis:CWRemoval:Filtering}
 
+Event filtering is performed on an event by event basis. Discrete fourier transforms are taken of each event's time domain waveforms. Using the Rayleigh distributions from the chosen baseline it is possible to asses the probability of the measured frequency domain amplitudes given the thermal distributions characterised by $\sigma$ in the baseline:
 
 \begin{equation}
-  P(A_{measured} \geq A) & = \int \limits_{A}^{\infty}\frac{A^{\prime}}{\sigma^{2}}e^{\frac{-A^{\prime2}}{2\sigma^{2}}}dA^{\prime}\\
-  & = e^{\frac{-A^{2}}{2\sigma^{2}}}
+  P(A \geq A_{meas}) & = \int \limits_{A_{meas}}^{\infty}\frac{A}{\sigma^{2}}e^{\frac{-A^{2}}{2\sigma^{2}}}dA\\
+  & = e^{\frac{-A_{meas}^{2}}{2\sigma^{2}}}
   \label{eq:Analysis:CWRemoval:Rayleigh-cdf}
 \end{equation}
 
+\noindent where $A_{meas}$ is the amplitude measured in a frequency interval for a particular antenna in the event being assessed. $P(A_{meas} \geq A)$ is then a measure of the probability of thermal fluctuations giving rise to the measured amplitude, and can be interperated as measuring how `un-thermal' that amplitude is. In order to push down the threshold CW signal size to which the filter is sensitive the product of probabilities for the borehole antennas is taken:
 
+\begin{equation}
+  P_{prod} = \prod P_{i} = \prod P(A \geq A_{i, meas})
+  \label{eq:Analysis:CWRemoval:Prod-Prob}
+\end{equation}
 
+\noindent where $P_{prod}$ is calculated seperately for VPol and HPol antennas. Any frequency bins that have $P_{prod}$ less than a threshold, which is choosen to be such that 1 in $10^{6}$ thermal events will produce such a value, are considered to be in excess. Two parameters are derived from an event's VPol (HPol) antennas: the total number of frequency bins (totalBins) that pass the threshold and are in excess, and the minimum value of $P_{prod}$ (minProb) from these frequency bins (i.e. the value that is least probable in the event). Events that contain CW contamination will have totalBins being a small, non-zero, number which a cut can be placed on. In addition the power transmitted by a CW signal is confined to a single frequency leading to measured amplitudes much greater than those from broadband signals, where the power is spread over a range of frequencies. This means that a second cut can be placed on minProb, rejecting events where minProb is below a threshold and hence the measured amplitudes are much greater than those expected given the thermal environment.
 
 
 
