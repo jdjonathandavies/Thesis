@@ -30,6 +30,77 @@ A blinding strategy was agreed by the experiment to avoid bias of the analyses. 
 \section{Event Reconstruction}
 \label{sec:Analysis:Reconstruction}
 
+Directional reconstruction of incident radio signals recorded in the TestBed is a powerful tool with which to identify and remove backgrounds, whilst providing invaluable information about possible neutrino events. Interferometric techniques have been successfully used in similar experiments, for example the ANITA experiment, that also record high fidelity radio waveforms. There are, however, a number of obstacles to robust reconstruction using interferometry in the TestBed. 
+
+The small number of antennas (4 deep antennas in each polarisation) limit the measured strength of any preferred source direction, which would be re-inforced with more antennas. The varying index of refraction in the firn layer (typically extending $\sim 150 \meter$ into the ice close to the south pole) causes ray-bending effects that distort the true arrival direction. And finally the uncertainty in the deployed positions of the receive and calibration antennas in the ice can further complicate reconstruction. 
+
+
+A new reconstruction method was developed for this analysis, based upon calculating timing offsets between waveforms that maximise correlation. This is achieved by creating a coherently summed wave (CSW), where individual antenna waveforms are added offset relative to one another scaled by the total number of waveforms. These offsets are such that the resulting CSW is maximally correlated with the original waveforms, as measured by the normalised cross-correlation $C_{1,2}$:
+
+
+\begin{equation}
+  C_{1,2}(\Delta t) = \frac{\psi_{1} \star \psi_{2}}{\sigma_{1} \sigma_{2}}
+  \label{eq:analysis:Reconstruction:Normalised-Cross-Correlation}
+\end{equation}
+
+\noindent where $\psi_{1/2}$ are the time domain waveforms, $\Delta t$ the time offset between them and $\sigma_{1/2}$ are the RMS. For discretely sampled waveforms containing a limited number of samples the cross-correlation $\psi_{1} \star \psi_{2}$ is given by:
+
+\begin{equation}
+  \psi_{1} \star \psi_{2} (\Delta t) = \sum_{n}^{N} V_{1}(t_{n}) V_{2}(t_{n}-\Delta t)
+  \label{eq:analysis:Reconstruction:Discrete-Cross-Correlation}
+\end{equation}
+
+\noindent where the voltages $V_{1/2}$ outside of waveform window are taken to be zero. A simple algorithm is implemented to find the set of timing offsets that maximise the correlation between each waveform and the resulting CSW. In \FigureRef{fig:analysis:Reconstruction:CSW-Example} offset individual waveforms and the resulting CSW are shown for a calibration pulser event and for a noise waveform.
+
+
+\begin{figure}[htpb]
+  \subfloat[Individual waveforms calibration pulser event]{\includegraphics[width=0.44\textwidth]{chapters/analysis/CSW-Coherent-Waveforms-VPol-CP.pdf}}\hfill
+  \subfloat[CSW calibration pulser event]{\includegraphics[width=0.44\textwidth]{chapters/analysis/CSW-CSW-VPol-CP.pdf}}\\
+  \subfloat[Individual waveforms noise event]{\includegraphics[width=0.44\textwidth]{chapters/analysis/CSW-Coherent-Waveforms-VPol-Noise.pdf}}\hfill
+  \subfloat[CSW noise event]{\includegraphics[width=0.44\textwidth]{chapters/analysis/CSW-CSW-VPol-Noise.pdf}}
+  \caption{(a) and (c) show individual antenna waveforms aligned in time. (b) and (c) show the resulting coherently summed wave.} 
+  \label{fig:analysis:Reconstruction:CSW-Example}
+\end{figure}
+
+
+The timing difference between pairs of antennas holds information about the arrival direction of the radio signal and are checked againstthose calculated from a simple ice model. The model takes the index of refraction to be a constant, equal to the measured value at the average depth of the borehole antenns. A $\chi^{2}$ is computed for a series of trial source locations in 1 degree bins in $\theta$, $\phi$ and logarithmically spaced bins in radial distance $R$:
+
+\begin{equation}
+  \chi^{2} = \sum_{i} \frac{(\Delta t_{1,i}^{meas} - \Delta t_{1,i}^{exp})^{2}}{\sigma^{2}}
+  \label{eq:analysis:Reconstruction:ChiSq}
+\end{equation}
+
+
+\noindent  where $\Delta t_{1,i}^{meas}$ is the measured offset between antenna $1$ and antenna $i$, $\Delta t_{1,i}^{exp}$ is the calculated offset expected from a trial source location and $\sigma$ is taken to be $1 \nano \second$ (which is similar to the timing uncertainty expected given uncertainty on the antenna positinos). The reconstructed location is that which minimises $\chi^{2}$ and hence corresponds to the most likely physical location given the measured time offsets. Calculating $\chi^{2}$ values in all possible $\theta$, $\phi$ and $R$ bins is computationally intensive and a time consuming process, so an algorithm was developed to only search a subset and identify the best fit location.
+
+
+ This method has the benefit of using the rich information contained within the digitised waveforms (correlation techniques result in precision of $\sim 150 \pico \second$ resolution in timing differences between pairs of antennas) as well as providing a parameter that describes the goodness of fit in $\chi^2$ upon which a cut can be placed. As thermal signals will have essentially random offsets between antennas the preferred source location will, in general, have a relatively large $\chi^2$ value associated with it, thus a requirement for good reconstruction will additionally reject a large number of thermal events.
+
+\begin{figure}[htpb]
+  \subfloat[$\chi^{2}$ map of calibration pulser event]{\includegraphics[width=0.44\textwidth]{chapters/analysis/ChiSqMap-VPol-CP.pdf}}\hfill
+  \subfloat[Zoom in to region of minimum $\chi^{2}$]{\includegraphics[width=0.44\textwidth]{chapters/analysis/ChiSqMap-VPol-CP-Zoom.pdf}}
+  \caption{Reconstruction maps of calculated $\chi^{2}$ values for the same calibration pulser event in \FigureRef{fig:analysis:Reconstruction:CSW-Example}.}
+  \label{fig:analysis:Reconstruction:CSW-ChiSq-Example}
+\end{figure}
+
+
+
+
+\begin{figure}[htpb]
+  \subfloat[Simulated neutrino reconstruction azimuth]{\includegraphics[width=0.44\textwidth]{chapters/analysis/CSW-Reco-Residuals-Phi-Sim.pdf}}\hfill
+  \subfloat[Simulated neutrino reconstruction elevation]{\includegraphics[width=0.44\textwidth]{chapters/analysis/CSW-Reco-Residuals-Theta-Sim.pdf}}\\
+  \subfloat[Calibration pulser reconstruction azimuth]{\includegraphics[width=0.44\textwidth]{chapters/analysis/CSW-Reco-Residuals-Phi-CP.pdf}}\hfill
+  \subfloat[Calibration pulser reconstruction elevation]{\includegraphics[width=0.44\textwidth]{chapters/analysis/CSW-Reco-Residuals-Theta-CP.pdf}}
+  \caption{Residuals for reconstructed source direction azimuth ($\phi$) and elevation ($\theta$). For simulated neutrino events the source location is taken to be the neutrino interaction point, which tends to be at a large distance ($\> 1 \km$) from the detector center. Due to ray-bending effects a correction factor is applied to translate the reconstructed elevation angle to the line of sight to the source.}
+\end{figure}
+
+
+
+
+
+
+
+
 
 \section{Continuous Wave Removal}
 \label{sec:Analysis:CWRemoval}
@@ -48,7 +119,7 @@ The frequency domain amplitudes of thermal noise are Rayleigh distributed:
   \label{eq:Analysis:CWRemoval:Rayleigh-pdf}
 \end{equation}
 
-\noindent where $A$ is the amplitude in a frequency range and $\sigma$ can be used to characterise the distribution. When creating a baseline for a run the fourier transform is taken of the time domain waveforms for each minimum bias event. The resulting frequency domain amplitudes are histogrammed per frequency bin per antenna and fitted with Rayleigh distributions.
+\noindent where $A$ is the amplitude at frequency $f$ and $\sigma$ can be used to characterise the distribution. When creating a baseline for a run the fourier transform is taken of the time domain waveforms for each minimum bias event. The resulting frequency domain amplitudes are histogrammed per frequency bin per antenna and fitted with Rayleigh distributions.
 
 
 \begin{figure}[htpb]
