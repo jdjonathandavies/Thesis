@@ -58,7 +58,9 @@ The frequency domain amplitudes of thermal noise are Rayleigh distributed:
   \label{fig:analysis:CWRemoval:Baselines:Rayleigh-Fit}
 \end{figure}
 
-\FigureRef{fig:analysis:CWRemoval:Baselines:Rayleigh-Fit} shows one such Rayleigh fit to a sample of thermal events in one of the VPol antennas. For each run the $\sigma$ values, which are calculated per frequency range per antenna, are recorded as well as the average power per frequency per antenna. Some runs contain a fraction of CW events large enough to distort the Rayleigh distributions and their baselines are rejected as `bad'. Due to the narrow band nature of CW signals it is possible to identify bad baselines by looking for spikes in the average power spectra. These narrow band excesses in the average power spectrum for each antenna are identified by the second derivative of this spectrum (as a function of frequency) passing a threshold informed by observing spectra from runs containing pure thermal noise and those containing a large fraction of CW contaminated events.
+
+
+\FigureRef{fig:analysis:CWRemoval:Baselines:Rayleigh-Fit} shows one such Rayleigh fit for the case of a run containing mainly thermal events, and for a run containing a fraction of CW contaminated events. For each run the $\sigma$ values, which are calculated per frequency range per antenna, are recorded as well as the average power per frequency per antenna. Some runs contain a fraction of CW events large enough to distort the Rayleigh distributions, making them unusable as a representation of the thermal conditions, and their baselines are rejected as `bad' (the dashed line in \FigureRef{fig:analysis:CWRemoval:Baselines:Rayleigh-Fit} shows such a run, the resulting Rayleigh fit would differ considerably from that derived from the solid line, event though these runs were taken on the same day). Due to the narrow band nature of CW signals it is possible to identify bad baselines by looking for spikes in the average power spectra shown in \FigureRef{fig:analysis:CWRemoval:Baselines:Averaged-Power}. These spikes are identified by looking for the second derivative of the average power spectrum falling below a threshold, indicating the presence of a spike. Any run that contains at least one borehole antenna with a spike in the average power spectrum is rejected. 
 
 \begin{figure}[htpb]
   \subfloat[VPol Antennas]{\includegraphics[width=0.44\textwidth]{chapters/analysis/Rayleigh-Sigma-VPol.pdf}}\hfill
@@ -67,7 +69,7 @@ The frequency domain amplitudes of thermal noise are Rayleigh distributed:
   \label{fig:analysis:CWRemoval:Baselines:Rayleigh-Sigma}
 \end{figure}
 
-The baselines calculated in this manner are used to summarise the thermal conditions of the TestBed, examples are shown in \FigureRef{fig:analysis:CWRemoval:Baselines:Rayleigh-Sigma}. As such the baseline used for comparison with events in a run is chosen to be the baseline created from that run. In the case that this baseline is bad, then the closest run in time to this with a good baseline is selected.
+The baselines calculated in this manner are used to summarise the thermal conditions of the TestBed, examples are shown in \FigureRef{fig:analysis:CWRemoval:Baselines:Rayleigh-Sigma}. The baseline that an event is compared to should therefore be chosen to be from a period with similar thermal conditions. In the main this will be the baseline calculated from the run in which the event was recorded, but where this baseline contains a large amount of CW contamination (hence the baseline is rejected) the closest run in time is used. The thermal conditions change slowly compared with the rate at which runs are taken, hence no scaling is needed to account for variations in the conditions.
 
 \begin{figure}[htpb]
   \subfloat[VPol Antennas]{\includegraphics[width=0.44\textwidth]{chapters/analysis/Rayleigh-Power-VPol.pdf}}\hfill
@@ -77,10 +79,10 @@ The baselines calculated in this manner are used to summarise the thermal condit
 \end{figure}
 
 
-\subsection{Filtering Method}
-\label{sec:Analysis:CWRemoval:Filtering}
+\subsection{Identifying CW Contaminated Events}
+\label{sec:Analysis:CWRemoval:CW-Identification}
 
-Event filtering is performed on an event by event basis. Discrete fourier transforms are taken of each event's time domain waveforms. Using the Rayleigh distributions from the chosen baseline it is possible to asses the probability of the measured frequency domain amplitudes given the thermal distributions characterised by $\sigma$ in the baseline:
+Each event has it's frequency content assessed to identify CW signals. Discrete fourier transforms are taken of each event's time domain waveforms. Using the Rayleigh distributions from the chosen baseline it is possible to asses the probability of the measured frequency domain amplitudes given the thermal distributions characterised by $\sigma$ in the baseline:
 
 \begin{equation}
   P(A \geq A_{meas}) & = \int \limits_{A_{meas}}^{\infty}\frac{A}{\sigma^{2}}e^{\frac{-A^{2}}{2\sigma^{2}}}dA\\
@@ -95,9 +97,40 @@ Event filtering is performed on an event by event basis. Discrete fourier transf
   \label{eq:Analysis:CWRemoval:Prod-Prob}
 \end{equation}
 
-\noindent where $P_{prod}$ is calculated seperately for VPol and HPol antennas. Any frequency bins that have $P_{prod}$ less than a threshold, which is choosen to be such that 1 in $10^{6}$ thermal events will produce such a value, are considered to be in excess. Two parameters are derived from an event's VPol (HPol) antennas: the total number of frequency bins (totalBins) that pass the threshold and are in excess, and the minimum value of $P_{prod}$ (minProb) from these frequency bins (i.e. the value that is least probable in the event). Events that contain CW contamination will have totalBins being a small, non-zero, number which a cut can be placed on. In addition the power transmitted by a CW signal is confined to a single frequency leading to measured amplitudes much greater than those from broadband signals, where the power is spread over a range of frequencies. This means that a second cut can be placed on minProb, rejecting events where minProb is below a threshold and hence the measured amplitudes are much greater than those expected given the thermal environment.
+\noindent where $P_{prod}$ is calculated seperately for VPol and HPol antennas. Any frequency bins that have $P_{prod}$ less than a threshold, which is choosen to be such that 1 in $10^{6}$ thermal events will produce such a value, are considered to be in excess. 
 
 
+\begin{figure}[htpb]
+  \subfloat[Noise Waveform]{\includegraphics[width=0.49\textwidth]{chapters/analysis/Waveform-VPol-Ant2-Noise-Wide.pdf}}\hfill
+  \subfloat[Noise Probability Spectrum]{\includegraphics[width=0.49\textwidth]{chapters/analysis/ProdProb-VPol-Noise-Wide.pdf}}\\
+  \subfloat[CW Contaminated Waveform]{\includegraphics[width=0.49\textwidth]{chapters/analysis/Waveform-VPol-Ant2-WB-Wide.pdf}}\hfill
+  \subfloat[CW Probability Spectrum]{\includegraphics[width=0.49\textwidth]{chapters/analysis/ProdProb-VPol-WB-Wide.pdf}}
+  \caption{Example waveforms from VPol antenna 2 showing (a) thermal noise event and (b) a CW contaminated event.}
+  \label{fig:analysis:CWRemoval:Baselines:Waveforms}
+\end{figure}
+
+Example waveforms from VPol antenna 2 are shown in \FigureRef{fig:analysis:CWRemoval:Baselines:Waveforms} for a thermal and CW contaminated event, along with the corresponding product of probabilities. The CW contaminted event is clearly identified by a narrow range of frequencies passing the threshold, information that can be used to reject the event. \FigureRef{fig:analysis:CWRemoval:Filtering:CW-Time} shows how this product of probabilities spectrum changes over the course of a run for calibration events and for non-calibration events. A weather balloon launch is clearly visible using these spectra resulting in a narrow range of frequencies exhibiting highly unthermal amplitudes in the VPol antennas, whereas calibration pulser events show a broadrange of frequencies with non-thermal amplitudes. 
+
+
+\begin{figure}[htpb]
+  \subfloat[Calibration Pulser Events]{\includegraphics[width=0.44\textwidth]{chapters/analysis/CW-Prob-Freq-Time-CP.eps}}\hfill
+  \subfloat[Non Calibration Pulser Events]{\includegraphics[width=0.44\textwidth]{chapters/analysis/CW-Prob-Freq-Time-NCP.eps}}
+  \caption{The probability spectra for events averaged over 1 minute periods for (a) calibration pulser events (b) for non-calibration pulser events. A weather balloon launch at 23:20 is clearly visible as the turn on of a CW signal at $403 \mega \hertz$ in both figures. The calibration pulser events show a broad range of frequencies having excess power for the duration of the run.}
+  \label{fig:analysis:CWRemoval:Filtering:CW-Time}
+\end{figure}
+
+
+Any CW removal must be able to reject contaminated events whilst at the same time passing broadband signals, such as the calibration pulser or simulated neutrinos. Two parameters are derived from an event's VPol (HPol) antennas: the total number of frequency bins (totalBins) that pass the threshold and are in excess, and the minimum value of $\ln(\prod P_{i})$ (minProb) from these frequency bins (i.e. the value that is least probable in the event). Events that contain CW contamination will have totalBins being a small, non-zero, number which a cut can be placed on. In addition the power transmitted by a CW signal is confined to a single frequency leading to measured amplitudes much greater than those from broadband signals, where the power is spread over a range of frequencies. This means that a second cut can be placed on minProb, rejecting events where minProb is below a threshold and hence the measured amplitudes are far in excess of those expected from thermal noise. These parameters are illustrated in \FigureRef{fig:analysis:CWRemoval:Filtering:CW-MinProb-TotalBins} for calibration pulser and non-calibration pulser events taken from one month of burn sample data in 2011. Events are rejected when the total bins passing the thermal threshold is between 1 and 15, indicating that excess power is limited to a relatively narrow range of frequencies. A second cut is used to reject particularly bright CW events that cause power to leak into many frequency bins. This cut rejects events where minProb falls below a value of $-400$, a value safely removed from that produced by calibration pulser events. 
+
+
+\begin{figure}[htpb]
+  \subfloat[Non-calibration pulser events]{\includegraphics[width=0.44\textwidth]{chapters/analysis/CW-minProb-totalBins-NCP.pdf}}\hfill
+  \subfloat[Calibration pulser events]{\includegraphics[width=0.44\textwidth]{chapters/analysis/CW-minProb-totalBins-CP.pdf}}\\
+  \subfloat[Non-calibration pulser events - excluding weather balloon frequency range]{\includegraphics[width=0.44\textwidth]{chapters/analysis/CW-minProb-totalBins-NCPNot403.pdf}}\hfill
+  \subfloat[Calibration pulser events - excluding weather balloon frequency range]{\includegraphics[width=0.44\textwidth]{chapters/analysis/CW-minProb-totalBins-CPNot403.pdf}}
+  \caption{CW parameters minProb (minimum value of $\ln(\prod P_{i})$ in probability spectra) and totalBins (total number of frequency bins that are indentied to have non-thermal amplitudes) are shown for calibration pulser and non-calibration pulser events. The top row shows these parameters for the full range of in band frequencies, and the bottom panel excludes a range of frequencies around $403 \mega \hertz$ which are used by the weather balloon. The large vertical tails in the top row are clearly due to the presence of CW signals from the weather balloon and are used to inform cuts on minProb and totalBins.}
+  \label{fig:analysis:CWRemoval:Filtering:CW-MinProb-TotalBins}
+\end{figure}
 
 
 
