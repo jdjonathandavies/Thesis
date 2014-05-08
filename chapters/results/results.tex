@@ -1,0 +1,48 @@
+\chapter{Results}
+\label{chap:Results}
+
+After application of all cuts to the analysis data set one event from July 2012 passes through it's VPol waveforms. The CSW and pseudo-$\chi^{2}$ map are shown in \FigureRef{fig:Results:CSW-ChiSq} and the individual VPol antenna waveforms in \FigureRef{fig:Results:Waveforms}. On inspection of the individual waveforms it is clearly not a candidate neutrino event. Six other events with similar waveforms were found in the same run but were rejected as they failed the reconstruction (pseudo-$\chi^{2}$ and geometry cuts). The reconstruction relies upon having coherent signals in all four antennas used to form the CSW, which is clearly not the case for this event. Such events could be removed from the analysis sample in a future analysis by making cuts designed to require all four antennas to have a minimum level of signal or coherence with the CSW. 
+
+\begin{figure}
+  \subfloat[CSW VPol]{\includegraphics[width=0.48\textwidth]{chapters/results/candidateCSWVPol.pdf}}\hfill
+  \subfloat[Pseudo-$\chi^{2}$ map VPol]{\includegraphics[width=0.48\textwidth]{chapters/results/candidateChiSqVPol.pdf}}
+  \caption{CSW and pseudo-$\chi^{2}$ map for the one survived VPol candidate event in 2012.}
+  \label{fig:Results:CSW-ChiSq}
+\end{figure}
+
+
+\begin{figure}
+  \subfloat[Antenna 1]{\includegraphics[width=0.48\textwidth]{chapters/results/candidateVPolAnt1.pdf}}\hfill
+  \subfloat[Antenna 2]{\includegraphics[width=0.48\textwidth]{chapters/results/candidateVPolAnt2.pdf}}\\
+  \subfloat[Antenna 3]{\includegraphics[width=0.48\textwidth]{chapters/results/candidateVPolAnt3.pdf}}\hfill
+  \subfloat[Antenna 4]{\includegraphics[width=0.48\textwidth]{chapters/results/candidateVPolAnt4.pdf}}\
+  \caption{Individual waveforms from the one survived VPol candidate event in 2012. There is a clear excess of power in the first two antennas not present in the others.}
+  \label{fig:Results:Waveforms}
+\end{figure}
+
+Although the passing event is not considered to be a neutrino candidate, and due to the presence of other similar signals in the same run, a conservative approach is taken to placing a limit on the neutrino flux using this data by taking the measured number of candidates to be one.
+
+\section{Live Time}
+\label{sec:Live-Time}
+
+In order to calculate the sensitivity to a neutrino flux the integrated live time for the analysis data set must be calculated. There is a period after a trigger is asserted in the TestBed for which it is not possible to trigger as the digitisers can only store and digitise a single event at a time. Firmware logic calculates the fraction of each second for which the system is unable to trigger, known as the `dead time'. When an event is readout by the data acquisition software the dead time from the previous second is also recorded. Since the event read out rate is always above $1 \hertz$ there is always information available for the dead time of every second (bar the last second in a run) for which the TestBed was active. The total live time is taken as the difference between the total time for which the TestBed took data and the total deadtime in that period.
+
+\begin{figure}
+  \subfloat[Live time for 2011]{\includegraphics[width=0.48\textwidth]{chapters/results/LiveTime2011.pdf}}\hfill
+  \subfloat[Live time for 2012]{\includegraphics[width=0.48\textwidth]{chapters/results/LiveTime2012.pdf}}\\
+  \subfloat[Live time for 2011]{\includegraphics[width=0.48\textwidth]{chapters/results/FractionalLiveTime2011.pdf}}\hfill
+  \subfloat[Live time for 2012]{\includegraphics[width=0.48\textwidth]{chapters/results/FractionalLiveTime2012.pdf}}
+  \caption{Integrated live time for 2011 and 2012. Three lines are shown for each year: live time for all runs, live time for all runs with the majority of events passing data quality checks and finally live time for all runs passing both data quality and good times criteria. Fractional live time is also shown for all runs (red) and for those passing data quality and good times criteria (shaded magenta).}
+  \label{fig:Results:Integrated-LiveTime}
+\end{figure}
+
+After accounting for data quality issues and applying the good times criteria the integrated live time is 162.8 days for 2011, 43.3 days for 2012 and the combined figure 206.0 days for the full analysis data set.
+
+
+
+
+\begin{figure}
+  \includegraphics[width=\hugefigwidth]{chapters/results/LimitPlot.pdf}
+  \caption{TestBed analysis neutrino flux limit from this analysis `UCL 206', along with limits from other experiments and a range of theoretical preditctions.}
+  \label{fig:Results:Limit-Plot}
+\end{figure}
