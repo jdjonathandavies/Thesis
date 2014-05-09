@@ -1,3 +1,8 @@
+*.tar.gz
+.DS_Store
+*.eps
+*.pdf
+!thesis.pdf
 *.aux
 *.glo
 *.idx
@@ -35,3 +40,5 @@ thesis.fls
 .tex
 *#*
 *~
+otherPeoplesThesis
+resources

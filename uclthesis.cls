@@ -226,3 +226,6 @@
 \DeclareTextCommand{\_}{T1}{%
   \leavevmode \kern.02em\vbox{\hrule width.4em}%
 }
+
+% To stop siunits from stuffing up the \micro tag
+\RequirePackage{textcomp}
