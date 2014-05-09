@@ -27,7 +27,7 @@ There are three types of event recorded and made available for analysis:
 
 The RF triggered events recorded by the TestBed form the majority of the data set and are those to be analysed and assesed to see whether they contain neutrino induced signals. Minimum bias events were recorded at regular intervals by the DAQ system in order to provide a picture of the radio environment during the course of data taking. As they do not require a physics trigger condition these events are in the main thermal in nature. There are, however, periods for which repetative or long duration anthroprogenic noise sources are active contaminating this thermal sample of events.
 
-During the course of data taking two calibration sources were active: a VPol calibration pulser in 2011, and a HPol calibration pulser in 2012. The pulsers were fired at a rate of 1Hz using the DAQ’s GPS PPS as a trigger. The result is that these events are identifiable via trigger timing information and removed from the `$90 \%$ sample'. These calibration pulser events were used in training the reconstruction methods as well as a number of the cuts used in this analysis. Being the only contolled in ice source of impulsive radio signals calibration pulser events are used as a proxy for neutrino induced signals are provide an invaluable cross-check for any analysis tools and cuts.
+During the course of data taking two calibration sources were active: a VPol calibration pulser in 2011, and a HPol calibration pulser in 2012. The pulsers were fired at a rate of $1 \hertz$ using the DAQ's GPS PPS as a trigger. The result is that these events are identifiable via trigger timing information and removed from the `$90 \%$ sample'. These calibration pulser events were used in training the reconstruction methods as well as a number of the cuts used in this analysis. Being the only contolled in ice source of impulsive radio signals calibration pulser events are used as a proxy for neutrino induced signals are provide an invaluable cross-check for any analysis tools and cuts.
 
 The two data samples defined in the blinding strategy were comprised of a combination of the event types described above:
 
@@ -37,6 +37,15 @@ The two data samples defined in the blinding strategy were comprised of a combin
 \item `$90 \%$ sample' - The remaining $90 \%$ of RF triggered events.
 
 \end{itemize}
+
+A third sample of events consisting of simulated neutrino signals were produced using the official ARA simulation AraSim. This sample was produced with fixed incident neutrino energies in half decade intervals between $10^{17} \eV$ and $10^{21} \eV$ and was used to inform cuts and help with development of analysis tools such as source reconstruction. 
+
+AraSim simulates neutrino signals in three stages: the neutrino propogation and interaction, RF signal transmission through the ice to the TestBed antennas and finally the output of the digitisation and triggering paths within the TestBed detector. The resulting data set contains digitised waveforms that would be expected to be recorded by the TestBed given knowledge of the TestBed detector and neutrino interactions. 
+
+Neutrinos are produced with isotropic arrival directions within a uniform volume around the center of the TestBed. Each event is simulated independently and assigned a weight representing the probability that the neutrino would have reached the interaction point without being absorbed in the Earth. The shower development and RF Cherenkov emission are modeled before signals are propogated to the TestBed using a ray-tracing algorithm to determine the path taken through ice which, due to the changing index of refraction, leads to ray bending effects resulting in zero, one or two rays arriving at the antennas. Finally the signals are propogated through a model of the triggering and digitisation chains within the TestBed, which are based upon measurements taken in the laboratory ahead of installation in the ice.
+
+In addition to simulating the expected neutrino signals thermal noise is added to the events. The noise model is derived from minimum bias events recorded in the TestBed and tuned to match the observed noise levels and trigger rates. 
+
 
 \section{Event Reconstruction}
 \label{sec:Analysis:Reconstruction}
@@ -237,7 +246,7 @@ A number of data quality cuts were implemented to remove various types of corrup
 
 Another class of corrupted events were ones that had been corrupted during data processing, resulting in voltage-time waveforms with samples that had their voltage values corrupted.
 
-A final class of bad quality events had a systematic and unphysical ramp up of voltage common to all digitised channels. These events were removed via an algorithm that checked the validity of data from each digitiser’s clock channel.
+A final class of bad quality events had a systematic and unphysical ramp up of voltage common to all digitised channels. These events were removed via an algorithm that checked the validity of data from each digitiser's clock channel.
 
 
 \section{Thermal Cuts}
@@ -309,7 +318,7 @@ The reconstructed locations of all VPol events passing thermal cuts are shown in
 
 \item \textbf{Calibration pulser cut} All events that reconstruct to within $5^\circ$ of any calibration pulser's azimuth are rejected
 
-\item \textbf{Wind turbin cut} All events reconstructing to within $5^\circ$ of the wind turbine's azimuth are rejected.
+\item \textbf{Wind turbine cut} All events reconstructing to within $5^\circ$ of the wind turbine's azimuth are rejected.
 
 \end{itemize}
 
@@ -328,7 +337,7 @@ The final set of cuts termed `GoodTimes' criteria reject days of the year that h
   N^{i}_{window} = N^{i-1} + N^{i} + N^{i+1}
 \end{equation}
 
-\noindent where $N^{i}$ is the number of non-thermal events from the $i^{th}$ day of the year. A day is masked off, and all non-thermal events from that day rejected, when $N^{i} > 14$. \FigureRef{fig:Analysis:Anthroprogenic-Cuts:GoodTimes:Event-Rate} shows the distribution of non-thermal events as a function of day of the year for both 2011 and 2012. For 2011 the numbers of non-thermal events significantly increase around the beginning and end of the year, with limited activity during the quiet austral winter. 2012, on the other hand, exhibits relatively few periods in which there are very few non-thermal events. This can, in part, be attributed to the TestBed operation being less closely monitered and managed during 2012.
+\noindent where $N^{i}$ is the number of non-thermal events from the $i^{th}$ day of the year. A day is masked off, and all non-thermal events from that day rejected, when $N^{i}_{window} > 14$. \FigureRef{fig:Analysis:Anthroprogenic-Cuts:GoodTimes:Event-Rate} shows the distribution of non-thermal events as a function of day of the year for both 2011 and 2012. For 2011 the numbers of non-thermal events significantly increase around the beginning and end of the year, with limited activity during the quiet austral winter. 2012, on the other hand, exhibits relatively few periods in which there are very few non-thermal events. This can, in part, be attributed to the TestBed operation being less closely monitered and managed during 2012.
 
 \begin{figure}[htpb]
 \subfloat[2011 non-thermal events]{\includegraphics[width=0.49\textwidth]{chapters/analysis/GoodTimes2011.pdf}}\hfill
@@ -340,16 +349,16 @@ The final set of cuts termed `GoodTimes' criteria reject days of the year that h
 \section{Cut results}
 \label{sec:Analysis:Cut-Results}
 
-The final analysis cuts and the result of their application to the analysis data sample are detailed in \TableRef{tab:Analysis:Cut-Flow}.
-
+The final analysis cuts and the result of their application to the analysis data sample are detailed in \TableRef{tab:Analysis:Cut-Flow} resulting in one VPol event passing all cuts, details of which are discussed in \SectionRef{chap:Results}. The thermal cuts, pseudo-$\chi^{2}$ and powherence, remove the majority of events illustrating that the main background in the TestBed is of a thermal origin. Continuous wave contaminated events appear to make up a large fraction of the remaining events, with daily weather balloon launches expected to contribute a significant number of events year round. 
 
 \begin{table}
   \begin{center}
     \begin{tabular}{ c || c | c | c }
       Total & \multicolumn{3}{c}{ $4.84 \times 10^{8}$}\\
       \hline
-      Cut & \multicolumn{3}{c}{ Number passing either polarisation}\\
+      Cut & \multicolumn{3}{c}{ Number passing either polarisation}\\      
       \hline
+      Data Quality & \multicolumn{3}{c}{$4.07 \times 10^8$}\\
       pseuco-$\chi^{2}$ & \multicolumn{3}{c}{$8.05 \times 10^7$}\\
       \hline\hline
       & \multicolumn{3}{c}{VPol}\\
@@ -358,8 +367,8 @@ The final analysis cuts and the result of their application to the analysis data
       \hline
       pseudo-$\chi^{2}$ & $3.74 \times 10^7$ & 0 & 0\\
       powherence & $1.57 \times 10^6$ & $4.31 \times 10^6$ & $3.58 \times 10^7$\\
-      CW & $9.66 \times 10^5$ & $1.66 \times 10^3$ & $1.07 \times 10^7$\\
-      CWMinProb & $5.76 \times 10^5$ & 710 & $7.27 \times 10^5$\\
+      CW - totalBins & $9.66 \times 10^5$ & $1.66 \times 10^3$ & $1.07 \times 10^7$\\
+      CW - minProb & $5.76 \times 10^5$ & 710 & $7.27 \times 10^5$\\
       Geometry & $9.75 \times 10^3$ & 340 & $2.54 \times 10^7$\\
       GoodTimes & $1$ & $9.75 \times 10^3$ & $2.51 \times 10^7$\\
       \hline\hline
@@ -369,8 +378,8 @@ The final analysis cuts and the result of their application to the analysis data
       \hline
       pseudo-$\chi^{2}$ & $4.32 \times 10^7$ & 0 & 0\\
       powherence & $5.74 \times 10^5$ & $6.25 \times 10^6$ & $4.26 \times 10^7$\\
-      CW & $4.21 \times 10^5$ & 456 & $9.67 \times 10^6$\\
-      CWMinProb & $2.97 \times 10^5$ & 331 & $2.44 \times 10^5$\\
+      CW - totalBins & $4.21 \times 10^5$ & 456 & $9.67 \times 10^6$\\
+      CW - minProb & $2.97 \times 10^5$ & 331 & $2.44 \times 10^5$\\
       Geometry & $1.42 \times 10^4$ & 116 & $2.64 \times 10^7$\\
       GoodTimes & $0$ & $1.42 \times 10^4$ & $2.84 \times 10^7$\\      
       \end{tabular} 
@@ -379,8 +388,20 @@ The final analysis cuts and the result of their application to the analysis data
   \end{center}
 \end{table}
 
+In order to asses whether any passing events are a statistically significant observation of a neutrino flux it is necessary to asses two important factors: firstly the efficiency of detecting simulated neutrinos using these cuts and secondly an estimation of the expected number of background events. The background estimation is discussed in \SectionRef{sec:Analysis:Background-Estimation}, and the analysis efficiency is calculated using the sample of simulated neutrino events using AraSim.
 
-Something about the cut efficiencies
+The analysis passing efficiency is shown in \FigureRef{fig:Analysis:Cut-Results:Efficiency} as a function of neutrino energy and also signal to noise ratio (SNR), which is taken calculated as follows:
+
+\begin{equation}
+  \mbox{SNR} = \frac{\lvert V_{peak} \rvert}{\mbox{RMS}}
+\end{equation}
+
+\noindent where $\lvert V_{peak} \rvert$ is the absolute value of the peak voltage of each waveform. SNR values are calculated for all antennas and the smallest value in each polarisation compared, the larger of the two is then used as a measure of signal strength (as the RF impulse in events can have an arbitrary polarisation angle, so the brighter of the two polarisations is used).
+
+The efficiencies in \FigureRef{sec:Analysis:Background-Estimation} are calculated for application of cuts individually (dashed lines) and for all cuts applied. The good times cut is not accounted for as it acts as a scaling of the detector live time. The overall analysis efficiency ranges between $20 \%$ and $30 \%$ accross the range of energies tested, whereas it peaks at $60 \%$ for moderately large values of SNR. Two factors influence the low efficiency as a function of neutrino energy: firstly the simulation produces large numbers of events with very small SNR which mainly consist of upward fluctuations in the thermal noise, and secondly compression in the digitisation chain leads to a drop off in efficiency at high SNR. 
+
+The drop off in efficiency at high SNR is driven by very large amplitudes frequency domain amplitudes being produced when big signals are propogated through the signal chain. As a result the CW minProb cut removes a large fraction of these very bright events. 
+
 
 \begin{figure}[htpb]
 \subfloat[Analysis efficiency as a function of neutrino energy]{\includegraphics[width=0.49\textwidth]{chapters/analysis/efficiencyEnergy.pdf}}\hfill
@@ -393,7 +414,9 @@ Something about the cut efficiencies
 \section{Background estimation}
 \label{sec:Analysis:Background-Estimation}
 
-Estimating the expected number of background events falls into two chategories: thermal backgrounds and anthroprogenic backgrounds. The thermal background estimation is based upon the distribution of powherence values for minimum bias events with all other cuts applied. This sample of events is the most pure sample of thermal noise events and can be used to extrapolate the number of expected thermal events passing the powherence cut having taken into account the increase in statistics between the minimum bias and analysis sample of events. Figure \FigureRef{fig:Analysis:Background-Estimation:Thermal-Background} shows the distributions and fits to data for VPol and HPol events. The resulting expected number of VPol (HPol) thermal events is $0.03 \pm 0.02$ ($0.15 \pm 0.07$), with the combined expectation of $0.18 \pm 0.07$ events in the full data sample.
+Due to the differences in signal type it is necessary to estimate backgrounds seperately for thermal noise and anthroprogenic events. In order to estimate the expected number of events that pass all events the distributions for events failing particular cuts, specific to signal type, were considered and extrapolated from fits to data.
+
+For thermal noise events the value of powherence was considered the most relevant parameter and proved to follow closely an exponentially falling distribution. Two samples of events passing all but the powherence cuts were assesed: the first being all minimum bias events and the second all RF triggered events, in both cases pseudo-$\chi^{2}$ and anthroprogenic cuts are applied. The former sample of events is the purest sample of thermal noise since no trigger condition is met for these events, however a scaling must be applied when accounting for the increase in statistics between this data set and the full set of RF triggers. The distribution of powherence in VPol and HPol and fits to the falling edge approaching the cut value are shown in \FigureRef{fig:Analysis:Background-Estimation:Thermal-Background} for the minimum bias sample. 
 
 \begin{figure}[htpb]
 \subfloat[VPol minimum bias events]{\includegraphics[width=0.49\textwidth]{chapters/analysis/PowHerenceFitVPol.pdf}}\hfill
@@ -402,7 +425,14 @@ Estimating the expected number of background events falls into two chategories: 
 \label{fig:Analysis:Background-Estimation:Thermal-Background}
 \end{figure}
 
-For the case of anthroprogenic signals it is much more difficult to ascertain the expected background levels since these events are from an unidentified mixture of sources, which are not necessarily expected to follow well described distributions. An estimate was made by considering the events that failed the CW minimum probability cut as the last cut applied. This selection of events should be composed of only anthroprogenic signals that contain some level of CW contamination which are distributed up to the cut threshold of -400 described in \SectionRef{sec:Analysis:CWRemoval}. The tail adjacent to the cut value was fitted with a gaussian which is shown in \FigureRef{fig:Analysis:Background-Estimation:CW-Background} which is sensitive to both the binning and range of values that are considered in the fit. A conservative approach was taken in estimating the expected background levels and the fit shown results in a lower number of expected background events than other estimates made. The expected number of background events is $0.19 \pm 0.28$.
+Extrapolating the fits to each of the thermal samples of events provides two estimates for the number of events passing the powherence cut and errors associated with the fits themselves. Since fits to both samples were in good agreement to data the lower of the two predictions was taken as the background expectation and the error to represent the range of values. The result is an expected number of background events of a thermal origin to be $0.18^{+0.30}_{-0.18}$.
+
+For the case of anthroprogenic signals it is much more difficult to ascertain the expected background levels since these events are from an unidentified mixture of sources, which are not necessarily expected to follow well described distributions. An estimate was made by considering the events that failed the CW minProb cut as the last cut applied to VPol events. This selection of events should be composed of anthroprogenic signals that contain some level of CW contamination which are distributed up to the cut threshold of -400 described in \SectionRef{sec:Analysis:CWRemoval}. 
+
+The tail adjacent to the cut value was fitted with a gaussian as shown in \FigureRef{fig:Analysis:Background-Estimation:CW-Background} which is sensitive to both the binning and range of values that are considered in the fit. This approach had some success for VPol events, but when considering HPol events the low statistics severly limits the ability to fit any distribution. As a result the fit to VPol events, scaled by the relative change in statistics, is used as an estimate for HPol events.
+
+A number of different fits were made resulting in a range of predicted backgrounds. A conservative approach was taken in estimating the expected background levels and the fit shown results in a lower number of expected background events than other estimates made. The range of values predicted is accounted for in the final estimation, being $0.20^{+0.84}_{-0.20}$. When both types of backgrounds are considered together the single VPol event that passes all analysis cuts should be compared with a background of $0.38^{+0.89}_{-0.38}$.
+
 
 \begin{figure}[htpb]
 \subfloat[VPol anthroprogenic events]{\includegraphics[width=0.49\textwidth]{chapters/analysis/MinProbFitVPol.pdf}}\hfill
