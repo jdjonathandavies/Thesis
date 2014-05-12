@@ -42,7 +42,7 @@ Although the survived event is clearly not a neutrino candidate it did pass all 
 
 
 \section{Live Time}
-\label{sec:Live-Time}
+\label{sec:Results:Live-Time}
 
 In order to calculate the sensitivity to a neutrino flux the integrated live time for the analysis data set must be calculated. Due to limitations in the TestBed electronics there is a period after a trigger is asserted, and event readout initiated, for which it is not possible to form another trigger. If a neutrino induced signal were to arrive at the TestBed during such a period the system would have no sensitivity to it as it would be unable to record it. The TestBed electronics monitors these periods and the associated `dead-time' via a $10 \mega \hertz$ clock. The dead-time is calculated by taking the number of clock cylces for which the trigger is unavailable in each GPS second, which can be scaled by the clock frequency to recover the fractional dead-time for each second of operation. The total live time for the analysis data set can then be calculated by taking the difference between the number of GPS seconds for which the TestBed operated and the sum of independent dead times recorded. 
 
@@ -86,7 +86,7 @@ An upper limit can be placed on the neutrino flux using the following equation:
   E_{\Pnu} \frac {dN}{dE_{\Pnu}} \leq \frac{N_{90}}{4\pi A_{eff}(E_{\Pnu}) T_{live} \varepsilon(E_{\Pnu}) \ln(10)}
 \end{equation}
 
-\noindent where $T_{live}$ is the total live time of the TestBed analysis data set, $\varepsilon(E_{\Pnu})$ is the energy dependant analysis efficiency, $N_{90}$ is the $90\%$ upper confidence limit on the number of neutrino events excluded by the analysis and the factor $\ln(10)$ accounts for log-scale energy binning. The live time and effective area are calculated as discussed in \SectionRef{sec:Live-Time} and \SectionRef{sec:Results:Effective-Area}, and the analysis efficiency taken from application of cuts to simulated neutrino events shown in \FigureRef{fig:Analysis:Cut-Results:Efficiency}. Feldman Cousin's statistics are used to calculate $N_{90}$, with the single observed event on a background of $0.38^{+0.89}_{-0.38}$ yielding the $90\%$ upper bound of excluded events being $N_{90}=3.98$.
+\noindent where $T_{live}$ is the total live time of the TestBed analysis data set, $\varepsilon(E_{\Pnu})$ is the energy dependant analysis efficiency, $N_{90}$ is the $90\%$ upper confidence limit on the number of neutrino events excluded by the analysis and the factor $\ln(10)$ accounts for log-scale energy binning. The live time and effective area are calculated as discussed in \SectionRef{sec:Results:Live-Time} and \SectionRef{sec:Results:Effective-Area}, and the analysis efficiency taken from application of cuts to simulated neutrino events shown in \FigureRef{fig:Analysis:Cut-Results:Efficiency}. Feldman Cousin's statistics are used to calculate $N_{90}$, with the single observed event on a background of $0.38^{+0.89}_{-0.38}$ yielding the $90\%$ upper bound of excluded events being $N_{90}=3.98$.
 
 \begin{figure}[htpb]
   \includegraphics[width=\hugefigwidth]{chapters/results/LimitPlot.pdf}
@@ -94,8 +94,17 @@ An upper limit can be placed on the neutrino flux using the following equation:
   \label{fig:Results:Limit-Plot}
 \end{figure}
 
-The resulting UHE neutrino flux limit is shown in \FigureRef{fig:Results:Limit-Plot}. In addition to the limit calculated from this analysis of two years of TestBed data a projected sensitivity is shown for ARA-37 using a dedicated mode in AraSim. A number of factors lead to the much improved sensitivity reached by the full array. First and foremost is the increased number of stations, each acting as a stand-alone neutrino detector. Deployment of stations at $\sim 200 \meter$ depths has been demonstrated over the 2012-2013 season and all further stations are expected to deployed at similar depths. By placing the antennas well below the firn layer of ice (approximately $150 \meter$ deep around the pole), in which the changing index of refraction leads to ray-bending and shadowing effects, an increase in effective volume and area per station of the order $\sim 3 - 4$ over the TestBed is expected.
+The resulting UHE neutrino flux limit is shown in \FigureRef{fig:Results:Limit-Plot} along with limits from other experiments and a range of theoretical predicitons. The limit placed using this analysis is a factor $1.73$ weaker than if the final passing event were rejected as a neutrino candidate, however as the analysis does not place strict requirments on signal shape, which would lead to a reduction in efficiency, the displayed limit is a fairer representation of the conclusions drawn.
 
-The expected level of anthroprogenic backgrounds is also expected to reduce greatly as the vast majority of future stations will be much further from the south pole station and human activity. In addition the receive antennas being much deeper in the ice will lead to a reduction in the signal size of above ice noise sources in each station. 
+In addition to the limit calculated from this analysis of two years of TestBed data a projected sensitivity is shown for ARA-37 using a dedicated simulation. A number of factors lead to the much improved sensitivity reached by the full array. First and foremost is the increase in number of stations from one to thirty seven, each acting as a stand-alone neutrino detector, operated over a longer period. Deployment of stations at $\sim 200 \meter$ depths has been demonstrated over the 2012-2013 season and all further stations are expected to deployed at similar depths. By placing the antennas well below the firn layer of ice (which extends $\sim 150 \meter$ below the surface in the vicinity of the south pole), in which the changing index of refraction leads to ray-bending and shadowing effects, an increase in effective volume and area per station of the order $\sim 3$ over the TestBed is expected.
+
+The expected level of anthroprogenic backgrounds is also expected to reduce greatly as the vast majority of future stations will be much further from the south pole station and human activity. In addition the receive antennas being placed much deeper in the ice will lead to a reduction in the signal size of above ice noise sources in each station. As well as the reduction in signal size the increased number of receive antennas, from four per polarisation to eight, is expected to significantly improve background identification and rejection. Anthroprogenic signal removal via masking off noisy periods of time, which is performed via the good times cut described in \SectionRef{sec:Analysis:Anthroprogenic-Cuts:Good-Times}, leads to large periods of time being removed from the analysis sample and greatly reduces the total detector live time in this analysis. The expected reduction in number anthroprogenic signals associated with location will be complemented with better charecterisation of such signals and removal as the radio environment becomes better understood.
+
+The re-designed data acquistion electronics and software (DAQ) will also lead to improvements in sensitivity. The updated DAQ allows for triggered event buffering such that the expected dead time associated with event readout described in \SectionRef{sec:Results:Live-Time} will be effectively nill. Improved 
+
+
+
+
+
 
 
