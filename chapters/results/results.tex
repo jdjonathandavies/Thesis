@@ -1,7 +1,14 @@
 \chapter{Results}
 \label{chap:Results}
 
-After application of all cuts to the analysis data set one event from July 2012 passes through it's VPol waveforms. The CSW and pseudo-$\chi^{2}$ map are shown in \FigureRef{fig:Results:CSW-ChiSq} and the individual VPol antenna waveforms in \FigureRef{fig:Results:Waveforms}. On inspection of the individual waveforms it is clearly not a candidate neutrino event. Six other events with similar waveforms were found in the same run but were rejected as they failed the reconstruction (pseudo-$\chi^{2}$ and geometry cuts). The reconstruction relies upon having coherent signals in all four antennas used to form the CSW, which is clearly not the case for this event. Such events could be removed from the analysis sample in a future analysis by making cuts designed to require all four antennas to have a minimum level of signal or coherence with the CSW. 
+After application of all cuts to the analysis data set one event from July 2012 passes through it's vertically polarised (VPol) antenna's waveforms. When this event is compared to the expected number of background events it is not considered to be a statistically significant observation of a flux of UHE neutrinos, hence a model independent limit can be calculated. Before doing so the passing event will be described and a comparison drawn with expectations of a neutrino induced signal.
+
+
+
+\section{Candidate neutrino event}
+\label{sec:Results:Neutrino-Candidate}
+
+A single event, number 13590 from run 21609, survives the analysis cuts. The coherently summed wave (CSW) and pseudo-$\chi^{2}$ map are shown in \FigureRef{fig:Results:CSW-ChiSq} and individual VPol antenna waveforms in \FigureRef{fig:Results:Waveforms}. The individual waveforms and the resulting CSW are not consistent with expectations of neutrino induced signals, showing no impulsive signal characteristic of such events. Six other events with similar waveforms were found in the same run but were rejected as they failed a combination of the reconstruction (pseudo-$\chi^{2}$ and geometry cuts) and CW cuts, therefore it is infered that this event is from an unidentified background source. 
 
 \begin{figure}
   \subfloat[CSW VPol]{\includegraphics[width=0.48\textwidth]{chapters/results/candidateCSWVPol.pdf}}\hfill
@@ -20,12 +27,26 @@ After application of all cuts to the analysis data set one event from July 2012 
   \label{fig:Results:Waveforms}
 \end{figure}
 
-Although the passing event is not considered to be a neutrino candidate, and due to the presence of other similar signals in the same run, a conservative approach is taken to placing a limit on the neutrino flux using this data by taking the measured number of candidates to be one.
+
+The event has large correlated signals present in only two of the four VPol antennas which dominate the poweherence parameter, described in \SectionRef{sec:Analysis:Thermal-Cuts:Powherence}, used to distinguish between thermal and non-thermal signals. The reconstruction relies upon having coherent signals in all four antennas used to form the CSW, which is clearly not the case for this event. Such events could be removed from the analysis sample by making one or a number of cuts requiring all four antennas to have a minimum level of signal or coherence with the CSW. In addition this event narrowly passes the CW minProb cut described in \SectionRef{sec:Analysis:CWRemoval:CW-Identification} due to the presence of two large frequency narrow band signals in two of the antennas. The CW cut parameter $\ln (\prod P_{i})$ is shown in \FigureRef{fig:Results:minProb} along with the threshold minProb which is used to reject strong CW events.
+
+
+\begin{figure}
+  \includegraphics[width=\largefigwidth]{chapters/results/candidateMinProbVPol.pdf}
+  \caption{CW parameter $\ln (\prod P_{i})$ is shown as a function of frequency for the VPol antennas in the one survived event. The regions filled with red correspond to frequencies that are considered to have measured amplitudes well in excess of expected thermal noise levels. The largest excess, corresponding to the most negative value of $\ln (\prod P_{i})$, comes very close to the CW minProb cut threshold (the upper of the two dashed lines).}
+  \label{fig:Results:minProb}
+\end{figure}
+
+
+Although the survived event is clearly not a neutrino candidate it did pass all analysis cuts, so it will be considered as an observed event for limit setting purposes, a conservative approach since the resulting limit will be significantly weaker than with no events passing. 
+
 
 \section{Live Time}
 \label{sec:Live-Time}
 
-In order to calculate the sensitivity to a neutrino flux the integrated live time for the analysis data set must be calculated. There is a period after a trigger is asserted in the TestBed for which it is not possible to trigger as the digitisers can only store and digitise a single event at a time. Firmware logic calculates the fraction of each second for which the system is unable to trigger, known as the `dead time'. When an event is readout by the data acquisition software the dead time from the previous second is also recorded. Since the event read out rate is always above $1 \hertz$ there is always information available for the dead time of every second (bar the last second in a run) for which the TestBed was active. The total live time is taken as the difference between the total time for which the TestBed took data and the total deadtime in that period.
+In order to calculate the sensitivity to a neutrino flux the integrated live time for the analysis data set must be calculated. Due to limitations in the TestBed electronics there is a period after a trigger is asserted, and event readout initiated, for which it is not possible to form another trigger. If a neutrino induced signal were to arrive at the TestBed during such a period the system would have no sensitivity to it as it would be unable to record it. The TestBed electronics monitors these periods and the associated `dead-time' via a $10 \mega \hertz$ clock. The dead-time is calculated by taking the number of clock cylces for which the trigger is unavailable in each GPS second, which can be scaled by the clock frequency to recover the fractional dead-time for each second of operation. The total live time for the analysis data set can then be calculated by taking the difference between the number of GPS seconds for which the TestBed operated and the sum of independent dead times recorded. 
+
+Having obtained an integrated live time for the entire analysis data set a final adjustment must be made to take into account the good times cut described in \SectionRef{sec:Analysis:Anthroprogenic-Cuts:Good-Times} and periods for which a significant fraction of events are rejected due to data quality issues. The good times cut masks off periods of the year that are associated with elevated levels of human activity and non-thermal events passing analysis cuts. All runs that are masked off by this cut have their integrated live time removed from the final live time measurement. Similarly any days of the year that have a sizeable fraction of events suffering from data quality issues have their integrated live time removed from the total. The fractional live time during each day of the year, as well as the resulting integrated live time are shown in \FigureRef{fig:Results:Integrated-LiveTime}. 
 
 \begin{figure}
   \subfloat[Live time for 2011]{\includegraphics[width=0.48\textwidth]{chapters/results/LiveTime2011.pdf}}\hfill
@@ -36,11 +57,45 @@ In order to calculate the sensitivity to a neutrino flux the integrated live tim
   \label{fig:Results:Integrated-LiveTime}
 \end{figure}
 
-After accounting for data quality issues and applying the good times criteria the integrated live time is 162.8 days for 2011, 43.3 days for 2012 and the combined figure 206.0 days for the full analysis data set.
+After accounting for data quality issues and applying the good times criteria the integrated live time is 162.8 days for 2011 and 43.3 days for 2012. The resulting live time for the full analysis data set is calculated to be 206.0 days.
 
 
-\begin{figure}
+\section{Effective area}
+\label{sec:Results:Effective-Area}
+
+The effective area is calculated for the TestBed from simulated neutrino data sets produced using AraSim as follows. Firstly the effective volume, $V_{eff}$, is calculated for each energy bin using a large sample of simulated events ($\sim 10^{6}$):
+
+\begin{equation}
+  V_{eff} = \frac {V_{cylinder}}{N} \sum_{i=1}^{N_{passed}} w_{i}
+\end{equation}
+
+\noindent where $V_{cylinder}$ is the volume of a cylinder centered on the detector in which events are simulated, $N$ is the total number of events thrown and $\sum_{i=1}^{N_{passed}} w_{i}$ is the sum of weights for triggered events. The effective volume is then converted into an effective area, $A_{eff}$, by using the approximation:
+
+\begin{equation}
+  A_{eff} \approx \frac{V_{eff}}{l_{int}}
+\end{equation}
+
+\noindent where $l_{int}$ is the neutrino interaction length in ice. 
+
+\section{Neutrino flux limit}
+\label{sec:Results:Limit}
+
+An upper limit can be placed on the neutrino flux using the following equation:
+
+\begin{equation}
+  E_{\Pnu} \frac {dN}{dE_{\Pnu}} \leq \frac{N_{90}}{4\pi A_{eff}(E_{\Pnu}) T_{live} \varepsilon(E_{\Pnu}) \ln(10)}
+\end{equation}
+
+\noindent where $T_{live}$ is the total live time of the TestBed analysis data set, $\varepsilon(E_{\Pnu})$ is the energy dependant analysis efficiency, $N_{90}$ is the $90\%$ upper confidence limit on the number of neutrino events excluded by the analysis and the factor $\ln(10)$ accounts for log-scale energy binning. The live time and effective area are calculated as discussed in \SectionRef{sec:Live-Time} and \SectionRef{sec:Results:Effective-Area}, and the analysis efficiency taken from application of cuts to simulated neutrino events shown in \FigureRef{fig:Analysis:Cut-Results:Efficiency}. Feldman Cousin's statistics are used to calculate $N_{90}$, with the single observed event on a background of $0.38^{+0.89}_{-0.38}$ yielding the $90\%$ upper bound of excluded events being $N_{90}=3.98$.
+
+\begin{figure}[htpb]
   \includegraphics[width=\hugefigwidth]{chapters/results/LimitPlot.pdf}
-  \caption{TestBed analysis neutrino flux limit from this analysis `UCL 206', along with limits from other experiments and a range of theoretical preditctions.}
+  \caption{TestBed analysis neutrino flux limit from this analysis `UCL 206', along with limits from other experiments and a range of theoretical predictions.}
   \label{fig:Results:Limit-Plot}
 \end{figure}
+
+The resulting UHE neutrino flux limit is shown in \FigureRef{fig:Results:Limit-Plot}. In addition to the limit calculated from this analysis of two years of TestBed data a projected sensitivity is shown for ARA-37 using a dedicated mode in AraSim. A number of factors lead to the much improved sensitivity reached by the full array. First and foremost is the increased number of stations, each acting as a stand-alone neutrino detector. Deployment of stations at $\sim 200 \meter$ depths has been demonstrated over the 2012-2013 season and all further stations are expected to deployed at similar depths. By placing the antennas well below the firn layer of ice (approximately $150 \meter$ deep around the pole), in which the changing index of refraction leads to ray-bending and shadowing effects, an increase in effective volume and area per station of the order $\sim 3 - 4$ over the TestBed is expected.
+
+The expected level of anthroprogenic backgrounds is also expected to reduce greatly as the vast majority of future stations will be much further from the south pole station and human activity. In addition the receive antennas being much deeper in the ice will lead to a reduction in the signal size of above ice noise sources in each station. 
+
+
