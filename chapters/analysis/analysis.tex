@@ -1,10 +1,25 @@
-\chapter{Analysis}
+\chapter{TestBed Data Analysis}
 \label{chap:Analysis}
 
-anthropogenic
-During the course of 2011 and 2012 the TestBed recorded around 480 million events and, given the relative size and operating time of the TestBed, it is expected that very few if any of these will contain signals produced by neutrino interactions in the ice. The overwhelming majority of these events contain signals that are backgrounds either triggered by thermal noise fluctuations or by anthroprogenic noise sources. These two categories of events have very different properties so an analysis approach is taken that aims to remove them in two stages. The first stage is to remove thermal noise events by requiring coherence between signals in multiple antennas consistent with a common physical source location. Due to the random nature of thermal events it is possible to use reconstruction and coherence tests to remove them from the data set, leaving only directional events. The majority of the remaining events are expected to be of anthroprogenic origin associated with infrastructure and human activity around the south pole station. These signals are likely to exhibit both spatial and temporal correlations not expected from a sample of neutrino events. Therefore it is possible to remove such anthroprogenic signals by rejecting reconstructed source locations associated with infrastructure or repeated signals and finally by removing events from time periods associated with high levels of human activity.
+During the course of 2011 and 2012 the TestBed recorded around 480 million events. Simulations of the TestBed and constraints provided by a number of experiments inform us that very few, if any, of these events will contain signals caused by neutrino interactions in the ice. The TestBed is a prototype detector installed with the intention of showing that a much larger detector will be able to reach the necessary sensitivity to make the first observation of ultra high energy (UHE) neutrinos. 
 
-The TestBed records waveforms from both vertically polarised (VPol) and horizontally polarised (HPol) antennas for each event and these polarisations are treated separately in analysis. This is in part due to the differences in signal chain and hence noise levels between the two. In addition it is expected that the majority of anthroprogenic signals will be limited to a single polarisation. Once initial data-quality checks have been applied to the events they are split into two `half events', one comprising of the signals in the VPol antennas and the other similarly from HPol antennas, that are propagated through the remaining cuts in order to asses whether or not they are to be considered a neutrino event.
+The analysis described in this chapter will show that a single array of radio antennas can be used to reach a reasonable sensitivity to UHE neutrino fluxes that, under realistic assumptions, scales to a projected world leading sensitivity for the full 37 station detector.
+
+\section{Analysis approach}
+\label{sec:Analysis:Analysis-Approach}
+
+The TestBed is the first ARA station deployed in the ice around the geographic south pole. Analysis of the data recorded over its 2 year operating period aims to demonstrate that it is possible to identify neutrino-induced signals within this data set. Almost all of the recorded events will not contain neutrino signals and are therefore considered backgrounds to this analysis. In order to identify the small number of signal type events it is necessary to be able to reject these backgrounds with a high level of confidence, rejecting all but $\sim 0.1$ events out of 480 million.
+
+The expected sources of background events falls into two categories: firstly random fluctuations in the RF environment caused by the thermal conditions in and around the TestBed, and secondly RF noise associated with human activity and infrastructure in the vicinity of the station. These backgrounds, which are referred to as thermal noise and anthropogenic signals from this point forwards, have differing characteristics that can be used to separate them. Some anthropogenic sources are expected to produce signals that follow closely the expectations of neutrino-induced events. An important goal of any analysis of TestBed data is to show that this background is at a manageable level that will not impact heavily on a much larger array's sensitivity.
+
+These categories of events have very different properties so an analysis approach is taken that aims to remove them in two stages. The first stage is to remove thermal noise events by requiring coherence between signals in multiple antennas consistent with a common physical source location. Due to the random nature of thermal events it is possible to use reconstruction and coherence tests to remove them from the data set, leaving only directional events. The majority of the remaining events are expected to be of anthropogenic origin associated with infrastructure and human activity around the south pole station. These signals are likely to exhibit both spatial and temporal correlations not expected from a sample of neutrino events. Therefore it is possible to remove such anthropogenic signals by rejecting reconstructed source locations associated with infrastructure or repeated signals and finally by removing events from time periods associated with high levels of human activity.
+
+In addition to directional anthropogenic signals another category of events is expected in the TestBed resulting from the operation of narrow-band communications equipment. Events containing such continuous wave (CW) signals are likely to pass coherence tests intended to remove thermal events but will not reconstruct to their origin, making spatial correlation tests of limited use. Some fraction of these events will miss-reconstruct to physical locations in the ice so it is necessary to remove them by other means. By considering the frequency content of such events it will be shown that it is possible to separate these signals from neutrino-like events due to their narrow-band nature.
+
+A series of tools were developed for use in this analysis in order to reconstruct events, identify those with coherent signals between multiple antennas and to remove CW contamination from the data set. These tools will be described in \SectionRef{sec:Analysis:Analysis-Tools}. A series of cuts are then identified and chosen to separate signals from the various categories of background events which were initially applied to the burn sample and finally to the $90 \%$ sample. Any events that pass all of these cuts are considered to be neutrino candidates. A deliberate choice was made to omit any signal shape cuts in order to minimise dependencies on theoretical calculations of Askaryan signals and assumptions made about radio propagation in the ice.
+
+
+The TestBed records waveforms from both vertically polarised (VPol) and horizontally polarised (HPol) antennas for each event and these polarisations are treated separately in analysis. This is in part due to the differences in signal chain and hence noise levels between the two. In addition it is expected that the majority of anthropogenic signals will be limited to a single polarisation. Once initial data-quality checks have been applied to the events they are split into two `half events', one comprising of the signals in the VPol antennas and the other similarly from HPol antennas, that are propagated through the remaining cuts in order to asses whether or not they are to be considered a neutrino event.
 
 
 \section{Blinding}
@@ -20,13 +35,13 @@ There are three types of event recorded and made available for analysis:
 
 \begin{itemize}
 
-\item RF triggered events - events in which the trigger condition is met requiring 3 of 16 antennas to have passed a power threshold within a 100ns window.
-\item Minimum bias events - recorded at a rate of $0.5 \hertz$ these events are force triggers where the RF trigger condition has not been met and are a reflection of the background conditions in which the TestBed was operating.
-\item Calibration pulser events - these events contain signals from a number of calibration antennas placed around the TestBed to provide a source with which to asses reconstruction and analysis tools.
+\item \textbf{RF triggered events} - events in which the trigger condition is met requiring 3 of 16 antennas to have passed a power threshold within a 100ns window.
+\item \textbf{Minimum bias events} - recorded at a rate of $0.5 \hertz$ these events are force triggers where the RF trigger condition has not been met and are a reflection of the background conditions in which the TestBed was operating.
+\item \textbf{Calibration pulser events} - these events contain signals from a number of calibration antennas placed around the TestBed to provide a source with which to asses reconstruction and analysis tools.
 
 \end{itemize}
 
-The RF triggered events recorded by the TestBed form the majority of the data set and are those to be analysed and assessed to see whether they contain neutrino induced signals. Minimum bias events were recorded at regular intervals by the DAQ system in order to provide a picture of the radio environment during the course of data taking. As they do not require a physics trigger condition these events are in the main thermal in nature. There are, however, periods for which repetitive or long duration anthroprogenic noise sources are active contaminating this thermal sample of events.
+The RF triggered events recorded by the TestBed form the majority of the data set and are those to be analysed and assessed to see whether they contain neutrino induced signals. Minimum bias events were recorded at regular intervals by the DAQ system in order to provide a picture of the radio environment during the course of data taking. As they do not require a physics trigger condition these events are in the main thermal in nature. There are, however, periods for which repetitive or long duration anthropogenic noise sources are active contaminating this thermal sample of events.
 
 During the course of data taking two calibration sources were active: a VPol calibration pulser in 2011, and a HPol calibration pulser in 2012. The pulsers were fired at a rate of $1 \hertz$ using the DAQ's GPS PPS as a trigger. The result is that these events are identifiable via trigger timing information and removed from the `$90 \%$ sample'. These calibration pulser events were used in training the reconstruction methods as well as a number of the cuts used in this analysis. Being the only controlled in-ice source of impulsive radio signals calibration pulser events are used as a proxy for neutrino induced signals and provide an invaluable cross-check for analysis tools and cuts designed to identify impulsive signals.
 
@@ -34,8 +49,8 @@ The two data samples defined in the blinding strategy were comprised of a combin
 
 \begin{itemize}
 
-\item `burn sample' - Sample of events intended for analysis tools and cut development. Comprised of all calibration events, all minimum bias events and $10 \%$ of RF triggered events.
-\item `$90 \%$ sample' - The remaining $90 \%$ of RF triggered events.
+\item \textbf{burn sample} - Sample of events intended for analysis tools and cut development. Comprised of all calibration events, all minimum bias events and $10 \%$ of RF triggered events.
+\item \textbf{$90 \%$ sample} - The remaining $90 \%$ of RF triggered events not made available in the burn sample.
 
 \end{itemize}
 
@@ -47,8 +62,9 @@ Neutrinos are produced with isotropic arrival directions within a uniform volume
 
 In addition to simulating the expected neutrino signals thermal noise is added to the events. The noise model is derived from minimum bias events recorded in the TestBed and tuned to match the observed noise levels and trigger rates. 
 
-
-\section{Event Reconstruction}
+\section{Analysis tools}
+\label{sec:Analysis:Analysis-Tools}
+\subsection{Event Reconstruction}
 \label{sec:Analysis:Reconstruction}
 
 Directional reconstruction of incident radio signals recorded in the TestBed is a powerful tool with which to identify and remove backgrounds, whilst providing invaluable information about possible neutrino events. Interferometric techniques have been successfully used in similar experiments, for example the ANITA experiment, that also record high fidelity radio waveforms. There are, however, a number of obstacles to robust reconstruction using interferometry in the TestBed. 
@@ -76,26 +92,24 @@ A new reconstruction method was developed for this analysis, based upon calculat
 \begin{figure}[htpb]
   \subfloat[Antenna 1 and Antenna 2]{\includegraphics[width=0.49\textwidth]{chapters/analysis/DeltaT01-CP-VPol.pdf}}\hfill
   \subfloat[Antenna 1 and Antenna 3]{\includegraphics[width=0.49\textwidth]{chapters/analysis/DeltaT02-CP-VPol.pdf}}\\
-  \subfloat[Antenna 1 and Antenna 4]{\includegraphics[width=0.49\textwidth]{chapters/analysis/DeltaT03-CP-VPol.pdf}}
+  \subfloat[Antenna 1 and Antenna 4]{\includegraphics[width=0.49\textwidth]{chapters/analysis/DeltaT03-CP-VPol.pdf}}\hfill
   \caption{CSW measured time offsets between pairs of VPol antennas for calibration pulser events.}
   \label{fig:analysis:Reconstruction:CSW-DeltaT}
 \end{figure}
 
 
-The VPol calibration pulser signal, which was used during 2011, is a very bright source causing compression in some of the digitised waveforms and resulting in the main peak and side lobes being of a similar size. When the CSW is formed either the main peak or side lobes of the waveforms are lined up, leading to a double peak structure in the time difference between antenna's 1 and 3. In \FigureRef{fig:analysis:Reconstruction:CSW-Example} the calculated time differences are applied to offset individual waveforms, with the resulting CSW also shown for a calibration pulser event, noise event and simulated neutrino event. The CSWs formed in this manner differ significantly between thermal noise waveforms and signal type waveforms (i.e. the calibration pulser and simulated neutrino events). Two main features are apparent: firstly the size of the peak in the coherently summed wave is much greater for signal type events, and also the resulting CSW looks very similar to the shapes of the individual waveforms. Both of these properties of signal waveforms can be utilised in discriminating between these two categories of events in a neutrino search.
+The VPol calibration pulser signal, which was used during 2011, is a very bright source causing compression in some of the digitised waveforms and resulting in the main peak and side lobes being of a similar size. When the CSW is formed either the main peak or side lobes of the waveforms are lined up, leading to a double peak structure in the time difference between antenna's 1 and 3. 
 
-
-%
-
+In \FigureRef{fig:analysis:Reconstruction:CSW-Example} the calculated time differences are applied to offset individual waveforms. These offset waveforms are summed to form a CSW also shown for a calibration pulser event, noise event and simulated neutrino event. The CSWs formed in this manner differ significantly between thermal noise waveforms and signal type waveforms (i.e. the calibration pulser and simulated neutrino events). Two main features are apparent: firstly the size of the peak in the coherently summed wave is much greater for signal type events, and also the resulting CSW looks very similar to the shapes of the individual waveforms, whereas for noise events the absence of a common signal means that features in the waveforms do not align and are washed out in the resulting CSW. Both of these properties of signal waveforms can be utilised in discriminating between these two categories of events in a neutrino search.
 
 
 \begin{figure}[htpb]
-  \subfloat[Individual waveforms calibration pulser event]{\includegraphics[width=0.49\textwidth]{chapters/analysis/CSW-Coherent-Waveforms-VPol-CP-Wide.pdf}}\hfill
-  \subfloat[CSW calibration pulser event]{\includegraphics[width=0.49\textwidth]{chapters/analysis/CSW-CSW-VPol-CP-Wide.pdf}}\\
-  \subfloat[Individual waveforms noise event]{\includegraphics[width=0.49\textwidth]{chapters/analysis/CSW-Coherent-Waveforms-VPol-Noise-Wide.pdf}}\hfill
-  \subfloat[CSW noise event]{\includegraphics[width=0.49\textwidth]{chapters/analysis/CSW-CSW-VPol-Noise-Wide.pdf}}\\
-  \subfloat[Simulated neutrino event]{\includegraphics[width=0.49\textwidth]{chapters/analysis/CSW-Coherent-Waveforms-VPol-Nu-Wide.pdf}}\hfill
-  \subfloat[Simulated neutrino event]{\includegraphics[width=0.49\textwidth]{chapters/analysis/CSW-CSW-VPol-Nu-Wide.pdf}}
+  \subfloat[Individual waveforms calibration pulser event]{\includegraphics[width=0.49\textwidth]{chapters/analysis/CSW-Coherent-Waveforms-VPol-CP-Med.pdf}}\hfill
+  \subfloat[CSW calibration pulser event]{\includegraphics[width=0.49\textwidth]{chapters/analysis/CSW-CSW-VPol-CP-Med.pdf}}\\
+  \subfloat[Individual waveforms noise event]{\includegraphics[width=0.49\textwidth]{chapters/analysis/CSW-Coherent-Waveforms-VPol-Noise-Med.pdf}}\hfill
+  \subfloat[CSW noise event]{\includegraphics[width=0.49\textwidth]{chapters/analysis/CSW-CSW-VPol-Noise-Med.pdf}}\\
+  \subfloat[Simulated neutrino event]{\includegraphics[width=0.49\textwidth]{chapters/analysis/CSW-Coherent-Waveforms-VPol-Nu-Med.pdf}}\hfill
+  \subfloat[Simulated neutrino event]{\includegraphics[width=0.49\textwidth]{chapters/analysis/CSW-CSW-VPol-Nu-Med.pdf}}
   \caption{(a) and (c) show individual antenna waveforms aligned in time. (b) and (c) show the resulting coherently summed wave.} 
   \label{fig:analysis:Reconstruction:CSW-Example}
 \end{figure}
@@ -115,9 +129,9 @@ The timing difference between pairs of antennas holds information about the arri
  This method has the benefit of using the rich information contained within the digitised waveforms (correlation techniques result in precision of $\sim 150 \pico \second$ resolution in timing differences between pairs of antennas) as well as providing a parameter that describes the goodness of fit in pseudo-$\chi^2$ upon which a cut can be placed. As thermal signals will have random measured offsets between antennas the preferred source location will, in general, have a relatively large pseudo-$\chi^2$ value associated with it, thus a requirement for good reconstruction will additionally reject a large number of thermal events.
 
 \begin{figure}[htpb]
-  \subfloat[Pseudo-$\chi^{2}$ map of calibration pulser event]{\includegraphics[width=0.44\textwidth]{chapters/analysis/ChiSqMap-VPol-CP.pdf}}\hfill
-  \subfloat[Pseudo-$\chi^{2}$ map of noise event]{\includegraphics[width=0.44\textwidth]{chapters/analysis/ChiSqMap-VPol-Noise.pdf}}\\
-  \subfloat[Pseudo-$\chi^{2}$ map of simulated neutrino event]{\includegraphics[width=0.44\textwidth]{chapters/analysis/ChiSqMap-VPol-Nu.pdf}}
+  \subfloat[Pseudo-$\chi^{2}$ map of calibration pulser event]{\includegraphics[width=0.48\textwidth]{chapters/analysis/ChiSqMap-VPol-CP.pdf}}\hfill
+  \subfloat[Pseudo-$\chi^{2}$ map of noise event]{\includegraphics[width=0.48\textwidth]{chapters/analysis/ChiSqMap-VPol-Noise.pdf}}\\
+  \subfloat[Pseudo-$\chi^{2}$ map of simulated neutrino event]{\includegraphics[width=0.48\textwidth]{chapters/analysis/ChiSqMap-VPol-Nu.pdf}}
   \caption{Reconstruction maps of calculated pseudo-$\chi^{2}$ values for the same calibration pulser event in \FigureRef{fig:analysis:Reconstruction:CSW-Example}. The circles in (a) and (c) indicate the true source location.}
   \label{fig:analysis:Reconstruction:CSW-ChiSq-Example}
 \end{figure}
@@ -136,14 +150,16 @@ The timing difference between pairs of antennas holds information about the arri
   \label{fig:analysis:Reconstructed:CSW-Residuals}
 \end{figure}
 
-\section{Continuous Wave Removal}
+\subsection{Continuous Wave Removal}
 \label{sec:Analysis:CWRemoval}
 
-The frequency band for the TestBed contains a number of frequencies used for communications at the south pole. A particularly strong carrier signal used by the south pole station at $450 \mega \hertz$ is removed by a notch filter placed between the antenna output and low noise amplifiers down-hole, but a number of other transmission frequencies remain unfiltered. Due to the TestBed's remote location and the relatively low levels of human activity (which are largely restricted to the summer season) CW signals are not present in the vast majority of RF triggers and minimum bias events. However, the presence of CW in an event can cause miss-reconstruction of the incident signal and, in some cases, mimic the properties that distinguish neutrino signals from thermal noise. For this reason these contaminated events constitute a background for any neutrino search, although the properties of such signals mean that it is possible to distinguish them from other interesting events. CW signals are characterised by large unthermal amplitudes in a small range of frequencies, compared with smaller broadband excesses in impulsive, neutrino-like, signals. This section will describe how the frequency content in the VPol and HPol antenna waveforms is used to identify such events and, as the fraction of these contaminated events is small, remove them from the analysis sample.
+The frequency band for the TestBed contains a number of frequencies used for communications at the south pole. A particularly strong carrier signal used by the south pole station at $450 \mega \hertz$ is removed by a notch filter placed between the antenna output and low noise amplifiers down-hole, but a number of other transmission frequencies remain unfiltered. Due to the TestBed's remote location and the relatively low levels of human activity (which are largely restricted to the summer season) CW signals are not present in the vast majority of RF triggers and minimum bias events. However, the presence of CW in an event can cause miss-reconstruction of the incident signal and, in some cases, mimic the properties that distinguish neutrino signals from thermal noise. For this reason these contaminated events constitute a background for any neutrino search, although the properties of such signals mean that it is possible to distinguish them from other interesting events. 
+
+CW signals are characterised by large unthermal amplitudes in a small range of frequencies, compared with smaller broadband excesses in impulsive, neutrino-like, signals as power is spread over a larger range of frequencies. This section will describe how the frequency content in the VPol and HPol antenna waveforms is used to identify such events and, as the fraction of these contaminated events is small, remove them from the analysis sample.
 
 Prior to analysis of an event a thermal noise baseline is generated using minimum bias data, being the purest sample of thermal noise available for analysis. This baseline is taken to be a reflection of the thermal conditions in the TestBed during a run. The frequency content of an event can then be compared with this baseline to asses the level of unthermal power and whether this power is confined to a small range of frequencies as expected from CW events.
 
-\subsection{Thermal Noise Baselines}
+\subsubsection{Thermal Noise Baselines}
 \label{sec:Analysis:CWRemoval:Baselines}
 
 The frequency domain amplitudes of thermal noise are Rayleigh distributed:
@@ -153,7 +169,7 @@ The frequency domain amplitudes of thermal noise are Rayleigh distributed:
   \label{eq:Analysis:CWRemoval:Rayleigh-pdf}
 \end{equation}
 
-\noindent where $A$ is the amplitude at frequency $f$ and $\sigma$ can be used to characterise the distribution. When creating a baseline for a run the Fourier transform is taken of the time domain waveforms for each minimum bias event. The resulting frequency domain amplitudes are histogrammed per frequency bin per antenna and fitted with Rayleigh distributions.
+\noindent where $A$ is the amplitude at frequency $f$ and $\sigma$ can be used to characterise the distribution. When creating a baseline for a run the Fourier transform is taken of the time domain waveforms for each minimum bias event. The resulting frequency domain amplitudes are histogrammed per frequency per antenna and fitted with Rayleigh distributions.
 
 
 \begin{figure}[htpb]
@@ -165,11 +181,13 @@ The frequency domain amplitudes of thermal noise are Rayleigh distributed:
 
 
 
-\FigureRef{fig:analysis:CWRemoval:Baselines:Rayleigh-Fit} shows one such Rayleigh fit for the case of a run containing mainly thermal events, and for a run containing a fraction of CW contaminated events. For each run the $\sigma$ values, which are calculated per frequency range per antenna, are recorded as well as the average power per frequency per antenna. Some runs contain a fraction of CW events large enough to distort the Rayleigh distributions, making them unusable as a representation of the thermal conditions, and their baselines are rejected as `bad' (the dashed line in \FigureRef{fig:analysis:CWRemoval:Baselines:Rayleigh-Fit} shows such a run, the resulting Rayleigh fit would differ considerably from that derived from the solid line, even though these runs were taken on the same day with similar thermal conditions). Due to the narrow band nature of CW signals it is possible to identify bad baselines by looking for spikes in the average power spectra shown in \FigureRef{fig:analysis:CWRemoval:Baselines:Averaged-Power}. These spikes are identified by looking for the second derivative of the average power spectrum falling below a threshold, indicating the presence of a spike. Any run that contains at least one borehole antenna with a spike in the average power spectrum is rejected. 
+\FigureRef{fig:analysis:CWRemoval:Baselines:Rayleigh-Fit} shows one such Rayleigh fit for the case of a run containing mainly thermal events, and for a run containing a fraction of CW contaminated events. For each run the Rayleigh fit is characterised by a series of $\sigma$ values, which are calculated per frequency per antenna, which are recorded along with the average power per frequency per antenna. Some runs contain a fraction of CW events large enough to distort the Rayleigh distributions with large unthermal tails in the amplitude distribution, making them unusable as a representation of the thermal conditions, and their baselines are rejected as `bad' (the dashed line in \FigureRef{fig:analysis:CWRemoval:Baselines:Rayleigh-Fit} shows such a run, the resulting Rayleigh fit would differ considerably from that derived from the solid line, even though these runs were taken on the same day with similar thermal conditions). 
+
+Due to the narrow band nature of CW signals it is possible to identify bad baselines by looking for spikes in the average power spectra shown in \FigureRef{fig:analysis:CWRemoval:Baselines:Averaged-Power} or $\sigma$ distributions, although the former was found to have better discriminating power. These spikes are identified by looking for the second derivative of the average power spectrum falling below a threshold, indicating the presence of a spike. Any run that contains at least one borehole antenna with a spike in the average power spectrum is rejected. 
 
 \begin{figure}[htpb]
-  \subfloat[VPol Antennas]{\includegraphics[width=0.44\textwidth]{chapters/analysis/Rayleigh-Sigma-VPol.pdf}}\hfill
-  \subfloat[HPol Antennas]{\includegraphics[width=0.44\textwidth]{chapters/analysis/Rayleigh-Sigma-HPol.pdf}}
+  \subfloat[VPol Antennas]{\includegraphics[width=0.48\textwidth]{chapters/analysis/Rayleigh-Sigma-VPol.pdf}}\hfill
+  \subfloat[HPol Antennas]{\includegraphics[width=0.48\textwidth]{chapters/analysis/Rayleigh-Sigma-HPol.pdf}}
   \caption{Rayleigh fit derived $\sigma$ values for two different baselines. The solid lines are for a baseline calculated from a thermal noise sample, and the dashed lines for a baseline containing a known CW source operating at $403 \mega \hertz$.} 
   \label{fig:analysis:CWRemoval:Baselines:Rayleigh-Sigma}
 \end{figure}
@@ -184,10 +202,10 @@ The baselines calculated in this manner are used to summarise the thermal condit
 \end{figure}
 
 
-\subsection{Identifying CW Contaminated Events}
+\subsubsection{Identifying CW Contaminated Events}
 \label{sec:Analysis:CWRemoval:CW-Identification}
 
-Each event has it's frequency content assessed to identify CW signals. Discrete Fourier transforms are taken of each event's time domain waveforms. Using the Rayleigh distributions from the chosen baseline it is possible to estimate the probability of the measured frequency domain amplitudes given the thermal distributions characterised by $\sigma$ in the baseline:
+Each event has it's frequency content assessed to identify CW signals. Discrete Fourier transforms are taken of each event's time domain waveforms. Using the Rayleigh distributions from the chosen baseline it is possible to estimate the probability of the measured frequency domain amplitudes given the thermal distributions characterised by $\sigma$ values calculated from the baseline:
 
 \begin{equation}
   P(A \geq A_{meas}) & = \int \limits_{A_{meas}}^{\infty}\frac{A}{\sigma^{2}}e^{\frac{-A^{2}}{2\sigma^{2}}}dA\\
@@ -195,26 +213,27 @@ Each event has it's frequency content assessed to identify CW signals. Discrete 
   \label{eq:Analysis:CWRemoval:Rayleigh-cdf}
 \end{equation}
 
-\noindent where $A_{meas}$ is the measured amplitude of a given frequency for the waveform in question. $P(A \geq A_{meas})$ is then a measure of the probability of thermal fluctuations giving rise to the measured amplitude, and can be interpreted as measuring how `un-thermal' that amplitude is. In order to push down the threshold CW signal size to which the filter is sensitive the product of probabilities for the borehole antennas is taken:
+\noindent where $A_{meas}$ is the measured amplitude of a given frequency for the waveform in question. $P(A \geq A_{meas})$ is then a measure of the probability of thermal fluctuations giving rise to the measured amplitude, and can be interpreted as measuring how `unthermal' that amplitude is. In order to push down the threshold CW signal size to which the filter is sensitive the product of probabilities for the borehole antennas is taken:
 
 \begin{equation}
   P_{prod} = \prod P_{i} = \prod P(A_{i} \geq A_{i, meas})
   \label{eq:Analysis:CWRemoval:Prod-Prob}
 \end{equation}
 
-\noindent where $P_{prod}$ is calculated separately for VPol and HPol antennas. Any frequencies that have $P_{prod}$ less than a threshold, which is chosen to be such that 1 in $10^{6}$ thermal events will produce such a value, are considered to be in excess. 
+\noindent where $P_{prod}$ is calculated separately for VPol and HPol antennas. Any frequencies that have $P_{prod}$ less than a threshold, which is chosen to be such that 1 in $10^{6}$ thermal events will produce such a value, are considered to be in excess. The use of this product was found to have greater sensitivity than various other methods attempted, including assessing antennas individually or in combination (for example requiring that 3 out of 4 antennas see an excess at the same frequency).
 
 
 \begin{figure}[htpb]
-  \subfloat[Noise Waveform]{\includegraphics[width=0.49\textwidth]{chapters/analysis/Waveform-VPol-Ant2-Noise-Wide.pdf}}\hfill
-  \subfloat[Noise Probability Spectrum]{\includegraphics[width=0.49\textwidth]{chapters/analysis/ProdProb-VPol-Noise-Wide.pdf}}\\
-  \subfloat[CW Contaminated Waveform]{\includegraphics[width=0.49\textwidth]{chapters/analysis/Waveform-VPol-Ant2-WB-Wide.pdf}}\hfill
-  \subfloat[CW Probability Spectrum]{\includegraphics[width=0.49\textwidth]{chapters/analysis/ProdProb-VPol-WB-Wide.pdf}}
-  \caption{Example waveforms from VPol antenna 2 showing (a) thermal noise event and (b) a CW contaminated event.}
+  \subfloat[Noise Waveform]{\includegraphics[width=0.49\textwidth]{chapters/analysis/Waveform-VPol-Ant2-Noise-Med.pdf}}\hfill
+  \subfloat[Noise Probability Spectrum]{\includegraphics[width=0.49\textwidth]{chapters/analysis/ProdProb-VPol-Noise-Med.pdf}}\\
+  \subfloat[CW Contaminated Waveform]{\includegraphics[width=0.49\textwidth]{chapters/analysis/Waveform-VPol-Ant2-WB-Med.pdf}}\hfill
+  \subfloat[CW Probability Spectrum]{\includegraphics[width=0.49\textwidth]{chapters/analysis/ProdProb-VPol-WB-Med.pdf}}
+  \caption{Example waveforms from VPol antenna 2 showing a thermal noise event and a CW contaminated event. Also shown are the product of probabilities distribution for all VPol antennas for these events. The dashed line represents the probability threshold, with any frequencies passing this threshold regarded as being well in excess of thermal noise levels.}
   \label{fig:analysis:CWRemoval:Baselines:Waveforms}
 \end{figure}
 
-Example waveforms from VPol antenna 2 are shown in \FigureRef{fig:analysis:CWRemoval:Baselines:Waveforms} for a thermal and CW contaminated event, along with the corresponding product of probabilities. The CW contaminated event is clearly identified by a narrow range of frequencies passing the threshold, information that can be used to reject the event. \FigureRef{fig:analysis:CWRemoval:Filtering:CW-Time} shows how this product of probabilities spectrum changes over the course of a run for calibration events and for non-calibration events. A weather balloon launch is clearly visible using these spectra resulting in a narrow range of frequencies exhibiting highly unthermal amplitudes in the VPol antennas, whereas calibration pulser events show a broad range of frequencies with non-thermal amplitudes. 
+
+Example waveforms from VPol antenna 2 are shown in \FigureRef{fig:analysis:CWRemoval:Baselines:Waveforms} for a thermal and CW contaminated event, along with the corresponding product of probabilities. The CW contaminated event is clearly identified by a narrow range of frequencies passing the threshold, information that can be used to reject the event. \FigureRef{fig:analysis:CWRemoval:Filtering:CW-Time} shows how this product of probabilities spectrum changes over the course of a run for calibration events and for non-calibration events. Here the parameter is averaged for all events over 1 minute intervals. Also shown are the same parameter but only for frequencies that are identified as being in excess using the same threshold shown in \FigureRef{fig:analysis:CWRemoval:Baselines:Waveforms}. A weather balloon launch is clearly visible using these spectra resulting in a narrow range of frequencies exhibiting highly unthermal amplitudes in the VPol antennas, whereas calibration pulser events show a broad range of frequencies with non-thermal amplitudes. This difference in the size of excess and number of frequencies can be utilised to separate these types of event.
 
 
 \begin{figure}[htpb]
@@ -227,16 +246,16 @@ Example waveforms from VPol antenna 2 are shown in \FigureRef{fig:analysis:CWRem
 \end{figure}
 
 
-Any CW removal must be able to reject contaminated events whilst at the same time passing broadband signals, such as the calibration pulser or simulated neutrinos. Two parameters are derived from an event's VPol (HPol) antennas: the total number of frequency bins (totalBins) that pass the threshold and are in excess, and the minimum value of $\ln(\prod P_{i})$ (minProb) from these frequency bins (i.e. the value that is least probable in the event). Events that contain CW contamination will have totalBins being a small, non-zero, number upon which a cut can be placed. 
+Any CW removal must be able to reject contaminated events whilst at the same time passing broadband signals, such as the calibration pulser or simulated neutrinos. Two parameters are derived from an event's VPol (HPol) antennas: the total number of frequencies (\textit{totalBins}) that pass the threshold and are in excess, and the minimum value of $\ln(\prod P_{i})$ (\textit{minProb}) from these frequencies bins (i.e. the value that is least probable in the event). Events that contain CW contamination will have totalBins being a small, non-zero, number upon which a cut can be placed. 
 
-In addition to the narrow range of frequencies exhibiting non-thermal power the size of these excesses can be used to identify particularly bright events. The power transmitted by a CW signal is confined to a single frequency leading to measured amplitudes much greater than those from broadband signals, where the power is spread over a range of frequencies. This means that a second cut can be placed on minProb, rejecting events where minProb is below a threshold and hence the measured amplitudes are far in excess of those expected from thermal noise or broadband signals. These parameters are illustrated in \FigureRef{fig:analysis:CWRemoval:Filtering:CW-MinProb-TotalBins} for calibration pulser and non-calibration pulser events taken from one month of burn sample data in 2011. Events are rejected when the total bins passing the thermal threshold is between 1 and 15, indicating that excess power is limited to a relatively narrow range of frequencies. A second cut is used to reject particularly bright CW events that cause power to leak into many frequency bins. This cut rejects events where minProb falls below a value of $-400$, a value safely removed from that produced by calibration pulser events. 
+In addition to the narrow range of frequencies exhibiting non-thermal power the size of these excesses can be used to identify particularly bright events. As waveforms are formed of a discrete set of time domain samples the Fourier transform is also comprised of a discrete set of frequencies. As a result particularly large amplitude CW signals can lead to leakage into multiple frequencies, as the actual frequency is not one of those in the Fourier transform. In such a case CW signals can lead to a broadband excess as measured by totalBins. The power transmitted by a CW signal is confined to a single frequency leading to measured amplitudes much greater than those from broadband signals, where the power is spread over a range of frequencies. This means that a second cut can be placed on minProb, rejecting events where minProb is below a threshold and hence the measured amplitudes are far in excess of those expected from thermal noise or broadband signals. These parameters are illustrated in \FigureRef{fig:analysis:CWRemoval:Filtering:CW-MinProb-TotalBins} for calibration pulser and non-calibration pulser events taken from one month of burn sample data in 2011. Events are rejected when the total bins passing the thermal threshold is between 1 and 15, indicating that excess power is limited to a relatively narrow range of frequencies. A second cut is used to reject particularly bright CW events that cause power to leak into many frequency bins. This cut rejects events where minProb falls below a value of $-400$, a value safely removed from that produced by calibration pulser events. 
 
 
 \begin{figure}[htpb]
-  \subfloat[Non-calibration pulser events]{\includegraphics[width=0.44\textwidth]{chapters/analysis/CW-minProb-totalBins-NCP.pdf}}\hfill
-  \subfloat[Calibration pulser events]{\includegraphics[width=0.44\textwidth]{chapters/analysis/CW-minProb-totalBins-CP.pdf}}\\
-  \subfloat[Non-calibration pulser events - excluding weather balloon frequency range]{\includegraphics[width=0.44\textwidth]{chapters/analysis/CW-minProb-totalBins-NCPNot403.pdf}}\hfill
-  \subfloat[Calibration pulser events - excluding weather balloon frequency range]{\includegraphics[width=0.44\textwidth]{chapters/analysis/CW-minProb-totalBins-CPNot403.pdf}}
+  \subfloat[Non-calibration pulser events]{\includegraphics[width=0.48\textwidth]{chapters/analysis/CW-minProb-totalBins-NCP.pdf}}\hfill
+  \subfloat[Calibration pulser events]{\includegraphics[width=0.48\textwidth]{chapters/analysis/CW-minProb-totalBins-CP.pdf}}\\
+  \subfloat[Non-calibration pulser events - excluding weather balloon frequency range]{\includegraphics[width=0.48\textwidth]{chapters/analysis/CW-minProb-totalBins-NCPNot403.pdf}}\hfill
+  \subfloat[Calibration pulser events - excluding weather balloon frequency range]{\includegraphics[width=0.48\textwidth]{chapters/analysis/CW-minProb-totalBins-CPNot403.pdf}}
   \caption{CW parameters minProb (minimum value of $\ln(\prod P_{i})$ in probability spectra) and totalBins (total number of frequency bins that are identified to have non-thermal amplitudes) are shown for calibration pulser and non-calibration pulser events. The top row shows these parameters for the full range of in band frequencies, and the bottom panel excludes a range of frequencies around $403 \mega \hertz$ which are used by the weather balloon. The large vertical tails in the top row are clearly due to the presence of CW signals from the weather balloon and are used to inform cuts on minProb and totalBins.}
   \label{fig:analysis:CWRemoval:Filtering:CW-MinProb-TotalBins}
 \end{figure}
@@ -265,13 +284,13 @@ The minimum bias data collected during the analysis period was used as a sample 
 For each event CSW reconstruction is performed using the VPol and HPol antennas' waveforms separately. As described in \SectionRef{sec:Analysis:Reconstruction} a pseudo-$\chi^{2}$ value is calculated for the best fit source location during the reconstruction, and this value is used to measure the quality of reconstruction. The reconstruction in each polarisation is classified as `good' when the best fit pseudo-$\chi^{2}$ value is below a value of two, and the event's polarisation is passed.
 
 \begin{figure}[htpb]
-  \subfloat[VPol 2011]{\includegraphics[width=0.44\textwidth]{chapters/analysis/ChiSqVPol.pdf}}\hfill
-  \subfloat[HPol 2012]{\includegraphics[width=0.44\textwidth]{chapters/analysis/ChiSqHPol.pdf}}
+  \subfloat[VPol 2011]{\includegraphics[width=0.48\textwidth]{chapters/analysis/ChiSqVPol.pdf}}\hfill
+  \subfloat[HPol 2012]{\includegraphics[width=0.48\textwidth]{chapters/analysis/ChiSqHPol.pdf}}
   \caption{Best fit pseudo-$\chi^{2}$ values for minimum bias, calibration and simulated neutrino events. Events are passed when the pseudo-$\chi^{2}$ falls below the chosen cut value of 2, marked by the orange arrow.}
   \label{fig:Analysis:Thermal-Cuts:Pseudo-ChiSq}
 \end{figure}
   
-\FigureRef{fig:Analysis:Thermal-Cuts:Pseudo-ChiSq} shows the pseudo-$\chi^{2}$ values for each polarisation for a sample of thermal, calibration pulser and simulated neutrino events. Only $\sim 10^{-7}$ calibration pulser events have a best bit pseudo-$\chi^{2}$ in the same polarisation greater than pseudo-$\chi^{2}=1$ which was used to inform the chosen cut value, passing events with pseudo-$\chi^{2} < 2$. 
+\FigureRef{fig:Analysis:Thermal-Cuts:Pseudo-ChiSq} shows the pseudo-$\chi^{2}$ values for each polarisation for a sample of thermal, calibration pulser and simulated neutrino events. Only $\sim 10^{-7}$ calibration pulser events have a best bit pseudo-$\chi^{2}$ in the same polarisation greater than 1 which was used to inform the chosen cut value.
 
 \subsection{Powherence Cut}
 \label{sec:Analysis:Thermal-Cuts:Powherence}
@@ -292,8 +311,8 @@ The best discrimination between calibration pulser events (as a proxy for neutri
 
 
 \begin{figure}[htpb]
-  \subfloat[VPol 2011]{\includegraphics[width=0.44\textwidth]{chapters/analysis/PowHerenceVPol.pdf}}\hfill
-  \subfloat[HPol 2012]{\includegraphics[width=0.44\textwidth]{chapters/analysis/PowHerenceHPol.pdf}}
+  \subfloat[VPol 2011]{\includegraphics[width=0.48\textwidth]{chapters/analysis/PowHerenceVPol.pdf}}\hfill
+  \subfloat[HPol 2012]{\includegraphics[width=0.48\textwidth]{chapters/analysis/PowHerenceHPol.pdf}}
   \caption{The composite parameter powherence is shown for a sample of thermal, calibration pulser and simulated neutrino events after the application of the pseudo-$\chi^{2}$ cut, along with the chosen cut value in orange. Events that have a $\mbox{powherence} > 380$ are passed as being signal like events.}
   \label{fig:Analysis:Thermal-Cuts:Powherence}
 \end{figure}
@@ -301,17 +320,17 @@ The best discrimination between calibration pulser events (as a proxy for neutri
 In \FigureRef{fig:Analysis:Thermal-Cuts:Powherence} we see the powherence value calculated in each polarisation for the thermal data set alongside calibration pulser and simulated neutrino events. The relative brightness of the 2011 VPol calibration pulser can be seen clearly in the large values of powherence produced compared with the 2012 HPol calibration pulser.
 
 
-\section{Anthroprogenic Cuts}
-\label{sec:Analysis:Anthroprogenic-Cuts}
+\section{Anthropogenic Cuts}
+\label{sec:Analysis:Anthropogenic-Cuts}
 
 After applying thermal noise cuts the analysis sample should contain only signal-like events, however a large fraction (if not all) of these are expected to be associated with human activity and infrastructure at the south pole. These events are likely to be repetitive both in reconstructed direction and in time, meaning they can be identified and removed by considering associated variables.
 
 The first set of cuts are based on the CSW reconstructed source location and are referred to as \textit{Geometry Cuts}, the second set are to identify noisy periods within the analysis data set and are known as the \textit{GoodTimes} cuts.
 
 \subsection{Geometry cuts}
-\label{sec:Analysis:Anthroprogenic-Cuts:Geometry-Cuts}
+\label{sec:Analysis:Anthropogenic-Cuts:Geometry-Cuts}
 
-The reconstructed locations of all VPol events passing thermal cuts are shown in \FigureRef{fig:Analysis:Anthroprogenic-Cuts:Geometry-Cuts:VPol-Reco} along with the positions of potential noise sources. A series of conservative geometry cuts are placed on an event's reconstructed source location designed to remove a large fraction of noise events:
+The reconstructed locations of all VPol events passing thermal cuts are shown in \FigureRef{fig:Analysis:Anthropogenic-Cuts:Geometry-Cuts:VPol-Reco} along with the positions of potential noise sources. A series of conservative geometry cuts are placed on an event's reconstructed source location designed to remove a large fraction of noise events:
 
 \begin{itemize}
 
@@ -329,24 +348,24 @@ The reconstructed locations of all VPol events passing thermal cuts are shown in
   \subfloat[VPol events passing thermal cuts]{\includegraphics[width=0.49\textwidth]{chapters/analysis/RecoVPol.pdf}}\hfill
   \subfloat[VPol events passing thermal cuts]{\includegraphics[width=0.49\textwidth]{chapters/analysis/TBGeometry.pdf}}
   \caption{The reconstructed azimuth and elevation angles are shown for all events passing CW and thermal cuts in (a) and the locations of various potential noise sources in (b). The shaded region in (b) indicates reconstructed directions that are rejected by geometry cuts.}
-  \label{fig:Analysis:Anthroprogenic-Cuts:Geometry-Cuts:VPol-Reco}
+  \label{fig:Analysis:Anthropogenic-Cuts:Geometry-Cuts:VPol-Reco}
 \end{figure}
 
 \subsection{Good times cut}
-\label{sec:Analysis:Anthroprogenic-Cuts:Good-Times}
+\label{sec:Analysis:Anthropogenic-Cuts:Good-Times}
 The final set of cuts termed `GoodTimes' criteria reject days of the year that have large numbers of non-thermal events in an attempt to remove repetitive noise associated with human activity. The months of December and January are masked off, and all events within them rejected, as they correspond to the busiest periods of the summer season. Human activity is at its peak during these times involving frequent use of snow-mobiles, radio communication devices and a plethora of other potential noise sources. In order to identify other `noisy' periods of the year the sample of events passing thermal cuts are used to assess activity levels. The total number of events passing thermal cuts over a three day period is considered:
 
 \begin{equation}
   N^{i}_{window} = N^{i-1} + N^{i} + N^{i+1}
 \end{equation}
 
-\noindent where $N^{i}$ is the number of non-thermal events from the $i^{th}$ day of the year. A day is masked off, and all non-thermal events from that day rejected, when $N^{i}_{window} > 14$. \FigureRef{fig:Analysis:Anthroprogenic-Cuts:GoodTimes:Event-Rate} shows the distribution of non-thermal events as a function of day of the year for both 2011 and 2012. For 2011 the numbers of non-thermal events significantly increase around the beginning and end of the year, with limited activity during the quiet austral winter. 2012, on the other hand, exhibits relatively few periods in which there are very few non-thermal events. This can, in part, be attributed to the TestBed operation being less closely monitored and managed during 2012.
+\noindent where $N^{i}$ is the number of non-thermal events from the $i^{th}$ day of the year. A day is masked off, and all non-thermal events from that day rejected, when $N^{i}_{window} > 14$. \FigureRef{fig:Analysis:Anthropogenic-Cuts:GoodTimes:Event-Rate} shows the distribution of non-thermal events as a function of day of the year for both 2011 and 2012. For 2011 the numbers of non-thermal events significantly increase around the beginning and end of the year, with limited activity during the quiet austral winter. 2012, on the other hand, exhibits relatively few periods in which there are very few non-thermal events. This can, in part, be attributed to the TestBed operation being less closely monitored and managed during 2012.
 
 \begin{figure}[htpb]
 \subfloat[2011 non-thermal events]{\includegraphics[width=0.49\textwidth]{chapters/analysis/GoodTimes2011.pdf}}\hfill
 \subfloat[2012 non-thermal events]{\includegraphics[width=0.49\textwidth]{chapters/analysis/GoodTimes2012.pdf}}
 \caption{Shown in blue are the number of events per day passing thermal cuts and in red the subset of these events also passing geometry cuts.}
-\label{fig:Analysis:Anthroprogenic-Cuts:GoodTimes:Event-Rate}
+\label{fig:Analysis:Anthropogenic-Cuts:GoodTimes:Event-Rate}
 \end{figure}
 
 \section{Cut results}
@@ -417,9 +436,9 @@ The drop off in efficiency at high SNR is driven by very large amplitudes freque
 \section{Background estimation}
 \label{sec:Analysis:Background-Estimation}
 
-Due to the differences in signal type it is necessary to estimate backgrounds separately for thermal noise and anthroprogenic events. In order to estimate the expected number of events that pass all cuts the distributions for events failing particular cuts, specific to signal type, were considered and extrapolated from fits to data.
+Due to the differences in signal type it is necessary to estimate backgrounds separately for thermal noise and anthropogenic events. In order to estimate the expected number of events that pass all cuts the distributions for events failing particular cuts, specific to signal type, were considered and extrapolated from fits to data.
 
-For thermal noise events the value of powherence was considered the most relevant parameter and proved to follow closely an exponentially falling distribution. Two samples of events passing all but the powherence cuts were assessed: the first being all minimum bias events and the second all RF triggered events, in both cases pseudo-$\chi^{2}$ and anthroprogenic cuts are applied. The former sample of events is the purest sample of thermal noise since no trigger condition is met for these events, however a scaling must be applied when accounting for the increase in statistics between this data set and the full set of RF triggers. The distribution of powherence in VPol and HPol and fits to the falling edge approaching the cut value are shown in \FigureRef{fig:Analysis:Background-Estimation:Thermal-Background} for the minimum bias sample. 
+For thermal noise events the value of powherence was considered the most relevant parameter and proved to follow closely an exponentially falling distribution. Two samples of events passing all but the powherence cuts were assessed: the first being all minimum bias events and the second all RF triggered events, in both cases pseudo-$\chi^{2}$ and anthropogenic cuts are applied. The former sample of events is the purest sample of thermal noise since no trigger condition is met for these events, however a scaling must be applied when accounting for the increase in statistics between this data set and the full set of RF triggers. The distribution of powherence in VPol and HPol and fits to the falling edge approaching the cut value are shown in \FigureRef{fig:Analysis:Background-Estimation:Thermal-Background} for the minimum bias sample. 
 
 \begin{figure}[htpb]
 \subfloat[VPol minimum bias events]{\includegraphics[width=0.49\textwidth]{chapters/analysis/PowHerenceFitVPol.pdf}}\hfill
@@ -430,7 +449,7 @@ For thermal noise events the value of powherence was considered the most relevan
 
 Extrapolating the fits to each of the thermal samples of events provides two estimates for the number of events passing the powherence cut and errors associated with the fits themselves. Since fits to both samples were in good agreement to data the lower of the two predictions was taken as the background expectation and the error to represent the range of values. The result is an expected number of background events of a thermal origin to be $0.18^{+0.30}_{-0.18}$.
 
-For the case of anthroprogenic signals it is much more difficult to ascertain the expected background levels since these events are from an unidentified mixture of sources, which are not necessarily expected to follow well described distributions. An estimate was made by considering the events that failed the CW minProb cut as the last cut applied to VPol events. This selection of events should be composed of anthroprogenic signals that contain some level of CW contamination which are distributed up to the cut threshold of -400 described in \SectionRef{sec:Analysis:CWRemoval}. 
+For the case of anthropogenic signals it is much more difficult to ascertain the expected background levels since these events are from an unidentified mixture of sources, which are not necessarily expected to follow well described distributions. An estimate was made by considering the events that failed the CW minProb cut as the last cut applied to VPol events. This selection of events should be composed of anthropogenic signals that contain some level of CW contamination which are distributed up to the cut threshold of -400 described in \SectionRef{sec:Analysis:CWRemoval}. 
 
 The tail adjacent to the cut value was fitted with a Gaussian as shown in \FigureRef{fig:Analysis:Background-Estimation:CW-Background} which is sensitive to both the binning and range of values that are considered in the fit. This approach had some success for VPol events, but when considering HPol events the low statistics severely limits the ability to fit any distribution. As a result the fit to VPol events, scaled by the relative change in statistics, is used as an estimate for HPol events.
 
@@ -438,8 +457,8 @@ A number of different fits were made resulting in a range of predicted backgroun
 
 
 \begin{figure}[htpb]
-\subfloat[VPol anthroprogenic events]{\includegraphics[width=0.49\textwidth]{chapters/analysis/MinProbFitVPol.pdf}}\hfill
-\subfloat[HPol anthroprogenic events]{\includegraphics[width=0.49\textwidth]{chapters/analysis/MinProbFitHPol.pdf}}
-\caption{VPol (HPol) events from the analysis sample failing CW minimum probability as the last cut are shown along with a Gaussian fit to the falling edge of the VPol events. This fit is used to estimate the number of expected anthroprogenic background events in analysis sample.}
+\subfloat[VPol anthropogenic events]{\includegraphics[width=0.49\textwidth]{chapters/analysis/MinProbFitVPol.pdf}}\hfill
+\subfloat[HPol anthropogenic events]{\includegraphics[width=0.49\textwidth]{chapters/analysis/MinProbFitHPol.pdf}}
+\caption{VPol (HPol) events from the analysis sample failing CW minimum probability as the last cut are shown along with a Gaussian fit to the falling edge of the VPol events. This fit is used to estimate the number of expected anthropogenic background events in analysis sample.}
 \label{fig:Analysis:Background-Estimation:CW-Background}
 \end{figure}
