@@ -1,16 +1,90 @@
 \chapter{Calibration}
 \label{chap:Calibration}
 
-Askaryan radiation from UHE neutrino-induced particle cascades results in short duration bipolar signals. These impulses typically extend over $\sim 100 \pico \second$ and result from coherent emission of frequencies up to $500 \mega \hertz$ to $1 \giga \hertz$. In order to make measurements of such signals it is not only necessary to use antennas with the necessary bandwidth, but also to be able to sample and digitise their output with an appropriate fidelity. 
+
+
+
+
+
+
+
+
+
+
+
+
+Askaryan radiation from UHE neutrino-induced particle cascades results in short duration bipolar signals. These impulses typically extend over $\sim 100 \pico \second$ and result from coherent emission of frequencies up to $500 \mega \hertz$ to $1 \giga \hertz$. In order to make measurements of such signals it is not only necessary to use antennas with the necessary bandwidth, but also to be able to sample and digitise their output with appropriate fidelity. Timing calibrations are necessary to remove inaccuracies in the 
+
+
+
+
+This chapter will describe the need for, and details of, a number of timing calibrations that were performed on the digitisation chain in the TestBed.
+
+In addition to providing high quality waveforms for neutrino events 
+
+
+
 
 The strict power and cost requirements of ARA necessitate the use of application specific integrated circuit (ASIC) digitisers that fulfill these criteria. The majority of recorded signals that trigger ARA stations are expected to be from thermal or anthropogenic sources and are considered backgrounds to detection of neutrino signals. Timing differences between the same signal being observed in multiple antennas can be used to reconstruct the physical location of their source. In \SectionRef{chap:Analysis} it will be shown that reconstruction can provide a powerful tool with which to separate interesting signals from these backrounds. 
 
-\begin{figure}[htpb]
-  \includegraphics[width=\largefigwidth]{chapters/calibration/LAB3_archictecture.pdf}
-  \caption{\cite{Varner2007447}}
-\end{figure}
+
+\section{LABRADOR Digitiser Chip}
+\label{sec:calibration:LABRADOR-Digitiser-Chip}
+
+The TestBed digitises waveforms using three LABRADOR (Large Analogue Bandwidth Recorded And Digitizer with Ordered Readout) chips designed at the Instrument and Design Laboratory, University of Hawaii. Each chip has 9 parallel radio frequency (RF) input channels that are continuously sampled and digitised in place once readout is initiated by the data acquisition systems (DAQ). Sampling, digitisation and readout of samples is controlled by signals from a field programmable gate array (FPGA) in the DAQ. A number of timing related calibrations are necessary due to the properties of the LABRADOR chip and its implementation in the TestBed. 
 
 \begin{figure}[htpb]
-  \includegraphics[width=\largefigwidth]{chapters/calibration/LAB3_RCO_Schmatic.pdf}
-  \caption{\cite{Varner2007447}}
+  \includegraphics[width=\hugefigwidth]{chapters/calibration/LAB3_archictecture.pdf}
+  \caption{The overall architecture of the LABRADOR digitser from \cite{Varner2007447}.}
+  \label{fig:calibration:LABRADOR-Digitiser-Chip:Architecture}
 \end{figure}
+
+\FigureRef{fig:calibration:LABRADOR-Digitiser-Chip:Architecture} shows the architecture of the LABRADOR chip used in the TestBed. On each chip a switched capacitor array (SCA) of 260 sampling capacitors per channel is used to sample the input voltage values. Sampling is controlled by a write signal, which is common to all 9 channels, driven by an externally provided clock. When a stop signal is asserted by the DAQ the samples are digitised in place using a Wilkinson analogue to digital converter (ADC), which occurs in parallel for all samples on all channels. Once digitisation is complete the digitised voltage values are requested by the DAQ and read out on a 12-bit data bus and processed by the FPGA for packetisation and recording as an event for later analysis.
+
+\begin{figure}[htpb]
+  \includegraphics[width=\hugefigwidth]{chapters/calibration/LAB3_RCO_Schmatic.pdf}
+  \caption{A schematic of the sampling within the LABRADOR digitiser from \cite{Varner2007447}.}
+  \label{fig:calibration:LABRADOR-Digitiser-Chip:Schematic}
+\end{figure}
+
+
+To acheive continuous sampling voltage samples are stored in the SCA as the write signal propogates along the array. The time taken for the write signal to propogate between adjacent samples varies from sample to sample and from digitiser to digitiser. These `inter-sample' times must be estimated from known input signals and a calibration applied to correct the time base of recorded waveforms. The voltage sampling is illustrated in \FigureRef{fig:calibration:LABRADOR-Digitiser-Chip:Schematic}. The write pointer signal propogates along the array in one of two phases, Ripple Carry Out (RCO) 0 and RCO1. The transit time of the write signal between adjacent samples differs between these two phases hence calibrated inter-sample times must be calculated for each.
+
+In order to continue sampling once the write signal reaches the end of the SCA the write pointer wraps back to the first sample, at which time the RCO phase changes. This wrapping means the SCA functions as a ring, continously sampling voltage values and over-writing the oldest sample taken. When a stop request is received, to initiate digitisation and read out, the chip issues a `HITBUS' causing the chip to stop sampling. The HITBUS removes around 8 samples from the waveform, which have their voltage value corrupted due to the change in state of the chip. The capacitor immediately after the HITBUS is the earliest sample in the resulting waveform, and the capacitor immediately before the HITBUS is the lastest sample. 
+
+The physical distance travelled when wrapping the write pointer is much greater than between adjacent samples so, to avoid time gaps in the resulting waveforms, the write pointer begins wrapping at the $255^{th}$ sample. The remaining 4 samples, 256-259, are then used to fill in the resulting gap in time between the $255^{th}$ and $0^{th}$ samples.  The time taken for the write pointer to wrap, referred to as the `wrap-around', is another quantity that needs to be estimated and accounted for in calibration, which again varies from chip to chip and between RCO phases.
+
+
+
+One of the features of the LABRADOR chip is the ability to operate at a range of sampling speeds. For the TestBed implementation it is operated at a nominal sampling speed of $1 \giga \mbox{Sample} /\second$ which corresponds to a Nyquist frequency \footnote{The Nyquist frequency for a discretely sampled system indicates the maximum resolveable input frequency and is equal to half the sample rate.} of $500 \mega \hertz$. The borehole antennas have good response to frequencies up to $850 \mega \hertz$, which means that frequency content would be lost if these antennas had their signals input to a single channel each. In order to retain this high frequency content each of these antennas has its signal split and inserted into a pair of input channels, one offset from the other by $0.5 \nano \second$. This interleaving process leads to an effective doubling of the sampling speed for the borehole antennas, however the offset needs to be calibrated out in order to accurately reconstruct the original input waveforms. 
+
+As well as ensuring the timing information, on a per antenna basis, is as accurate as possible it is also necessary to correct for any offsets between channels. Due to the use of a common write signal each of the channels on a single chip will be aligned once the inter-sample, wrap-around and interleave calibrations are carried out. This is not true for channels on different chips and must be addressed in the final timing calibration, inter-chip jitter removal. Since timing differences between similar signals in pairs of antennas serves as the basis of event reconstruction this calibration is an integral part of distinguishing between noise sources and potential neutrino induced signals. 
+
+\subsection{Inter-sample times}
+\label{sec:calibration:LABRADOR-Digitiser-Chip:Inter-sample-times}
+
+The inter-sample times correspond to the time taken for the LABRADOR digitiser's write pointer to propogate between samples. By adjusting control voltages to the chip the global sampling speed can be adjusted, which acts by effecting a change to each of the inter-sample times. Using the selected operating parameters of the chips in the TestBed DAQ a series of dedicated calibration runs were taken in the northern hemisphere prior to deployment in Antarctica. For each of these runs, each containing many thousands of events,  precise frequency sinusoidal inputs were provided to the DAQ box were taken and used to calculate the various timing calibrations necessary for the TestBed. 
+
+Standard sampling calibration techniques were used to estimate the inter-sample times. The number of zero-crossings between a pair of adjacent samples was scaled by the number of waveforms in which that sample was present. The resulting fractional zero-crossing occupancy is then scaled by half the period of the input sine wave to recover the inter-sample time:
+
+\begin{itemize}
+\item The voltage values of each waveform are zero-meaned 
+\item The RCO phase of each pair of adjacent samples is then determined as described in section something %FIXME
+\item The total number of times zero is crossed between each pair of samples is counted over the run (i.e. the voltage goes from positive to negative, or visa-versa, between a pair of samples)
+\item The total number of zero-crossings is then divided by the total number of events for which that pair of samples were active
+\item This fractional zero-crossing occupancy is then scaled by the half-period of the input sine-wave, resulting in an estimate for the inter-sample time
+\end{itemize}
+
+
+The resulting distribution of inter-sample times is shown in \FigureRef{fig:calibration:LABRADOR-Digitiser-Chip:Inter-sample-times}.
+
+
+
+\begin{figure}[htpb]
+  \subfloat[All RCO phases]{\includegraphics[width=0.49\textwidth]{chapters/calibration/TB-LAB3-DT-All.pdf}}\\
+  \subfloat[RCO 0]{\includegraphics[width=0.49\textwidth]{chapters/calibration/TB-LAB3-DT-RCO0.pdf}}\hfill
+  \subfloat[RCO 1]{\includegraphics[width=0.49\textwidth]{chapters/calibration/TB-LAB3-DT-RCO1.pdf}}
+  \caption{Calculated inter-sample times for all 3 TestBed LABRADOR digitisers. In (a) both RCO phases are included, whereas (b) and (c) show the distributions for RCO phase 0 and 1 respectively.}
+  \label{fig:calibration:LABRADOR-Digitiser-Chip:Inter-sample-times}
+\end{figure}
+
