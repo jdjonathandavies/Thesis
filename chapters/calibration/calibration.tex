@@ -72,13 +72,11 @@ Standard sampling calibration techniques were used to estimate the inter-sample 
 \item The RCO phase of each pair of adjacent samples is then determined as described in section something %FIXME
 \item The total number of times zero is crossed between each pair of samples is counted over the run (i.e. the voltage goes from positive to negative, or visa-versa, between a pair of samples)
 \item The total number of zero-crossings is then divided by the total number of events for which that pair of samples were active
-\item This fractional zero-crossing occupancy is then scaled by the half-period of the input sine-wave, resulting in an estimate for the inter-sample time
+\item This fractional zero-crossing occupancy is then scaled by the half-period of the input sine-wave, resulting in an estimate for the inter-sample times
 \end{itemize}
 
 
-The resulting distribution of inter-sample times is shown in \FigureRef{fig:calibration:LABRADOR-Digitiser-Chip:Inter-sample-times}.
-
-
+The resulting distribution of inter-sample times is shown in \FigureRef{fig:calibration:LABRADOR-Digitiser-Chip:Inter-sample-times}. 
 
 \begin{figure}[htpb]
   \subfloat[All RCO phases]{\includegraphics[width=0.49\textwidth]{chapters/calibration/TB-LAB3-DT-All.pdf}}\\
@@ -87,4 +85,41 @@ The resulting distribution of inter-sample times is shown in \FigureRef{fig:cali
   \caption{Calculated inter-sample times for all 3 TestBed LABRADOR digitisers. In (a) both RCO phases are included, whereas (b) and (c) show the distributions for RCO phase 0 and 1 respectively.}
   \label{fig:calibration:LABRADOR-Digitiser-Chip:Inter-sample-times}
 \end{figure}
+
+\subsection{Wrap-around times}
+\label{sec:calibration:LABRADOR-Digitiser-Chip:Wrap-around-times}
+
+The time taken to wrap between the end and beginning of the SCA, denoted $\varepsilon_{0}$ and $\varepsilon_{1}$ for the two RCO phases, is considerably larger than the inter-sample times. Rather than measuring the scaled zero-crossing occupancy, as described in \SectionRef{sec:calibration:LABRADOR-Digitiser-Chip:Inter-sample-times}, sine waves are fitted to the waveform before and after the wrap-around. By aligning the phase of the two fitted sine waves it is possible to estimate the wrap-around time. The full procedure is as follows:
+
+\begin{itemize}
+\item The voltage vales of each waveform are zero-meaned
+\item Only events containing at least 20 samples before and after the wrap-around are selected
+\item Calibrated inter-sample times, calculated as described in \SectionRef{sec:calibration:LABRADOR-Digitiser-Chip:Inter-sample-times}, are applied to the waveform 
+\item Sine waves are fitted to the last 20 samples before the wrap-around, and first 20 samples after
+\item The fitted sine wave after the wrap-around is moved in time until the phase matches that before the wrap-around
+\item The wrap-around time is then taken to be the time between sample 255 and sample 0, and is averaged over a calibration run
+\end{itemize}
+
+
+\begin{figure}[htpb]
+  \subfloat[RCO 0]{\includegraphics[width=0.49\textwidth]{chapters/calibration/Wrap-Around-Chip1-RCO0.pdf}}\hfill
+  \subfloat[RCO 1]{\includegraphics[width=0.49\textwidth]{chapters/calibration/Wrap-Around-Chip1-RCO1.pdf}}
+  \caption{Estimated wrap-around times for all events in a calibration run for TestBed LABRADOR chip 0 and both RCO phases. The average value is taken over all events in the run.}
+  \label{fig:calibration:LABRADOR-Digitiser-Chip:Wrap-around}
+\end{figure}
+
+
+\subsection{Iterleaving}
+\label{sec:calibration:LABRADOR-Digitiser-Chip:Iterleaving}
+
+\begin{figure}[htpb]
+  \subfloat[Chip 1 Pair 1]{\includegraphics[width=0.49\textwidth]{chapters/calibration/Interleave-Chip1-Pair1.pdf}}\hfill
+  \subfloat[Chip 1 Pair 2]{\includegraphics[width=0.49\textwidth]{chapters/calibration/Interleave-Chip1-Pair2.pdf}}
+  \caption{Interleave times.}
+  \label{fig:calibration:LABRADOR-Digitiser-Chip:Interleave}
+\end{figure}
+
+
+
+
 
