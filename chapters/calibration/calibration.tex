@@ -108,8 +108,8 @@ The time taken to wrap between the end and beginning of the SCA, denoted $\varep
 \end{figure}
 
 
-\subsection{Iterleaving}
-\label{sec:calibration:LABRADOR-Digitiser-Chip:Iterleaving}
+\subsection{Interleaving}
+\label{sec:calibration:LABRADOR-Digitiser-Chip:Interleaving}
 
 To increase the effective sampling rate of the borehole antennas the signals from each of them are fed into two digitiser channels, one offset from the other by approximately half a sample. The resulting waveforms are then produced by interleaving the two digitised channels for each of these antennas. A calibration is performed to estimate the offset between each pair of channels that have their signals split, such that the resulting interleaved waveforms are as accurate as possible. This is achieved by attempting to align the phase of input sine waves between these pairs of channels as follows:
 
@@ -172,9 +172,25 @@ The timing calibration with the largest effect is the inter-chip jitter removal,
 
 Close to finalisation of the analysis presented in \SectionRef{sec:analysis} a reversal of voltage values recorded in two of the horizontally polarised (HPol) antennas' waveforms was identified. This reversal is illustrated in \FigureRef{fig:calibration:Voltage-Reversal} where hundreds of calibration pulser signals originating from the HPol calibration pulser are averaged to remove thermal noise. There is a clear inversion of voltage values for antennas 3 and 4 compared with antennas 1 and 2. It is believed that this flip originates from installation of the antennas upside down relative to antennas 1 and 2, or from inversion of voltages during amplification in the signal chain. 
 
-Checks were made on the vertically polarised (VPol) antenna's waveforms from VPol calibration pulser events. No such inversion was found for these antennas. 
+\begin{figure}[htpb]
+  \subfloat[Antenna 1]{\includegraphics[width=0.49\textwidth]{chapters/calibration/avWaveformHPolAnt1.pdf}}\hfill
+  \subfloat[Antenna 2]{\includegraphics[width=0.49\textwidth]{chapters/calibration/avWaveformHPolAnt2.pdf}}\\
+  \subfloat[Antenna 3]{\includegraphics[width=0.49\textwidth]{chapters/calibration/avWaveformHPolAnt3.pdf}}\hfill
+  \subfloat[Antenna 4]{\includegraphics[width=0.49\textwidth]{chapters/calibration/avWaveformHPolAnt4.pdf}}
+\caption{Averaged waveforms from HPol borehole antennas. The signal captured is from the HPol calibration pulser operated in 2012. There is a clear inversion of voltage values in antennas 3 and 4 compared with antennas 1 and 2.}
+\label{fig:calibration:Voltage-Reversal}
+\end{figure}
 
 
-A correction was applied in the analysis described in \SectionRef{sec:analysis} that switches positive for negative (and visa versa) voltages for the affected HPol antennas. 
+Checks were made on the vertically polarised (VPol) antenna's waveforms from VPol calibration pulser events. No such inversion was found for these antennas. A correction was applied in the analysis described in \SectionRef{chap:analysis} that switches positive for negative (and visa versa) voltages for the affected HPol antennas, resulting in a significant improvement in the reconstruction of calibration signals. 
+
+\begin{figure}[htpb]
+  \subfloat[Antenna 1]{\includegraphics[width=0.49\textwidth]{chapters/calibration/DeltaT-HPol-1-4.pdf}}\hfill
+  \subfloat[Antenna 2]{\includegraphics[width=0.49\textwidth]{chapters/calibration/DeltaT-HPol-1-4-Flip.pdf}}
+\caption{caltion}
+\label{fig:calibration:Voltage-Reversal-DeltaT}
+\end{figure}
+
+
 
 
