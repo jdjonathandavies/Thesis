@@ -224,12 +224,12 @@ The data acquisition software is called `Acqd' and is tasked with starting and s
 
 The first full station ARA1 was deployed in 2011-2012 at a depth of 100 \meter, with two further stations ARA2 and ARA3 deployed during the 2012-2013 season at a depth of 200 \meter. The updated design follows that illustrated in \FigureRef{fig:ara-detector:ARA-37:ARA-37} with 4 boreholes each containing 4 receive antennas, and a further 2 boreholes containing transmit antennas to illuminate the station with calibration signals. The updated specifications for the stations are summarised in \TableRef{tab:ara-detector:ARA1-3:Specifications} and can be compared with those in \TableRef{tab:ara-detector:TestBed:Specifications}.
 
-A new DAQ system was designed and implemented for the full ARA stations based on the use of a new digitiser, again designed and supplied by the Instrument and Design Laboratory at the University of Hawaii. The Ice Ray Sampler (IRS2) application specific integrated circuit (ASIC) was designed to address the design goals of ARA. The IRS2 features higher sampling speeds accross all of the input channels (3.2 GSamples/sec) to make use of the high frequency response of the deep antennas. In order to allow for future multiple station triggers the ASIC features an approximately $10 \micro \second$ long analogue sample buffer, where the sampled voltage values are stored until digitised at a later time. This buffer means that 
+A new DAQ system was designed and implemented for the full ARA stations based on the use of a new digitiser, again designed and supplied by the Instrument and Design Laboratory at the University of Hawaii. The Ice Ray Sampler (IRS2) application specific integrated circuit (ASIC) was designed to address the design goals of ARA. The IRS2 features higher sampling speeds accross all of the input channels (3.2 GSamples/sec) to make use of the high frequency response of the deep antennas. In order to allow for future multiple station triggers the ASIC features an approximately $10 \micro \second$ long analogue sample buffer, where the sampled voltage values are stored until digitised at a later time. 
 
 Work undertaken for this PhD included:
 
 \begin{itemize}
-\item Testing of the bespoke electronics boards that hoast the FPGA and subsystems
+\item Testing of the bespoke electronics boards that host the FPGA and sub-systems
 \item Firmware for a USB micro-controller used for data readout and communication between SBC and FPGA
 \item Testing and characterising a number of iterations of the IRS ASIC
 \item Writing and developing the DAQ software
