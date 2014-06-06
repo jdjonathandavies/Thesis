@@ -18,7 +18,7 @@ In addition to directional anthropogenic signals another category of events is e
 
 
 
-In \SectionRef{sec:Analysis:Blinding} and \SectionRef{sec:Analysis:Data-types} the data sets and blinding strategy for this analysis will be outlined. A series of tools were developed for use in this analysis in order to reconstruct events, identify those with coherent signals between multiple antennas and to remove CW contamination from the data set. These tools will be described in \SectionRef{sec:Analysis:Analysis-Tools}. A series of cuts are then identified and chosen to separate signals from the various categories of background events. Firstly data quality cuts are described in \SectionRef{sec:Analysis:data-quality}, then the thermal noise and anthropogenic signal cuts are described in \SectionRef{sec:Analysis:thermal-cuts} and \SectionRef{sec:Analysis:Anthropogenic-Cuts} respectively.
+In \SectionRef{sec:Analysis:Blinding} and \SectionRef{sec:Analysis:Data-types} the data sets and blinding strategy for this analysis will be outlined. A series of tools were developed for use in this analysis in order to reconstruct events, identify those with coherent signals between multiple antennas and to remove CW contamination from the data set. These tools will be described in \SectionRef{sec:Analysis:Analysis-Tools}. A series of cuts are then identified and chosen to separate signals from the various categories of background events. Firstly data quality cuts are described in \SectionRef{sec:Analysis:Data-Quality-Cuts}, then the thermal noise and anthropogenic signal cuts are described in \SectionRef{sec:Analysis:Thermal-Cuts} and \SectionRef{sec:Analysis:Anthropogenic-Cuts} respectively.
 
 Any events that pass all of these cuts are considered to be neutrino candidates. A deliberate choice was made to omit any signal shape cuts in order to minimise dependencies on theoretical calculations of Askaryan signals and assumptions made about radio propagation in the ice. 
 
@@ -276,8 +276,8 @@ In addition to the narrow range of frequencies exhibiting non-thermal power the 
 \begin{figure}[htpb]
   \subfloat[Non-calibration pulser events]{\includegraphics[width=0.48\textwidth]{chapters/analysis/CW-minProb-totalBins-NCP.pdf}}\hfill
   \subfloat[Calibration pulser events]{\includegraphics[width=0.48\textwidth]{chapters/analysis/CW-minProb-totalBins-CP.pdf}}\\
-  \subfloat[Non-calibration pulser events - excluding weather balloon frequency range]{\includegraphics[width=0.48\textwidth]{chapters/analysis/CW-minProb-totalBins-NCPNot403.pdf}}\hfill
-  \subfloat[Calibration pulser events - excluding weather balloon frequency range]{\includegraphics[width=0.48\textwidth]{chapters/analysis/CW-minProb-totalBins-CPNot403.pdf}}
+  \subfloat[Non-calibration pulser events]{\includegraphics[width=0.48\textwidth]{chapters/analysis/CW-minProb-totalBins-NCPNot403.pdf}}\hfill
+  \subfloat[Calibration pulser events]{\includegraphics[width=0.48\textwidth]{chapters/analysis/CW-minProb-totalBins-CPNot403.pdf}}
   \caption{CW parameters minProb (minimum value of $\ln(\prod P_{i})$ in probability spectra) and totalBins (total number of frequency bins that are identified to have non-thermal amplitudes) are shown for calibration pulser and non-calibration pulser events. The top row shows these parameters for the full range of in band frequencies, and the bottom panel excludes a range of frequencies around $403 \mega \hertz$ which are used by the weather balloon. The large vertical tails in the top row are clearly due to the presence of CW signals from the weather balloon and are used to inform cuts on minProb and totalBins.}
   \label{fig:analysis:CWRemoval:Filtering:CW-MinProb-TotalBins}
 \end{figure}
