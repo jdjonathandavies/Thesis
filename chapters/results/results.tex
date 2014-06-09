@@ -1,45 +1,35 @@
 \chapter{Results}
 \label{chap:Results}
 
-After application of all cuts to the analysis data set one event from July 2012 passes through it's vertically polarised (VPol) antenna's waveforms. When this event is compared to the expected number of background events it is not considered to be a statistically significant observation of a flux of UHE neutrinos, hence a model independent limit can be calculated. Before doing so the passing event will be described and a comparison drawn with expectations of a neutrino induced signal.
+After application of all cuts to the analysis data set (the `$90 \%$ sample' described in \SectionRef{sec:Analysis:Blinding}) there are no surviving events and hence no neutrino candidates. Therefore there is no evidence found for a flux of ultra-high energy (UHE) neutrinos detected in the TestBed, hence a model independent limit can be calculated. Upon relaxing the anthropogenic geometric and good times cuts 4 periods of heightened solar activity, caused by solar flares, were identified and detected in the TestBed. The events associated with this solar activity are discussed in \SectionRef{sec:Results:Solar-Flare}, followed by the calculatation of an UHE neutrino limit.
+
+
+\section{Solar flare events}
+\label{sec:Results:Solar-Flare}
+
+The TestBed analysis detected $\sim 6 \times 10^{3}$ events, that reconstructed close to the location of the sun, associated with 4 solar flare events. Since these events reconstructed to locations above the ice, they failed the geometric cuts in the TestBed analysis. These events are, however, of interest since they are consistent with originating from a distant source and can be used to assess the performance of signal reconstruction. The first solar flare event observed ocurred on $15^{\mbox{th}}$ February 2011, the remaining 3 events were in 2012 on $5^{\mbox{th}}$ March, $7^{\mbox{th}}$ March and $21^{\mbox{st}}$ of November respectively.
 
 
 
-\section{Candidate neutrino event}
-\label{sec:Results:Neutrino-Candidate}
-
-A single event, number 13590 from run 21609, survives the analysis cuts. The coherently summed wave (CSW) and pseudo-$\chi^{2}$ map are shown in \FigureRef{fig:Results:CSW-ChiSq} and individual VPol antenna waveforms in \FigureRef{fig:Results:Waveforms}. The individual waveforms and the resulting CSW are not consistent with expectations of neutrino induced signals, showing no impulsive signal characteristic of such events. Six other events with similar waveforms were found in the same run but were rejected as they failed a combination of the reconstruction (pseudo-$\chi^{2}$ and geometry cuts) and CW cuts, therefore it is infered that this event is from an unidentified background source. 
-
-\begin{figure}
-  \subfloat[CSW VPol]{\includegraphics[width=0.48\textwidth]{chapters/results/candidateCSWVPol.pdf}}\hfill
-  \subfloat[Pseudo-$\chi^{2}$ map VPol]{\includegraphics[width=0.48\textwidth]{chapters/results/candidateChiSqVPol.pdf}}
-  \caption{CSW and pseudo-$\chi^{2}$ map for the one survived VPol candidate event in 2012.}
-  \label{fig:Results:CSW-ChiSq}
+\begin{figure} [htpb]
+  \subfloat[Power above baseline]{\includegraphics[width=0.48\textwidth]{chapters/results/SolarFlare-VPol-Ant4.pdf}}\hfill
+  \subfloat[Power above baseline]{\includegraphics[width=0.48\textwidth]{chapters/results/SolarFlare-VPol-Ant4-Zoom.pdf}}\\
+  \subfloat[GOES X-ray flux]{\includegraphics[width=0.48\textwidth]{chapters/results/SolarFlare-GOES.pdf}}\hfill
+  \subfloat[GOES X-ray flux]{\includegraphics[width=0.48\textwidth]{chapters/results/SolarFlare-GOES-Zoom.pdf}}
+  \caption{The solar flare event on $15^{\mbox{th}}$ February 2011 as observed in the TestBed. The average frequency domain power in one VPol antenna, taken over a minute period, is compared to a baseline produced from a nearby run in (a) and (b). This is compared to the X-ray flux measured by the GOES satellite system \cite{2009SPIE.7438E...1C} (c) and (d), divided into two bands: $0.5 - 4.0 \times 10^{-10} \meter$ band (blue), and $1.0 - 8.0 \times 10^{-10} \meter$ band (red). (a) and (c) show the these quantities over the course of a day, whereas (b) and (d) focus on the period of largest activity.}  
+  \label{fig:Results:Solar-Flare:Frequency}
 \end{figure}
 
+\FigureRef{fig:Results:Solar-Flare:Frequency} shows, for one solar flare period, the averaged frequency domain power relative to a baseline taken from a nearby run, and is typical of the 4 vertically polarise (VPol) antennas during this period. Broadband power excesses are seen in the 4 VPol antennas, which seem to be associated with increased X-ray fluxes as observed by the GOES satellite system \cite{2009SPIE.7438E...1C}. Inspection of the events' waveforms did not show obvious impulsive signals, however these events exhibit similar waveforms in multiple antennas resulting in non-thermal correlations and the ability to reconstruct their source. It is not understood at present the mechanism by which these signals are produced.
+
+An attempt was made to use these events to determine the reconstruction's accuracy, since the sun's position can be calculated given the time the events were recorded. \FigureRef{fig:Results:Solar-Flare:Phi} shows the result of comparisons between the azimuth of the sun and reconstructed events. 
 
 \begin{figure}
-  \subfloat[Antenna 1]{\includegraphics[width=0.48\textwidth]{chapters/results/candidateVPolAnt1.pdf}}\hfill
-  \subfloat[Antenna 2]{\includegraphics[width=0.48\textwidth]{chapters/results/candidateVPolAnt2.pdf}}\\
-  \subfloat[Antenna 3]{\includegraphics[width=0.48\textwidth]{chapters/results/candidateVPolAnt3.pdf}}\hfill
-  \subfloat[Antenna 4]{\includegraphics[width=0.48\textwidth]{chapters/results/candidateVPolAnt4.pdf}}\
-  \caption{Individual waveforms from the one survived VPol candidate event in 2012. There is a clear excess of power in the first two antennas not present in the others.}
-  \label{fig:Results:Waveforms}
+  \subfloat[Resconstructed $\phi$ versus sun $\phi$]{\includegraphics[width=0.48\textwidth]{chapters/results/solarFlare-phiPhi.pdf}}\hfill
+  \subfloat[$\phi$ residuals]{\includegraphics[width=0.48\textwidth]{chapters/results/solarFlare-deltaPhi.pdf}}
+  \caption{Comparison of reconstructed azimuth of solar flare events with the calculated position of the sun.}
+  \label{fig:Results:Solar-Flare:Phi}
 \end{figure}
-
-
-The event has large correlated signals present in only two of the four VPol antennas which dominate the poweherence parameter, described in \SectionRef{sec:Analysis:Thermal-Cuts:Powherence}, used to distinguish between thermal and non-thermal signals. The reconstruction relies upon having coherent signals in all four antennas used to form the CSW, which is clearly not the case for this event. Such events could be removed from the analysis sample by making one or a number of cuts requiring all four antennas to have a minimum level of signal or coherence with the CSW. In addition this event narrowly passes the CW minProb cut described in \SectionRef{sec:Analysis:CWRemoval:CW-Identification} due to the presence of two large frequency narrow band signals in two of the antennas. The CW cut parameter $\ln (\prod P_{i})$ is shown in \FigureRef{fig:Results:minProb} along with the threshold minProb which is used to reject strong CW events.
-
-
-\begin{figure}
-  \includegraphics[width=\largefigwidth]{chapters/results/candidateMinProbVPol.pdf}
-  \caption{CW parameter $\ln (\prod P_{i})$ is shown as a function of frequency for the VPol antennas in the one survived event. The regions filled with red correspond to frequencies that are considered to have measured amplitudes well in excess of expected thermal noise levels. The largest excess, corresponding to the most negative value of $\ln (\prod P_{i})$, comes very close to the CW minProb cut threshold (the upper of the two dashed lines).}
-  \label{fig:Results:minProb}
-\end{figure}
-
-
-Although the survived event is clearly not a neutrino candidate it did pass all analysis cuts, so it will be considered as an observed event for limit setting purposes, a conservative approach since the resulting limit will be significantly weaker than with no events passing. 
-
 
 \section{Live Time}
 \label{sec:Results:Live-Time}
@@ -57,7 +47,7 @@ Having obtained an integrated live time for the entire analysis data set a final
   \label{fig:Results:Integrated-LiveTime}
 \end{figure}
 
-After accounting for data quality issues and applying the good times criteria the integrated live time is 162.8 days for 2011 and 43.3 days for 2012. The resulting live time for the full analysis data set is calculated to be 206.0 days.
+After accounting for data quality issues and applying the good times criteria the integrated live time is 167.1 days for 2011 and 50.3 days for 2012. The resulting live time for the full analysis data set is calculated to be 217.6 days.
 
 
 \section{Effective area}
@@ -86,21 +76,21 @@ An upper limit can be placed on the neutrino flux using the following equation:
   E_{\Pnu} \frac {dN}{dE_{\Pnu}} \leq \frac{N_{90}}{4\pi A_{eff}(E_{\Pnu}) T_{live} \varepsilon(E_{\Pnu}) \ln(10)}
 \end{equation}
 
-\noindent where $T_{live}$ is the total live time of the TestBed analysis data set, $\varepsilon(E_{\Pnu})$ is the energy dependant analysis efficiency, $N_{90}$ is the $90\%$ upper confidence limit on the number of neutrino events excluded by the analysis and the factor $\ln(10)$ accounts for log-scale energy binning. The live time and effective area are calculated as discussed in \SectionRef{sec:Results:Live-Time} and \SectionRef{sec:Results:Effective-Area}, and the analysis efficiency taken from application of cuts to simulated neutrino events shown in \FigureRef{fig:Analysis:Cut-Results:Efficiency}. Feldman Cousin's statistics are used to calculate $N_{90}$, with the single observed event on a background of $0.38^{+0.89}_{-0.38}$ yielding the $90\%$ upper bound of excluded events being $N_{90}=3.98$.
+\noindent where $T_{live}$ is the total live time of the TestBed analysis data set, $\varepsilon(E_{\Pnu})$ is the energy dependant analysis efficiency, $N_{90}$ is the $90\%$ upper confidence limit on the number of neutrino events excluded by the analysis, which is taken as 2.3 from Poisson statistics, and the factor $\ln(10)$ accounts for log-scale energy binning. The live time and effective area are calculated as discussed in \SectionRef{sec:Results:Live-Time} and \SectionRef{sec:Results:Effective-Area}, and the analysis efficiency taken from application of cuts to simulated neutrino events shown in \FigureRef{fig:Analysis:Cut-Results:Efficiency}. 
+
+
 
 \begin{figure}[htpb]
   \includegraphics[width=\hugefigwidth]{chapters/results/LimitPlotr2801.pdf}
-  \caption{TestBed analysis neutrino flux limit from this analysis `UCL 206', along with limits from ANITA \cite{PhysRevD.82.022004}, Auger \cite{Abraham:2009eh}, RICE \cite{PhysRevD.73.082002} and IceCube (citation needed). The shaded band indicates a range of flux predictions from \cite{Kotera.2010} using a variety of assumptions about sources and production mechanisms.}
+  \caption{TestBed analysis neutrino flux limit from this analysis `UCL 218', along with limits from ANITA \cite{PhysRevD.82.022004}, Auger \cite{Abraham:2009eh}, RICE \cite{PhysRevD.73.082002} and IceCube (citation needed). The shaded band indicates a range of flux predictions from \cite{Kotera.2010} using a variety of assumptions about sources and production mechanisms.}
   \label{fig:Results:Limit-Plot}
 \end{figure}
 
-The resulting UHE neutrino flux limit is shown in \FigureRef{fig:Results:Limit-Plot} along with limits from other experiments and a range of theoretical predicitons. The limit placed using this analysis is a factor $1.73$ weaker than if the final passing event were rejected as a neutrino candidate, however as the analysis does not place strict requirments on signal shape, which would lead to a reduction in efficiency, the displayed limit is a fairer representation of the conclusions drawn.
+The resulting UHE neutrino flux limit is shown in \FigureRef{fig:Results:Limit-Plot} along with limits from other experiments and a range of theoretical predicitons. In addition to the limit calculated from this analysis of two years of TestBed data a projected sensitivity is shown for ARA-37 using a dedicated simulation. A number of factors lead to the much improved sensitivity reached by the full array. First and foremost is the increase in number of stations from one to thirty seven, each acting as a stand-alone neutrino detector, operated over a longer period. Deployment of stations at $\sim 200 \meter$ depths has been demonstrated over the 2012-2013 season and all further stations are expected to deployed at similar depths. By placing the antennas well below the firn layer of ice (which extends $\sim 150 \meter$ below the surface in the vicinity of the south pole), in which the changing index of refraction leads to ray-bending and shadowing effects, an increase in effective volume and area per station of the order $\sim 3$ over the TestBed is expected.
 
-In addition to the limit calculated from this analysis of two years of TestBed data a projected sensitivity is shown for ARA-37 using a dedicated simulation. A number of factors lead to the much improved sensitivity reached by the full array. First and foremost is the increase in number of stations from one to thirty seven, each acting as a stand-alone neutrino detector, operated over a longer period. Deployment of stations at $\sim 200 \meter$ depths has been demonstrated over the 2012-2013 season and all further stations are expected to deployed at similar depths. By placing the antennas well below the firn layer of ice (which extends $\sim 150 \meter$ below the surface in the vicinity of the south pole), in which the changing index of refraction leads to ray-bending and shadowing effects, an increase in effective volume and area per station of the order $\sim 3$ over the TestBed is expected.
+The expected level of anthroprogenic backgrounds is also expected to reduce greatly as the vast majority of future stations will be much further from the south pole station and associated human activity. In addition the receive antennas being placed much deeper in the ice will lead to a reduction in the signal size of above ice noise sources in each station. As well as the reduction in signal size the increased number of receive antennas, from four per polarisation to eight, is expected to significantly improve background identification and rejection. Anthroprogenic signal removal via masking off noisy periods of time, which is performed via the good times cut described in \SectionRef{sec:Analysis:Anthropogenic-Cuts:Good-Times}, leads to large periods of time being removed from the analysis sample and greatly reduces the total detector live time in this analysis. The expected reduction in number anthroprogenic signals associated with location will be complemented with better charecterisation of such signals and removal as the radio environment becomes better understood.
 
-The expected level of anthroprogenic backgrounds is also expected to reduce greatly as the vast majority of future stations will be much further from the south pole station and human activity. In addition the receive antennas being placed much deeper in the ice will lead to a reduction in the signal size of above ice noise sources in each station. As well as the reduction in signal size the increased number of receive antennas, from four per polarisation to eight, is expected to significantly improve background identification and rejection. Anthroprogenic signal removal via masking off noisy periods of time, which is performed via the good times cut described in \SectionRef{sec:Analysis:Anthropogenic-Cuts:Good-Times}, leads to large periods of time being removed from the analysis sample and greatly reduces the total detector live time in this analysis. The expected reduction in number anthroprogenic signals associated with location will be complemented with better charecterisation of such signals and removal as the radio environment becomes better understood.
-
-The re-designed data acquistion electronics and software (DAQ) will also lead to improvements in sensitivity. The updated DAQ allows for triggered event buffering such that the expected dead time associated with event readout described in \SectionRef{sec:Results:Live-Time} will be effectively nill. Improved 
+The re-designed data acquistion electronics and software (DAQ) will also lead to improvements in sensitivity. The updated DAQ allows for triggered event buffering such that the expected dead time associated with event readout described in \SectionRef{sec:Results:Live-Time} will be effectively nill. 
 
 
 

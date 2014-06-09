@@ -377,13 +377,9 @@ These cuts were informed from the locations of a variety of infrastructure items
 
 \subsection{Good times cut}
 \label{sec:Analysis:Anthropogenic-Cuts:Good-Times}
-The final set of cuts termed `GoodTimes' criteria reject days of the year that have large numbers of non-thermal events in an attempt to remove repetitive noise associated with human activity. The months of December and January are masked off, and all events within them rejected, as they correspond to the busiest periods of the summer season. Human activity is at its peak during these times involving frequent use of snow-mobiles, radio communication devices and a plethora of other potential noise sources. In order to identify other `noisy' periods of the year the sample of events passing thermal cuts are used to assess activity levels. The total number of events passing thermal cuts over a three day period is considered:
+The final set of cuts termed `GoodTimes' criteria reject days of the year that have large numbers of non-thermal events in an attempt to remove repetitive noise associated with human activity. The months of December and January are masked off, and all events within them rejected, as they correspond to the busiest periods of the summer season. Human activity is at its peak during these times involving frequent use of snow-mobiles, radio communication devices and a plethora of other potential noise sources. In order to identify other `noisy' periods of the year the sample of events passing thermal cuts are used to assess activity levels. The total number of events passing thermal cuts over a three day period is considered. A day is masked off, and all non-thermal events from that day rejected, when the sum of events in that day, the previous and next day passes a threshold of 14. 
 
-\begin{equation}
-  N^{i}_{window} = N^{i-1} + N^{i} + N^{i+1}
-\end{equation}
-
-\noindent where $N^{i}$ is the number of non-thermal events from the $i^{th}$ day of the year. A day is masked off, and all non-thermal events from that day rejected, when $N^{i}_{window} > 14$. \FigureRef{fig:Analysis:Anthropogenic-Cuts:GoodTimes:Event-Rate} shows the distribution of non-thermal events as a function of day of the year for both 2011 and 2012. For 2011 the numbers of non-thermal events significantly increase around the beginning and end of the year, with limited activity during the quiet austral winter. 2012, on the other hand, exhibits relatively few periods in which there are very few non-thermal events. This can, in part, be attributed to the TestBed operation being less closely monitored and managed during 2012.
+\FigureRef{fig:Analysis:Anthropogenic-Cuts:GoodTimes:Event-Rate} shows the distribution of non-thermal events as a function of day of the year for both 2011 and 2012. For 2011 the numbers of non-thermal events significantly increase around the beginning and end of the year, with limited activity during the quiet austral winter. 2012, on the other hand, exhibits relatively few periods in which there are very few non-thermal events. Future analysis of these events is expected to be able to categorise them and enable cuts to be designed to remove a large fraction of them.
 
 \begin{figure}[htpb]
 \subfloat[2011 non-thermal events]{\includegraphics[width=0.49\textwidth]{chapters/analysis/GoodTimes2011.pdf}}\hfill
@@ -395,46 +391,52 @@ The final set of cuts termed `GoodTimes' criteria reject days of the year that h
 \section{Cut results}
 \label{sec:Analysis:Cut-Results}
 
-The final analysis cuts and the result of their application to the analysis data sample are detailed in \TableRef{tab:Analysis:Cut-Flow} resulting in one VPol event passing all cuts, details of which are discussed in \SectionRef{chap:Results}. The thermal cuts, pseudo-$\chi^{2}$ and powherence, remove the majority of events illustrating that the main background in the TestBed is of a thermal origin. Carrier wave contaminated events appear to make up a large fraction of the remaining events, with daily weather balloon launches expected to contribute a significant number of events year round. 
+The final analysis cuts and the result of their application to the analysis data sample are detailed in \TableRef{tab:Analysis:Cut-Flow} resulting in no events passing all cuts. The thermal cuts, pseudo-$\chi^{2}$ and powherence, remove the majority of events illustrating that the main background in the TestBed is of a thermal origin. Carrier wave contaminated events appear to make up a large fraction of the remaining events, with daily weather balloon launches expected to contribute a significant number of events year round. 
 
 \begin{table}
   \begin{center}
     \begin{tabular}{ c || c | c | c }
-      Total & \multicolumn{3}{c}{ $4.84 \times 10^{8}$}\\
+      Total & \multicolumn{3}{c}{ $3.77 \times 10^{8}$}\\
       \hline
       Cut & \multicolumn{3}{c}{ Number passing either polarisation}\\      
       \hline
-      Data Quality & \multicolumn{3}{c}{$4.07 \times 10^8$}\\
-      pseudo-$\chi^{2}$ & \multicolumn{3}{c}{$8.05 \times 10^7$}\\
+      Data Quality & \multicolumn{3}{c}{$3.67 \times 10^8$}\\
+      pseudo-$\chi^{2}$ & \multicolumn{3}{c}{$3.51 \times 10^8$}\\
       \hline\hline
       & \multicolumn{3}{c}{VPol}\\
       \hline
       cut & passing in order & rejected if last cut & rejected if first cut \\
       \hline
-      pseudo-$\chi^{2}$ & $3.74 \times 10^7$ & 0 & 0\\
-      powherence & $1.57 \times 10^6$ & $4.31 \times 10^6$ & $3.58 \times 10^7$\\
-      CW - totalBins & $9.66 \times 10^5$ & $1.66 \times 10^3$ & $1.07 \times 10^7$\\
-      CW - minProb & $5.76 \times 10^5$ & 710 & $7.27 \times 10^5$\\
-      Geometry & $9.75 \times 10^3$ & 340 & $2.54 \times 10^7$\\
-      GoodTimes & $1$ & $9.75 \times 10^3$ & $2.51 \times 10^7$\\
+      pseudo-$\chi^{2}$ & $3.49 \times 10^6$ & - & -\\
+      powherence & $1.20 \times 10^6$ & $318$ & $2.29 \times 10^6$\\
+      CW - totalBins & $4.42 \times 10^5$ & $1.69 \times 10^3$ & $2.37 \times 10^6$\\
+      CW - minProb & $1.74 \times 10^5$ & $217$ & $2.12 \times 10^6$\\
+      Geometry & $7.12 \times 10^3$ & $318$ & $2.76 \times 10^6$\\
+      GoodTimes & $0$ & $7.12 \times 10^3$ & $2.81 \times 10^6$\\
       \hline\hline
       & \multicolumn{3}{c}{HPol}\\
       \hline
       cut & passing in order & rejected if last cut & rejected if first cut \\
       \hline
-      pseudo-$\chi^{2}$ & $4.32 \times 10^7$ & 0 & 0\\
-      powherence & $5.74 \times 10^5$ & $6.25 \times 10^6$ & $4.26 \times 10^7$\\
-      CW - totalBins & $4.21 \times 10^5$ & 456 & $9.67 \times 10^6$\\
-      CW - minProb & $2.97 \times 10^5$ & 331 & $2.44 \times 10^5$\\
-      Geometry & $1.42 \times 10^4$ & 116 & $2.64 \times 10^7$\\
-      GoodTimes & $0$ & $1.42 \times 10^4$ & $2.84 \times 10^7$\\      
+      pseudo-$\chi^{2}$ & $1.20 \times 10^6$ & - & -\\
+      powherence & $5.14 \times 10^5$ & $144$ & $6.89 \times 10^5$\\
+      CW - totalBins & $4.31 \times 10^5$ & 44 & $4.46 \times 10^5$\\
+      CW - minProb & $1.47 \times 10^5$ & $4.47 \times 10^3$ & $1.00 \times 10^6$\\
+      Geometry & $9.15 \times 10^3$ & 183 & $9.03 \times 10^5$\\
+      GoodTimes & $0$ & $9.15 \times 10^3$ & $9.63 \times 10^5$\\      
       \end{tabular} 
     \caption{Analysis cuts applied to the `$90 \%$ sample'.}
     \label{tab:Analysis:Cut-Flow}
   \end{center}
 \end{table}
 
-In order to assess whether any passing events are a statistically significant observation of a neutrino flux it is necessary to assess two important factors: firstly the efficiency of detecting simulated neutrinos using these cuts and secondly an estimation of the expected number of background events. The background estimation is discussed in \SectionRef{sec:Analysis:Background-Estimation}, and the analysis efficiency is calculated using the sample of simulated neutrino events using AraSim.
+The observation of no candidate neutrino events needs to be placed into context. In orded to do so it is necessary to assess two important factors: firstly the efficiency of detecting simulated neutrinos using these cuts and secondly an estimation of the expected number of background events. The background estimation is discussed in \SectionRef{sec:Analysis:Background-Estimation}, and the analysis efficiency in \SectionRef{sec:Analysis:Efficiency}.
+
+
+\section{Analysis efficiency}
+\label{sec:Analysis:Efficiency}
+
+The efficiency of passing candidate neutrino events for each cut individually and in turn is a fundamental factor in calculating an observed flux or limit using the TestBed data. Dedicated simulated neutrino data sets were generated using the official ARA simulation, AraSim, at fixed neutrino energies. The simulation accounts for the interaction of incident neutrinos in the ice, the emission of Askaryan radiation, the propogation of this radiation through the ice and the full TestBed trigger and digitisation chains. As such these data sets are the best representation available of what neutrino signals will look like in the TestBed data set and can be used to test the effectiveness of the cuts developed and described previously.
 
 The analysis passing efficiency is shown in \FigureRef{fig:Analysis:Cut-Results:Efficiency} as a function of neutrino energy and also signal to noise ratio (SNR), which is calculated as follows:
 
@@ -444,9 +446,9 @@ The analysis passing efficiency is shown in \FigureRef{fig:Analysis:Cut-Results:
 
 \noindent where $\lvert V_{peak} \rvert$ is the absolute value of the peak voltage of each waveform. SNR values are calculated for all antennas and the smallest value in each polarisation compared, the larger of the two is then used as a measure of signal strength (as the RF impulse in events can have an arbitrary polarisation angle, so the brighter of the two polarisations is used).
 
-The efficiencies in \FigureRef{sec:Analysis:Background-Estimation} are calculated for application of cuts individually (dashed lines) and for all cuts applied. The good times cut is not accounted for as it acts as a scaling of the detector live time. The overall analysis efficiency ranges between $20 \%$ and $30 \%$ across the range of energies tested, whereas it peaks at $60 \%$ for moderately large values of SNR. Two factors influence the low efficiency as a function of neutrino energy: firstly the simulation produces large numbers of events with very small SNR which mainly consist of upward fluctuations in the thermal noise, and secondly compression in the digitisation chain leads to a drop off in efficiency at high SNR. 
+The efficiencies in \FigureRef{sec:Analysis:Background-Estimation} are calculated for application of cuts individually (dashed lines) and for all cuts applied. The good times cut is not accounted for as it acts as a scaling of the detector live time. The overall analysis efficiency ranges between $15 \%$ and $30 \%$ across the range of energies simulated, whereas it peaks at $60 \%$ for moderately large values of SNR. Two factors influence the low efficiency as a function of neutrino energy: firstly the simulation produces large numbers of events with very small SNR which mainly consist of upward fluctuations in the thermal noise, and secondly compression in the digitisation chain leads to a drop off in efficiency at high SNR. 
 
-The drop off in efficiency at high SNR is driven by very large amplitudes frequency domain amplitudes being produced when big signals are propagated through the signal chain. As a result the CW minProb cut removes a large fraction of these very bright events. 
+The drop off in efficiency at high SNR is driven by very large frequency domain amplitudes being produced when particularly bright signals are propagated through the signal chain. As a result the CW minProb cut removes a large fraction of these very bright events. A possible cause for this effect is incomplete modelling of compression in the signal chain. When large voltages are input to amplifiers in the signal chain they can push them into a non-linear mode of operation, causing smaller amplification of large voltages than small ones. 
 
 
 \begin{figure}[htpb]
@@ -477,7 +479,7 @@ For the case of anthropogenic signals it is much more difficult to ascertain the
 
 The tail adjacent to the cut value was fitted with a Gaussian as shown in \FigureRef{fig:Analysis:Background-Estimation:CW-Background} which is sensitive to both the binning and range of values that are considered in the fit. This approach had some success for VPol events, but when considering HPol events the low statistics severely limits the ability to fit any distribution. As a result the fit to VPol events, scaled by the relative change in statistics, is used as an estimate for HPol events.
 
-A number of different fits were made resulting in a range of predicted backgrounds. A conservative approach was taken in estimating the expected background levels and the fit shown results in a lower number of expected background events than other estimates made. The range of values predicted is accounted for in the final estimation, being $0.20^{+0.84}_{-0.20}$. When both types of backgrounds are considered together the single VPol event that passes all analysis cuts should be compared with a background of $0.38^{+0.89}_{-0.38}$.
+A number of different fits were made resulting in a range of predicted backgrounds. The best fit was then taken to estimate the number of expected background events. The range of values predicted is accounted for in the final estimation, being $0.20^{+0.84}_{-0.20}$. When both types of backgrounds are considered together the single VPol event that passes all analysis cuts should be compared with a background of $0.38^{+0.89}_{-0.38}$.
 
 
 \begin{figure}[htpb]
