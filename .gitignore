@@ -3,6 +3,7 @@
 *.eps
 *.pdf
 !thesis.pdf
+*.jpg
 *.aux
 *.glo
 *.idx
