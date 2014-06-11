@@ -83,7 +83,7 @@ This section will outline the analysis tools that are used on the analysis data 
 \subsection{Event Reconstruction}
 \label{sec:Analysis:Reconstruction}
 
-Directional reconstruction of incident radio signals recorded in the TestBed is a powerful tool with which to identify and remove backgrounds, whilst providing invaluable information about possible neutrino events. Interferometric techniques have been successfully used in similar experiments, for example the ANITA experiment, that also record high fidelity radio waveforms. There are, however, a number of obstacles to robust reconstruction using interferometry in the TestBed. 
+Directional reconstruction of incident radio signals recorded in the TestBed is a powerful tool with which to identify and remove backgrounds, whilst providing invaluable information about possible neutrino events. Interferometric techniques have been successfully used in similar experiments, for example the ANITA experiment \cite{HooverThesis} \cite{AbbyThesis} \cite{MattThesis} \cite{AndresThesis}, that also record high fidelity radio waveforms. There are, however, a number of obstacles to robust reconstruction using interferometry in the TestBed. 
 
 The small number of antennas (4 deep antennas in each polarisation) limit the measured strength of any preferred source direction, which would be re-enforced with more antennas. The varying index of refraction in the firn layer (typically extending $\sim 150 \meter$ into the ice close to the South Pole) causes ray-bending effects that distort the true arrival direction. And finally the uncertainty in the deployed positions of the receive and calibration antennas in the ice can further complicate reconstruction. 
 
@@ -103,7 +103,7 @@ A new reconstruction method was developed for this analysis, based upon calculat
   \label{eq:analysis:Reconstruction:Discrete-Cross-Correlation}
 \end{equation}
 
-\noindent where the voltages $V_{1/2}$ outside of waveform window are taken to be zero. A simple algorithm is implemented to find the set of timing offsets that maximise the correlation between each waveform and the resulting CSW. The timing differences between pairs of antennas found using this method are shown in \FigureRef{fig:analysis:Reconstruction:CSW-DeltaT} for a selection of calibration pulser events a width of $\sim 150 \pico \second$. 
+\noindent where the voltages $V_{1/2}$ outside of waveform window are taken to be zero. In order to improve the timing resolution obtained from correlations the individual antenna waveforms are up-sampled, using interpolation to an evenly sampled time-base, so that the time between adjacent samples is $0.25 \nano \second$ and the corresponding offsets $\Delta t$ used in \EquationRef{eq:analysis:Reconstruction:Discrete-Cross-Correlation} are the same. A simple algorithm is implemented to find the set of timing offsets that maximise the correlation between each waveform and the resulting CSW. The timing differences between pairs of antennas found using this method are shown in \FigureRef{fig:analysis:Reconstruction:CSW-DeltaT} for a selection of calibration pulser events a width of $\sim 150 \pico \second$. 
 
 \begin{figure}[htpb]
   \subfloat[Antenna 1 and Antenna 2]{\includegraphics[width=0.49\textwidth]{chapters/analysis/DeltaT01-CP-VPol.pdf}}\hfill
@@ -390,7 +390,7 @@ These cuts were informed from the locations of a variety of infrastructure items
 
 \subsection{Good times cut}
 \label{sec:Analysis:Anthropogenic-Cuts:Good-Times}
-The final set of cuts termed `goodTimes' criteria reject days of the year that have large numbers of non-thermal events in an attempt to remove repetitive noise associated with human activity. The months of December and January are masked off, and all events within them rejected, as they correspond to the busiest periods of the summer season. Human activity is at its peak during these times involving frequent use of snow-mobiles, radio communication devices and a plethora of other potential noise sources. In order to identify other `noisy' periods of the year the sample of events passing thermal cuts are used to assess activity levels. The total number of events passing thermal cuts over a three day period is considered. A day is masked off, and all non-thermal events from that day rejected, when the sum of events in that day, the previous and next day passes a threshold of 14. 
+The final set of cuts termed `goodTimes' criteria reject days of the year that have large numbers of non-thermal events in an attempt to remove repetitive noise associated with human activity. The months of December and January are masked off, and all events within them rejected, as they correspond to the busiest periods of the summer season. Human activity is at its peak during these times involving frequent use of snow-mobiles, radio communication devices and a plethora of other potential noise sources. In order to identify other `noisy' periods of the year the sample of events passing thermal cuts are used to assess activity levels. The total number of events passing thermal cuts over a three day period is considered. A day is masked off, and all non-thermal events from that day rejected, when the sum of events in that day, the previous and next day passes a threshold of 14. The final cut value was informed from the distribution of events passing thermal cuts in the full analysis sample.
 
 \FigureRef{fig:Analysis:Anthropogenic-Cuts:GoodTimes:Event-Rate} shows the distribution of non-thermal events as a function of day of the year for both 2011 and 2012. For 2011 the numbers of non-thermal events significantly increase around the beginning and end of the year, with limited activity during the quiet austral winter. 2012, on the other hand, exhibits relatively few periods in which there are very few non-thermal events. Future analysis of these events is expected to be able to categorise them and enable cuts to be designed to remove a large fraction of them.
 
@@ -459,11 +459,6 @@ The analysis passing efficiency is shown in \FigureRef{fig:Analysis:Cut-Results:
 
 \noindent where $\lvert V_{peak} \rvert$ is the absolute value of the peak voltage of each waveform. SNR values are calculated for all antennas and the smallest value in each polarisation compared, the larger of the two is then used as a measure of signal strength (as the RF impulse in events can have an arbitrary polarisation angle, so the brighter of the two polarisations is used).
 
-The efficiencies in \FigureRef{sec:Analysis:Background-Estimation} are calculated for application of cuts individually (dashed lines) and for all cuts applied. The goodTimes cut is not accounted for as it acts as a scaling of the detector live time. The overall analysis efficiency ranges between $15 \%$ and $30 \%$ across the range of energies simulated, whereas it peaks at $60 \%$ for moderately large values of SNR. Two factors influence the low efficiency as a function of neutrino energy: firstly the simulation produces large numbers of events with very small SNR which mainly consist of upward fluctuations in the thermal noise, and secondly compression in the digitisation chain leads to a drop off in efficiency at high SNR. 
-
-The drop off in efficiency at high SNR is driven by very large frequency domain amplitudes being produced when particularly bright signals are propagated through the signal chain. As a result the CW minProb cut removes a large fraction of these very bright events. A possible cause for this effect is incomplete modelling of compression in the signal chain. When large voltages are input to amplifiers in the signal chain they can push them into a non-linear mode of operation, causing smaller amplification of large voltages than small ones. 
-
-
 \begin{figure}[htpb]
 \subfloat[Analysis efficiency as a function of neutrino energy]{\includegraphics[width=0.49\textwidth]{chapters/analysis/efficiencyEnergy.pdf}}\hfill
 \subfloat[Analysis efficiency as a function of SNR]{\includegraphics[width=0.49\textwidth]{chapters/analysis/efficiencySNR.pdf}}
@@ -471,6 +466,18 @@ The drop off in efficiency at high SNR is driven by very large frequency domain 
 \label{fig:Analysis:Cut-Results:Efficiency}
 \end{figure}
 
+
+The efficiencies in \FigureRef{fig:Analysis:Cut-Results:Efficiency} are calculated for application of cuts individually (dashed lines) and for all cuts applied. The goodTimes cut is not accounted for as it acts as a scaling of the detector live time. The overall analysis efficiency ranges between $15 \%$ and $30 \%$ across the range of energies simulated, whereas it peaks at $60 \%$ for moderately large values of SNR. Two factors influence the low efficiency as a function of neutrino energy: firstly the simulation produces large numbers of events with very small SNR which mainly consist of upward fluctuations in the thermal noise, and secondly compression in the digitisation chain leads to a drop off in efficiency at high SNR. 
+
+The drop off in efficiency at high SNR is driven by very large frequency domain amplitudes being produced when particularly bright signals are propagated through the signal chain. As a result the CW minProb cut removes a large fraction of these very bright events. A possible cause for this effect is incomplete modelling of compression in the signal chain. When large voltages are input to amplifiers in the signal chain they can push them into a non-linear mode of operation, causing smaller amplification of large voltages than small ones. 
+
+\begin{figure}[hptb]
+  \includegraphics[width=\largefigwidth]{chapters/analysis/cutFlow.pdf}
+  \caption{The passing efficiency of analysis cuts applied in turn for various data types. The data types are: calibration pulser events (blue), simulated neutrino events (grey), non-calibration pulser events in the `$90 \%$ sample' (green) and minimum bias events from the `burn sample' (red).}
+  \label{fig:Analysis:Cut-Results:CutFlow}
+\end{figure}
+
+The cumulative effect on passing efficiency is shown for a variety of data types in \FigureRef{fig:Analysis:Cut-Results:CutFlow}. The largest drop in efficiency for passing calibration pulser events comes from the data quality issues suffered for $\sim$ 1 month in 2012, affecting $5.8 \%$ of these events. Of the events not suffering data quality issues the analysis is $96.3 \%$ efficient up to the application of geometry and good times cuts, the first of which specifically removes events reconstructing to the calibration pulser locations.
 
 \section{Background estimation}
 \label{sec:Analysis:Background-Estimation}
@@ -486,19 +493,16 @@ For thermal noise events the value of powherence was considered the most relevan
 \label{fig:Analysis:Background-Estimation:Thermal-Background}
 \end{figure}
 
-Extrapolating the fits to each of the thermal samples of events provides two estimates for the number of events passing the powherence cut and errors associated with the fits themselves. Since fits to both samples were in good agreement to data the lower of the two predictions was taken as the background expectation and the error to represent the range of values. The result is an expected number of background events of a thermal origin to be $0.18^{+0.30}_{-0.18}$.
+Extrapolating the fits to each of the thermal samples of events provides two estimates for the number of events passing the powherence cut and errors associated with the fits themselves. Since fits to both samples were in good agreement to data the average of the two was taken as the estimate for the background, with the error taken to be the difference between the two. The result is an expected number of background events of a thermal origin to be $0.33^{+0.15}_{-0.15}$.
 
-For the case of anthropogenic signals it is much more difficult to ascertain the expected background levels since these events are from an unidentified mixture of sources, which are not necessarily expected to follow well described distributions. An estimate was made by considering the events that failed the CW minProb cut as the last cut applied to VPol events. This selection of events should be composed of anthropogenic signals that contain some level of CW contamination which are distributed up to the cut threshold of -400 described in \SectionRef{sec:Analysis:CWRemoval}. 
+For the case of anthropogenic signals it is much more difficult to ascertain the expected background levels since these events are from an unidentified mixture of sources, which are not necessarily expected to follow well described distributions. In order to estimate this type of background some of the geometric cuts, designed to remove anthropogenic signals, were relaxed to see whether events failing these cuts could be used to extrapolate past the cut values. \FigureRef{fig:Analysis:Background-Estimation:Anthropogenic-Background} shows events failing the geometric cut around the azimuthal direction of the IceCube Laboratory and South Pole Station.
 
-\begin{figure}[htpb]
-\subfloat[VPol anthropogenic events]{\includegraphics[width=0.49\textwidth]{chapters/analysis/MinProbFitVPol.pdf}}\hfill
-\subfloat[HPol anthropogenic events]{\includegraphics[width=0.49\textwidth]{chapters/analysis/MinProbFitHPol.pdf}}
-\caption{VPol (HPol) events from the analysis sample failing CW minimum probability as the last cut are shown along with a Gaussian fit to the falling edge of the VPol events. This fit is used to estimate the number of expected anthropogenic background events in analysis sample.}
-\label{fig:Analysis:Background-Estimation:CW-Background}
+\begin{figure}
+  \includegraphics[width=0.49\textwidth]{chapters/analysis/BackgroundGeometry.pdf}
+  \caption{VPol events failing the IceCube Laboratory and South Pole geometry cut via their reconstructed azimuth. The geometric cut is indicated by the orange line at $-150$.}
+  \label{fig:Analysis:Background-Estimation:Anthropogenic-Background}
 \end{figure}
 
-The tail adjacent to the cut value was fitted with a Gaussian as shown in \FigureRef{fig:Analysis:Background-Estimation:CW-Background} which is sensitive to both the binning and range of values that are considered in the fit. This approach had some success for VPol events, but when considering HPol events the low statistics severely limits the ability to fit any distribution. As a result the fit to VPol events, scaled by the relative change in statistics, is used as an estimate for HPol events.
-
-A number of different fits were made resulting in a range of predicted backgrounds. The best fit was then taken to estimate the number of expected background events. The range of values predicted is accounted for in the final estimation, being $0.20^{+0.84}_{-0.20}$. When both types of backgrounds are considered together the single VPol event that passes all analysis cuts should be compared with a background of $0.38^{+0.89}_{-0.38}$.
+A fit was made to the azimuthal distribution of VPol events failing the geometric cut and extrapolated past the cut point at $-150$. The same procedure was attempted with the results of HPol reconstruction and cuts, but proved difficult to extrapolate so the estimate for VPol events was also used for HPol. The result of the anthropogenic background estimation was $0.44^{+0.60}_{-0.32}$. Taken in combination with the estimation of thermal backgrounds, the final estimate for the number of background events passing analysis cuts was $0.77^{+0.31}_{-0.43}$.
 
 
