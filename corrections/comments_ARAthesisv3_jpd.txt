@@ -1,0 +1,84 @@
+1.
+- explain how cosmic ray backgrounds are killed by the energy threshold
+2.
+- in chapter 4, add a short paragraph showing the original raw bipolar signal
+3.
+- describe antennas and limitations (30 cmbore hole radius, etc ..)
+4.
+- add an example of a simulated Neutrino signal pulse to Fig. 6.10 on page 108
+5.
+- add a table of cut variables, with definitions and cut value
+6.
+- explain how cuts were chosen
+7.
+- add a short paragraph to the conclusion, describing possible imporvements to ARA stipulated by this thesis
+16. 
+-p23 define/describe weak charge
+31.
+Askaryan radiation is not unique to neutrinos, how do we distinguish CR backgrounds?
+34.  
+-p61: Trigger section si a bit vague, what makes RF patterns interesting?
+35.  
+-p62 explain formula 4.1
+36.  
+-p62 how is the desired rate determined?
+37.  
+-p65 why cant SBC be cold tested in a climate chamber?
+39.  
+-p67 how do we knwo about firn ice thickness and raybending?
+41.  
+-p73 there is a  betetr figure to explain the two wrap arounds \epsilon_{0,1}
+
+43.  
+-p75 explain better how inter-sampel time determined, not fully clear
+45.
+-p79 For the interleaving, what about settle time? How large is it?
+46.
+-p81 how do we get the offsets in Fig. 5.6?
+48.
+-p83 Fig. 5.8 comparing a) and c), is there no offset correction applied?
+49.
+-p85, Fig. 5.10 whats the input frequency?
+50.
+-p87, Fig. 5.11 explain features i May/September
+
+54.
+-p93 what about Bkg Simulation of cosmic rays?
+55.
+-p95 CSW should be fully defined (e.g. equation 6.8)
+56.
+-p98 Fig. 6.2 legends?
+57.
+-p100,101 The origin of the bias in 6.3 c) is raybending?
+pulsers are too close for it to be an effect?
+ Why is there no bias in Fig. 6.4 b)?
+58.
+-p109, 114, 115
+define all cut variables (totalBins, CSWPeakVoltage, sumCorrVals, powherence, CW minProb, etc). If possible in a summary table?
+-p109 motivation for the cut of totalBins at 20?
+60.
+-p114 which two types of events?
+61.
+-p115 Fig 6.14 How exactly was 380 choosen? What optimization was used? Reference Fig. 6.19
+62.
+-p116 Fig 6.15 a) The legend is not readable
+63.
+-p120 Have there been cross checks with data? E.g. simulated calibration events? Checks on the rejection pattern between data and Sim?
+ 64.
+-p124 Fig 6.20, reference 6.15 a) here for more clarity
+65.
+-p126 Fig 7.1 any explanation for the GOES faetures? Correleation with VPol seems not clear ...
+66.
+-p127 how long is the deadtime?
+67.
+-p128 Equation 7.1, How does this depend on the choice of cylinder?  Cite orignal work
+68.
+-p129 Fig. 7.3 a,b explain features
+69.
+-p130 Equation 7.3: there seems d\Omega dt dA missing ..., cite source!
+70.
+-p131 Fig. 7.4 why does the expected curve not cover E> 10^{20} which are interesting?
+Does it beat ANITA?
+73.
+-p133 What is the UHE neutrino flux limit? State it!
+
