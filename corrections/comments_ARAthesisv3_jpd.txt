@@ -16,8 +16,6 @@
 -p23 define/describe weak charge
 31.
 Askaryan radiation is not unique to neutrinos, how do we distinguish CR backgrounds?
-34.  
--p61: Trigger section si a bit vague, what makes RF patterns interesting?
 35.  
 -p62 explain formula 4.1
 36.  
