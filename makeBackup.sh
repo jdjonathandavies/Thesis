@@ -16,12 +16,25 @@ then
 	then
 	    continue;
 	else
-	    tar --exclude='./resources/' --exclude='./otherPeoplesThesis/' --exclude=*.tar.gz -cvzf thesisBackup${YEAR}-${MONTH}-${DAY}.${backup}.tar.gz ./*
-	    echo "thesisBackup${YEAR}-${MONTH}-${DAY}.${backup}.tar.gz"
+	    BACKUP_NAME=thesisBackup${YEAR}-${MONTH}-${DAY}.${backup}.tar.gz
+	    tar --exclude='./resources/' --exclude='./otherPeoplesThesis/' --exclude=*.tar.gz -cvzf $BACKUP_NAME ./*
+
+	    echo "====================================="
+	    echo "Made $BACKUP_NAME"
+	    echo "Copying to UCL"
+	    scp $BACKUP_NAME plus1:~/
+	    echo "====================================="
+
 	    break;
 	fi
     done
 else
-    tar --exclude='./resources/' --exclude='./otherPeoplesThesis/' --exclude=*.tar.gz -cvzf thesisBackup${YEAR}-${MONTH}-${DAY}.tar.gz ./*
-    echo "thesisBackup${YEAR}-${MONTH}-${DAY}.tar.gz"
+    BACKUP_NAME=thesisBackup${YEAR}-${MONTH}-${DAY}.tar.gz
+    tar --exclude='./resources/' --exclude='./otherPeoplesThesis/' --exclude=*.tar.gz -cvzf $BACKUP_NAME ./*
+
+    echo "====================================="
+    echo "Made $BACKUP_NAME"
+    echo "Copying to UCL"
+    scp $BACKUP_NAME plus1:~/
+    echo "====================================="
 fi

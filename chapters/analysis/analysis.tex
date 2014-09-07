@@ -29,7 +29,7 @@ Any events that pass all of these cuts are considered to be neutrino candidates.
 \label{sec:Analysis:Blinding}
 The TestBed operated with very little downtime for the duration of 2011 and 2012 with the full data set archived to disk at the South Pole. A limited bandwidth satellite link was available to transfer approximately $10 \%$ of this data back to the northern hemisphere data warehouse with a latency of a few days. This `filtered' data set, which was randomly chosen, was used to assess operation and conditions in the TestBed such that significant data quality and downtime issues could be addressed during the winter season. The disks containing the full data set from 2011 and 2012 were hand carried back to the northern hemisphere during the 2011-2012 and 2012-2013 summer seasons. The data was subsequently stored in the data warehouse, hosted at the University of Wisconsin, and used as the basis of this analysis.
 
-A blinding strategy was agreed by the experiment to limit any bias in analyses performed on the data. This was implemented by splitting the analysis data set into to two samples: a `burn sample' intended to be used for training the analysis and associated cuts, and a `$90 \%$ sample' containing the remaining events. Once the experiment was in agreement with the methods, tools and cuts implemented on the `burn sample' of data the analysis was unblinded and run over the `$90 \%$ sample', with any events passing the cuts considered as neutrino candidates.
+A blinding strategy was agreed by the experiment to limit any bias in analyses performed on the data. This was implemented by splitting the analysis data set into two samples: a `burn sample' intended to be used for training the analysis and associated cuts, and a `$90 \%$ sample' containing the remaining events. Once the experiment was in agreement with the methods, tools and cuts implemented on the `burn sample' of data the analysis was unblinded and run over the `$90 \%$ sample', with any events passing the cuts considered as neutrino candidates.
 
 \section{Data types}
 \label{sec:Analysis:Data-types}
@@ -38,7 +38,7 @@ There are two types of event recorded and made available for analysis:
 
 \begin{itemize}
 
-\item \textbf{RF triggered events} - events in which the trigger condition is met requiring 3 of 16 antennas to have passed a power threshold within a $110 \nano \second$ window.
+\item \textbf{RF triggered events} - events in which the trigger condition is met requiring 3 of 8 antennas to have passed a power threshold within a $110 \nano \second$ window.
 \item \textbf{Minimum bias events} - recorded at a rate of approximately $0.5 \hertz$ these events are force triggers where the RF trigger condition has not been met and are a reflection of the background conditions in which the TestBed was operating.
 \end{itemize}
 
@@ -53,7 +53,7 @@ The RF triggered events are further sub-divided into two classes:
 
 The non-calibration pulser events recorded by the TestBed form the majority of the data set and are those to be analysed and assessed to see whether they contain neutrino induced signals. Minimum bias events were recorded at regular intervals by the DAQ system in order to provide a picture of the radio environment during the course of data taking. As they do not require a physics trigger condition these events are in the main thermal in nature. There are, however, periods for which repetitive or long duration anthropogenic noise sources are active contaminating this thermal sample of events.
 
-During the course of data taking two calibration sources were active: a VPol calibration pulser in 2011, and a HPol calibration pulser in 2012. The pulsers were fired at a rate of $1 \hertz$ using the DAQ's GPS PPS as a trigger. The result is that these events are identifiable via trigger timing information and removed from the `$90 \%$ sample'. These calibration pulser events were used in training the reconstruction methods as well as a number of the cuts used in this analysis. Being the only controlled in-ice source of impulsive radio signals calibration pulser events are used as a proxy for neutrino induced signals and provide an invaluable cross-check for analysis tools and cuts designed to identify impulsive signals.
+During the course of data taking two calibration sources were active: a VPol calibration pulser in 2011, and a HPol calibration pulser in 2012. The pulsers were fired at a rate of $1 \hertz$ using a pulse-per-second (PPS), provided by a Global Positioning System (GPS) unit in the DAQ, as a trigger. The result is that these events are identifiable via trigger timing information and removed from the `$90 \%$ sample'. These calibration pulser events were used in training the reconstruction methods as well as a number of the cuts used in this analysis. Being the only controlled in-ice source of impulsive radio signals calibration pulser events are used as a proxy for neutrino induced signals and provide an invaluable cross-check for analysis tools and cuts designed to identify impulsive signals.
 
 The two data samples defined in the blinding strategy were comprised of a combination of the event types described above:
 
@@ -64,7 +64,7 @@ The two data samples defined in the blinding strategy were comprised of a combin
 
 \end{itemize}
 
-A third sample of events consisting of simulated neutrino signals were produced using the official ARA simulation AraSim \cite{AraSim}. This sample was produced with fixed incident neutrino energies in half decade intervals between $10^{17} \eV$ and $10^{21} \eV$ and was used to inform cuts and help with development of analysis tools such as source reconstruction. 
+A third sample of events consisting of simulated neutrino signals were produced using the official ARA simulation AraSim \cite{AraSim}. This sample was produced with fixed incident neutrino energies in half decade intervals between $10^{17} \eV$ and $10^{21} \eV$ and was used to inform cuts and help with development of analysis tools such as source reconstruction. No simulations of cosmic ray signals were analysed as part of this analysis.
 
 AraSim simulates neutrino signals in three stages: the neutrino propagation and interaction, RF signal transmission through the ice to the TestBed antennas and finally the output of the digitisation and triggering paths within the TestBed detector. The resulting data set contains digitised waveforms that would be expected to be recorded by the TestBed given knowledge of the TestBed detector and neutrino interactions. 
 
@@ -88,7 +88,13 @@ Directional reconstruction of incident radio signals recorded in the TestBed is 
 The small number of antennas (4 deep antennas in each polarisation) limit the measured strength of any preferred source direction, which would be re-enforced with more antennas. The varying index of refraction in the firn layer (typically extending $\sim 150 \meter$ into the ice close to the South Pole) causes ray-bending effects that distort the true arrival direction. And finally the uncertainty in the deployed positions of the receive and calibration antennas in the ice can further complicate reconstruction. 
 
 
-A new reconstruction method was developed for this analysis, based upon calculating timing offsets between waveforms that maximise correlation. This is achieved by creating a coherently summed wave (CSW) where individual antenna waveforms, scaled by the total number of waveforms, are added offset relative to one another. These offsets are calculated in a manner such that the correlation between the resulting CSW and the original waveforms is maximised, as measured by the normalised cross-correlation $C_{1,2}$:
+A new reconstruction method was developed for this analysis, based upon calculating timing offsets between waveforms that maximise correlation. This is achieved by creating a coherently summed wave (CSW) where individual antenna waveforms, scaled by the total number of waveforms, are added offset relative to one another. The CSW is given by:
+
+\begin{equation}
+  \mbox{CSW}(t) = \frac{1}{N}\sum_{i} \psi_{i}(t+\Delta t_{1,i})\\
+\end{equation}
+
+where  $N$ is the total number of antennas, $\psi_{i}$ is the time domain waveform for the $i^{th}$ antenna and $\Delta t_{1,i}$ is the time offset between antenna 1 and antenna $i$. These offsets are calculated in a manner such that the correlation between the resulting CSW and the original waveforms is maximised, as measured by the normalised cross-correlation $C_{1,2}$:
 
 
 \begin{equation}
@@ -126,7 +132,7 @@ In \FigureRef{fig:analysis:Reconstruction:CSW-Example} the calculated time diffe
   \subfloat[CSW noise event]{\includegraphics[width=0.49\textwidth]{chapters/analysis/CSW-CSW-VPol-Noise-Med.pdf}}\\
   \subfloat[Simulated neutrino event]{\includegraphics[width=0.49\textwidth]{chapters/analysis/CSW-Coherent-Waveforms-VPol-Nu-Med.pdf}}\hfill
   \subfloat[Simulated neutrino event]{\includegraphics[width=0.49\textwidth]{chapters/analysis/CSW-CSW-VPol-Nu-Med.pdf}}
-  \caption{(a), (c) and (e) show individual antenna waveforms aligned in time. (b), (d) and (f) show the resulting coherently summed wave.} 
+  \caption{(a), (c) and (e) show individual antenna waveforms aligned in time using the calculated offsets that maximise the correlation between antennas and the CSW. The blue, red, green and magenta lines show antennas 1, 2, 3 and 4 respectively. (b), (d) and (f) show the resulting coherently summed wave, where the time aligned waveforms are summed and scaled by the total number of antennas.} 
   \label{fig:analysis:Reconstruction:CSW-Example}
 \end{figure}
 
@@ -148,11 +154,11 @@ The timing difference between pairs of antennas holds information about the arri
   \subfloat[Pseudo-$\chi^{2}$ map of calibration pulser event]{\includegraphics[width=0.48\textwidth]{chapters/analysis/ChiSqMap-VPol-CP.pdf}}\hfill
   \subfloat[Pseudo-$\chi^{2}$ map of noise event]{\includegraphics[width=0.48\textwidth]{chapters/analysis/ChiSqMap-VPol-Noise.pdf}}\\
   \subfloat[Pseudo-$\chi^{2}$ map of simulated neutrino event]{\includegraphics[width=0.48\textwidth]{chapters/analysis/ChiSqMap-VPol-Nu.pdf}}
-  \caption{Reconstruction maps of calculated pseudo-$\chi^{2}$ values for the same calibration pulser event in \FigureRef{fig:analysis:Reconstruction:CSW-Example}. The circles in (a) and (c) indicate the true source location.}
+  \caption{Reconstruction maps of calculated pseudo-$\chi^{2}$ values for (a) the same calibration pulser event in \FigureRef{fig:analysis:Reconstruction:CSW-Example}, (b) a thermal noise event and (c) a simulated neutrino event. The circles in (a) and (c) indicate the true source location. The offset between reconstructed and true neutrino interaction point in (c) is due to the ray-bending effects in the ice. The signal type events (a) and (c) have much lower pseudo-$\chi^{2}$ values than the noise event.}
   \label{fig:analysis:Reconstruction:CSW-ChiSq-Example}
 \end{figure}
 
-\FigureRef{fig:analysis:Reconstruction:CSW-ChiSq-Example} shows reconstruction maps for a series of event types, consisting of calculated pseudo-$\chi^{2}$ values for points on the surface of a sphere at the same radial distance as the best fit location. CSW reconstruction is attempted for each polarisation in every event, with the best fit location as well as corresponding pseudo-$\chi^{2}$ value recorded. \FigureRef{fig:analysis:Reconstructed:CSW-Residuals} shows the residuals (measured minus expected) for azimuth and elevation angle for an ensemble of calibration pulser events and for neutrino events simulated with AraSim. Reconstruction of azimuth and elevation is $\sim 1^{\circ}$, although the ray-bending effects in the ice cause elevation angles to be systematically shifted. 
+\FigureRef{fig:analysis:Reconstruction:CSW-ChiSq-Example} shows reconstruction maps for a series of event types, consisting of calculated pseudo-$\chi^{2}$ values for points on the surface of a sphere at the same radial distance as the best fit location. CSW reconstruction is attempted for each polarisation in every event, with the best fit location as well as corresponding pseudo-$\chi^{2}$ value recorded. The results of ray-bending in the ice are visible in the reconstruction map for a simulated neutrino event in \FigureRef{fig:analysis:Reconstruction:CSW-ChiSq-Example}(c), where the reconstructed elevation angle is above the true neutrino interaction point. This effect is much smaller for the callibration pulser event in \FigureRef{fig:analysis:Reconstruction:CSW-ChiSq-Example}(a) as the calibration pulser is much closer to the receive antennas and is located at approximately the same depth. \FigureRef{fig:analysis:Reconstructed:CSW-Residuals} shows the residuals (measured minus expected) for azimuth and elevation angle for an ensemble of calibration pulser events and for neutrino events simulated with AraSim. Reconstruction of azimuth and elevation is $\sim 1^{\circ}$, although the ray-bending effects in the ice cause elevation angles to be systematically shifted. 
 
 
 \begin{figure}[htpb]
@@ -260,13 +266,17 @@ Each event has it's frequency content considered to identify CW signals. Discret
   \subfloat[Noise Waveform]{\includegraphics[width=0.49\textwidth]{chapters/analysis/Waveform-VPol-Ant2-Noise-Med.pdf}}\hfill
   \subfloat[Noise Probability Spectrum]{\includegraphics[width=0.49\textwidth]{chapters/analysis/ProdProb-VPol-Noise-Med.pdf}}\\
   \subfloat[CW Contaminated Waveform]{\includegraphics[width=0.49\textwidth]{chapters/analysis/Waveform-VPol-Ant2-WB-Med.pdf}}\hfill
-  \subfloat[CW Probability Spectrum]{\includegraphics[width=0.49\textwidth]{chapters/analysis/ProdProb-VPol-WB-Med.pdf}}
-  \caption{Example waveforms from VPol antenna 2 showing a thermal noise event and a CW contaminated event. Also shown are the product of probabilities distribution for all VPol antennas for these events. The dashed lines show the two probability thresholds, with any frequencies passing this threshold regarded as being well in excess of thermal noise levels. The upper threshold is to identify non-thermal excesses and the lower to identify broadband signals.}
+  \subfloat[CW Probability Spectrum]{\includegraphics[width=0.49\textwidth]{chapters/analysis/ProdProb-VPol-WB-Med.pdf}}\\
+  \subfloat[Simulated Neutrino Waveform]{\includegraphics[width=0.49\textwidth]{chapters/analysis/Waveform-VPol-Ant2-MC-Med.pdf}}\hfill
+  \subfloat[Simulated Neutrino Probability Spectrum]{\includegraphics[width=0.49\textwidth]{chapters/analysis/ProdProb-VPol-MC-Med.pdf}}
+  \caption{Example waveforms from VPol antenna 2 showing a thermal noise event, CW contaminated event and simulated neutrino event. Also shown are the product of probabilities distribution for all VPol antennas for these events. The dashed lines show the two probability thresholds, with any frequencies passing this threshold regarded as being well in excess of thermal noise levels. The upper threshold is to identify non-thermal excesses and the lower to identify broadband signals.}
   \label{fig:analysis:CWRemoval:Baselines:Waveforms}
 \end{figure}
 
 
-Example waveforms from VPol antenna 2 are shown in \FigureRef{fig:analysis:CWRemoval:Baselines:Waveforms} for a thermal and CW contaminated event, along with the corresponding product of probabilities. Any CW removal must be able to reject contaminated events whilst passing broadband signals, such as those induced by neutrino interactions or from calibration sources. Two thresholds are used to identify CW events: one used to identify non-thermal excesses, and a second, lower threshold, to check whether an excess is broadband in nature. The former, which is set such that 1 in $10^{6}$ thermal noise events will be have at least one frequency in excess, is used to identify events that may contain CW. If an event has no frequencies passing this threshold in either polarisation it passes the CW check. Any events that have 1 or more frequencies passing this threshold are then checked using the lower broadband threshold, which is set at a value of $-12.5$, informed by checks against calibration pulser events. If the number of frequencies in excess of this lower threshold, which is referred to as `totalBins', is greater than or equal to 20 then the event is classed as having a broadband signal and is passed. 
+Example waveforms from VPol antenna 2 are shown in \FigureRef{fig:analysis:CWRemoval:Baselines:Waveforms} for a thermal, CW contaminated  and simulated neutrino event, along with the corresponding product of probabilities. Any CW removal must be able to reject contaminated events whilst passing broadband signals, such as those induced by neutrino interactions or from calibration sources. Two thresholds are used to identify CW events: one used to identify non-thermal excesses, and a second, lower threshold, to check whether an excess is broadband in nature. The former, which is set such that 1 in $10^{6}$ thermal noise events will be have at least one frequency in excess, is used to identify events that may contain CW. If an event has no frequencies passing this threshold in either polarisation it passes the CW check. Any events that have 1 or more frequencies passing this threshold are then checked using the lower broadband threshold, which is set at a value of $-12.5$, informed by checks against calibration pulser events. If the number of frequencies in excess of this lower threshold, which is referred to as `totalBins', is greater than or equal to 20 then the event is classed as having a broadband signal and is passed. The choice of cut value for the lower threshold was informed from studies using antennuated calibration pulser signals as a proxy for weak neutrino induced events.
+
+
 
 
 In \FigureRef{fig:analysis:CWRemoval:Baselines:Waveforms} the CW contaminated event is clearly identified by a narrow range of frequencies passing both thresholds, and the event is rejected. \FigureRef{fig:analysis:CWRemoval:Filtering:CW-Time} shows how this product of probabilities spectrum changes over the course of a run for calibration events and for non-calibration events. Here the product of probabilities is averaged for all events over 1 minute intervals. Also shown are the same parameter but only for frequencies that are identified as being in excess. A weather balloon launch is clearly visible in these spectra, resulting in a narrow range of frequencies exhibiting highly unthermal amplitudes in the VPol antennas, whereas calibration pulser events show a broad range of frequencies with non-thermal amplitudes.
@@ -280,8 +290,6 @@ In \FigureRef{fig:analysis:CWRemoval:Baselines:Waveforms} the CW contaminated ev
   \caption{The probability spectra for events averaged over 1 minute periods for (a) calibration pulser events (b) for non-calibration pulser events. A weather balloon launch at 23:20 is clearly visible as the turn on of a CW signal at $403 \mega \hertz$ in both figures. The calibration pulser events show a broad range of frequencies having excess power for the duration of the run.}
   \label{fig:analysis:CWRemoval:Filtering:CW-Time}
 \end{figure}
-
-
 
 
 In addition to the narrow range of frequencies exhibiting non-thermal power the size of these excesses can be used to identify particularly bright events. A parameter, `minProb', is used to quantify the size of the biggest non-thermal excess in the probability spectra of an event. This parameter is taken to be the minimum value of $\ln(\prod P_{i})$ from the probability spectrum for an event. Since CW signals transmit all of their power in a narrow range of frequencies minProb can take much more negative values (and hence larger unthermal amplitudes) than for broadband impulsive signals. As waveforms are formed of a discrete set of time domain samples the Fourier transform is also comprised of a discrete set of frequencies. As a result particularly large amplitude CW signals can lead to leakage into multiple frequencies, as the actual frequency is not one of those in the Fourier transform. In such a case CW signals can lead to totalBins approaching, or passing, the cut threshold of 20. A cut is placed on minProb to remove such events, removing any event where minProb is less than $-400$. This cut value is safely removed from those observed in calibration pulser events as illustrated in \FigureRef{fig:analysis:CWRemoval:Filtering:CW-MinProb-TotalBins}.
@@ -330,7 +338,7 @@ For each event CSW reconstruction is performed using the VPol and HPol antennas'
 \subsection{Powherence cut}
 \label{sec:Analysis:Thermal-Cuts:Powherence}
 
-Along with being reconstructable neutrino events are expected to exhibit non-thermal levels of power and coherence between antennas, which can be used to separate the two types of event. The peak absolute voltage in the CSW, named `CSWPeakVoltage', is used a measure of the power in the event. 
+Along with being reconstructable, neutrino events are expected to exhibit non-thermal levels of power and coherence between antennas, which can be used to separate them from thermal noise events. The peak absolute voltage in the CSW, named `CSWPeakVoltage', is used a measure of the power in the event. 
 
 In order to measure the coherence between antennas a cross-correlation is taken between each antenna and the CSW minus that antenna:
 
@@ -340,7 +348,7 @@ In order to measure the coherence between antennas a cross-correlation is taken 
   \mbox{C}_{N-1}^{j}(\Delta t) = {\mbox{CSW}_{N-1}^{j} \star \psi_{j}}
 \end{equation}
 
-\noindent where $\psi_{j}(t)$ is the time domain waveform of antenna $j$, CSW$_{N-1}^{j}(t)$ is the CSW minus antenna $j$ and C$_{N-1}^{j}(t)$ is the resulting cross-correlation waveform. For each cross-correlation waveform the maximum correlation value is taken and these values are summed to form a variable `sumCorrVals', which gives a measure of the correlation between antennas in the CSW.
+\noindent where $\psi_{j}(t)$ is the time domain waveform of antenna $j$, $\Delta t_{1,i}$ is the time offset between antenna 1 and antenna $i$, CSW$_{N-1}^{j}(t)$ is the CSW minus antenna $j$ and C$_{N-1}^{j}(t)$ is the resulting cross-correlation waveform. For each cross-correlation waveform the maximum correlation value is taken and these values are summed to form a variable `sumCorrVals', which gives a measure of the correlation between antennas in the CSW.
 
 The best discrimination between calibration pulser events (as a proxy for neutrino signals) and thermal noise events was found by taking a linear combination of CSWPeakVoltage and sumCorrVals. The resulting parameter, dubbed `powherence', should have low values for thermal events and high values for signal type events.
 
@@ -352,7 +360,9 @@ The best discrimination between calibration pulser events (as a proxy for neutri
   \label{fig:Analysis:Thermal-Cuts:Powherence}
 \end{figure}
 
-In \FigureRef{fig:Analysis:Thermal-Cuts:Powherence} we see the powherence value calculated in each polarisation for the thermal data set alongside calibration pulser and simulated neutrino events. The relative brightness of the 2011 VPol calibration pulser can be seen clearly in the large values of powherence produced compared with the 2012 HPol calibration pulser.
+In \FigureRef{fig:Analysis:Thermal-Cuts:Powherence} we see the powherence value calculated in each polarisation for the thermal data set alongside calibration pulser, simulated neutrino events and the chosen cut value. The relative brightness of the 2011 VPol calibration pulser can be seen clearly in the large values of powherence produced compared with the 2012 HPol calibration pulser. 
+
+The chosen cut value was informed from the distribution of the powherence parameter for minimum bias events, which is shown in \FigureRef{fig:Analysis:Background-Estimation:Thermal-Background}. The cut was placed such that the expected number of thermal noise events passing in the full sample would be approximately $0.1$ events for each polarisation.
 
 
 \section{Anthropogenic cuts}
@@ -384,6 +394,9 @@ These cuts were informed from the locations of a variety of infrastructure items
 \begin{figure}[htpb]
   \subfloat[Geometry cuts and infrastructure locations]{\includegraphics[width=0.49\textwidth]{chapters/analysis/TBGeometry.pdf}}\hfill
   \subfloat[VPol events passing thermal cuts]{\includegraphics[width=0.49\textwidth]{chapters/analysis/RecoVPol.pdf}}
+%  \subfloat[Geometry cuts and infrastructure locations]{\includegraphics[width=\largefigwidth]{chapters/analysis/TBGeometry.pdf}}\\
+%  \subfloat[VPol events passing thermal cuts]{\includegraphics[width=\largefigwidth]{chapters/analysis/RecoVPol.pdf}}
+
   \caption{The location of a variety of infrastructure items and chosen geometry cuts are shown in (a), along with the reconstructed azimuth and elevation angles for all events passing CW and thermal cuts in (b). The shaded regions in (a) indicate the reconstructed directions that are rejected by geometry cuts.}
   \label{fig:Analysis:Anthropogenic-Cuts:Geometry-Cuts:VPol-Reco}
 \end{figure}
@@ -400,6 +413,56 @@ The final set of cuts termed `goodTimes' criteria reject days of the year that h
 \caption{Shown in blue are the number of events per day passing thermal cuts and in red the subset of these events also passing geometry cuts.}
 \label{fig:Analysis:Anthropogenic-Cuts:GoodTimes:Event-Rate}
 \end{figure}
+
+\section{Cut summary}
+\label{sec:Analysis:Cut-Summary}
+
+The motivation and details of each of the cuts used in this analysis have been described in previous sections, a summary is shown in \TableRef{tab:Analysis:Cut-Summary}.
+
+\begin{table}
+\begin{center}
+  \begin{tabular}{ p{0.18\textwidth} p{0.38\textwidth} p{0.38\textwidth} }
+    \textbf{Cut}  & \textbf{Description} & \textbf{Cut value} \\    
+    \hline
+    pseudo-$\chi^{2}$ & & $< 2$ pass\\
+    powherence & linear combination of CSWPeakVoltage and SumCorrVals & $> 380$ pass\\
+    CW - total bins & non-thermal excess & $=0$ pass\\
+    CW - total bins broadband check & lower threshold to check that an excess is broadband & $> 20$ pass\\
+    CWMinProb & minimum value of $\ln(\prod P_{i})$ & $< -400$ fail\\
+    Geometry & downward pointing cut & $\theta > 40$ fail\\
+    Geometry & South Pole infrastructure cut & $50^{\circ}$ wide region in $\phi$\\
+    Geometry & Calibration pulser cut & $\pm 5^{\circ}$ region in $\phi$\\
+    Geometry & Wind turbine cut & $\pm 5^{\circ}$ region in $\phi$\\
+    goodTimes & Summer months cut & Reject events from December and January\\
+    goodTimes & Noisy times cut & Reject day when total events passing thermal cuts in previous current and next day $> 14$\\
+  \end{tabular}
+  \caption{Summary of the cuts used in this analysis.}
+  \label{tab:Analysis:Cut-Summary}
+\end{center}
+\end{table}
+
+Some of these cuts use a combination of parameters derived from the data, \TableRef{tab:Analysis:Variables} summarises how these variables are created.
+
+\begin{table}
+\begin{center}
+  \begin{tabular}{ p{0.28\textwidth}  p{0.66\textwidth} }
+    \textbf{Variable}  & \textbf{Description / Value}\\
+    \hline
+    pseudo-$\chi^{2}$ & Measure of goodness of reconstruction\\
+    powherence & $\alpha +\mbox{CSWPeakVoltage} + \beta*\mbox{SumCorrVals}$\\
+    $\alpha$ & 1.143\\
+    $\beta$ & $1.571 \times 10^{3}$\\
+    CSWPeakVoltage & Peak voltage in the coherently summed wave (CSW)\\
+    SumCorrVals & Sum of CorrVals for antennas in CSW.\\
+    CorrVals & Peak correlation value of antenna with CSW minus that antenna\\
+    CWMinProb & minimum value of $\ln{\prod P_{i}}$\\
+  \end{tabular}
+  \caption{Summary of the cuts used in this analysis.}
+  \label{tab:Analysis:Variables}
+\end{center}
+\end{table}
+
+
 
 \section{Cut results}
 \label{sec:Analysis:Cut-Results}
@@ -459,6 +522,7 @@ The analysis passing efficiency is shown in \FigureRef{fig:Analysis:Cut-Results:
 
 \noindent where $\lvert V_{peak} \rvert$ is the absolute value of the peak voltage of each waveform. SNR values are calculated for all antennas and the smallest value in each polarisation compared, the larger of the two is then used as a measure of signal strength (as the RF impulse in events can have an arbitrary polarisation angle, so the brighter of the two polarisations is used).
 
+
 \begin{figure}[htpb]
 \subfloat[Analysis efficiency as a function of neutrino energy]{\includegraphics[width=0.49\textwidth]{chapters/analysis/efficiencyEnergy.pdf}}\hfill
 \subfloat[Analysis efficiency as a function of SNR]{\includegraphics[width=0.49\textwidth]{chapters/analysis/efficiencySNR.pdf}}
@@ -466,6 +530,7 @@ The analysis passing efficiency is shown in \FigureRef{fig:Analysis:Cut-Results:
 \label{fig:Analysis:Cut-Results:Efficiency}
 \end{figure}
 
+In addition to the simulated neutrino data sets the analysis cuts were checked against calibration pulser events in two ways. The first was using the calibration pulser waveforms as recorded in the TestBed to check whether any of the non-calibration pulser specific cuts (i.e. excluding the calibration pulser geometry cuts) rejected a large fraction of these events. The second was to take the average of many calibration pulser waveforms, the averaging used to remove event-to-event noise, then add them to minimum bias waveforms with a variety of scalings applied. These events were used as a data driven simulation of attenuated calibration pulser waveforms, with the underlying minimum bias event used as thermal noise. This second category of events were again used as a cross-check for the selected cut values and their efficiencies.
 
 The efficiencies in \FigureRef{fig:Analysis:Cut-Results:Efficiency} are calculated for application of cuts individually (dashed lines) and for all cuts applied. The goodTimes cut is not accounted for as it acts as a scaling of the detector live time. The overall analysis efficiency ranges between $15 \%$ and $30 \%$ across the range of energies simulated, whereas it peaks at $60 \%$ for moderately large values of SNR. Two factors influence the low efficiency as a function of neutrino energy: firstly the simulation produces large numbers of events with very small SNR which mainly consist of upward fluctuations in the thermal noise, and secondly compression in the digitisation chain leads to a drop off in efficiency at high SNR. 
 
@@ -495,11 +560,11 @@ For thermal noise events the value of powherence was considered the most relevan
 
 Extrapolating the fits to each of the thermal samples of events provides two estimates for the number of events passing the powherence cut and errors associated with the fits themselves. Since fits to both samples were in good agreement to data the average of the two was taken as the estimate for the background, with the error taken to be the difference between the two. The result is an expected number of background events of a thermal origin to be $0.33^{+0.15}_{-0.15}$.
 
-For the case of anthropogenic signals it is much more difficult to ascertain the expected background levels since these events are from an unidentified mixture of sources, which are not necessarily expected to follow well described distributions. In order to estimate this type of background some of the geometric cuts, designed to remove anthropogenic signals, were relaxed to see whether events failing these cuts could be used to extrapolate past the cut values. \FigureRef{fig:Analysis:Background-Estimation:Anthropogenic-Background} shows events failing the geometric cut around the azimuthal direction of the IceCube Laboratory and South Pole Station.
+For the case of anthropogenic signals it is much more difficult to ascertain the expected background levels since these events are from an unidentified mixture of sources, which are not necessarily expected to follow well described distributions. In order to estimate this type of background some of the geometric cuts, designed to remove anthropogenic signals, were relaxed to see whether events failing these cuts could be used to extrapolate past the cut values. \FigureRef{fig:Analysis:Background-Estimation:Anthropogenic-Background} shows events failing the geometric cut around the azimuthal direction of the IceCube Laboratory and South Pole Station. 
 
 \begin{figure}
   \includegraphics[width=0.49\textwidth]{chapters/analysis/BackgroundGeometry.pdf}
-  \caption{VPol events failing the IceCube Laboratory and South Pole geometry cut via their reconstructed azimuth. The geometric cut is indicated by the orange line at $-150$.}
+  \caption{VPol events failing the IceCube Laboratory and South Pole geometry cut via their reconstructed azimuth. The geometric cut is indicated by the orange line at $-150$ and by the vertical shaded region between $100^{\circ}$ and $150^{\circ}$ in \FigureRef{fig:Analysis:Anthropogenic-Cuts:Geometry-Cuts:VPol-Reco} (a).}
   \label{fig:Analysis:Background-Estimation:Anthropogenic-Background}
 \end{figure}
 

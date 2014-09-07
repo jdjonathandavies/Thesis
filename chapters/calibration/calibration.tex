@@ -16,7 +16,7 @@ This section will describe the need for, and details of, a number of timing cali
 
 The majority of recorded signals that trigger the ARA stations are expected to be from thermal or anthropogenic sources and are considered backgrounds to detection of neutrino signals. Timing differences between signals being observed in multiple antennas can be used to reconstruct the physical location of their source. In \SectionRef{chap:Analysis} it will be shown that reconstruction can provide a powerful tool with which to separate interesting signals from these backgrounds. The need to reject backgrounds in this manner, combined with the signal shape expected from Askaryan radiation, sets a requirement for large bandwidth, high sampling rate digitisation of the signals received in the detector's antennas. The remote location and associated power restrictions preclude the use of commercially available digitisers and necessitate the use of an application specific integrated circuit (ASIC) digitiser.
 
-The TestBed digitises waveforms using three LABRADOR (Large Analogue Bandwidth Recorded And Digitizer with Ordered Readout) ASIC chips designed at the Instrument and Design Laboratory, University of Hawaii \cite{Varner2007447}. Each chip has 9 parallel RF input channels that are continuously sampled. These samples are digitised in place once read out is initiated by the data acquisition (DAQ). Sampling, digitisation and readout of samples is controlled by signals from a field programmable gate array (FPGA) in the DAQ. A number of timing related calibrations are necessary due to the properties of the LABRADOR chip and its implementation in the TestBed. 
+The TestBed digitises waveforms using three LABRADOR (Large Analogue Bandwidth Recorder And Digitizer with Ordered Readout) ASIC chips designed at the Instrument and Design Laboratory, University of Hawaii \cite{Varner2007447}. Each chip has 9 parallel RF input channels that are continuously sampled. These samples are digitised in place once read out is initiated by the data acquisition (DAQ). Sampling, digitisation and readout of samples is controlled by signals from a field programmable gate array (FPGA) in the DAQ. A number of timing related calibrations are necessary due to the properties of the LABRADOR chip and its implementation in the TestBed. 
 
 \begin{figure}[htpb]
   \includegraphics[width=\hugefigwidth]{chapters/calibration/LAB3_archictecture.pdf}
@@ -24,7 +24,9 @@ The TestBed digitises waveforms using three LABRADOR (Large Analogue Bandwidth R
   \label{fig:calibration:LABRADOR-Digitiser-Chip:Architecture}
 \end{figure}
 
-\FigureRef{fig:calibration:LABRADOR-Digitiser-Chip:Architecture} shows the architecture of the LABRADOR chip used in the TestBed. On each chip a switched capacitor array (SCA) of 260 sampling capacitors per channel is used to sample the input voltages. Sampling is controlled by a write signal, which is common to all 9 channels, driven by an externally provided clock. When a stop signal is asserted by the DAQ the samples are digitised in place using a Wilkinson analogue to digital converter (ADC), which occurs in parallel for all samples on all channels. Once digitisation is complete the digitised voltage values are requested by the DAQ and read out in sequence on a 12-bit data bus. The FPGA then processes these values for packetisation and recording as an event for later analysis.
+\FigureRef{fig:calibration:LABRADOR-Digitiser-Chip:Architecture} shows the architecture of the LABRADOR chip used in the TestBed. On each chip a switched capacitor array (SCA) of 260 sampling capacitors per channel is used to sample the input voltages. Sampling is controlled by a write signal, which is common to all 9 channels, driven by an externally provided clock. When a stop signal is asserted by the DAQ the samples are digitised in place using a Wilkinson analogue to digital converter (ADC), which occurs in parallel for all samples on all channels. Once digitisation is complete the digitised voltage values are requested by the DAQ and read out in sequence on a 12-bit data bus. The FPGA then processes these values for packetisation and recording as an event for later analysis. The digitisation and readout stage takes $\sim 50 \micro \second$ in the LABRADOR chip. This means that the settle time of the analogue voltage samples in the SCA has a negligeable affect on the readout values.
+
+
 
 \begin{figure}[htpb]
   \includegraphics[width=\hugefigwidth]{chapters/calibration/LAB3_RCO_Schmatic.pdf}
@@ -33,14 +35,22 @@ The TestBed digitises waveforms using three LABRADOR (Large Analogue Bandwidth R
 \end{figure}
 
 
+
 To achieve continuous sampling, voltage samples are stored in the SCA as the write signal propagates along the array. The time taken for the write signal to propagate between adjacent samples varies from sample to sample and from digitiser to digitiser. These `inter-sample' times are estimated from known input signals and a calibration applied to correct the time base of recorded waveforms. The voltage sampling is illustrated in \FigureRef{fig:calibration:LABRADOR-Digitiser-Chip:Schematic}. The write pointer signal propagates along the array in one of two phases, Ripple Carry Out (RCO) 0 and RCO1. The transit time of the write signal between adjacent samples differs between these two phases, hence calibrated inter-sample times must be calculated for each.
 
-In order to continue sampling once the write signal reaches the end of the SCA the write pointer wraps back to the first sample, at which time the RCO phase changes. This wrapping means the SCA functions as a ring, continuously sampling voltage values and over-writing the oldest sample taken. When a stop request is received, to initiate digitisation and read out, the chip issues a `HITBUS' causing the chip to stop sampling. Due to the changing state of the chip as they are latched the HITBUS removes around 8 samples from the waveform as the stored values are inaccurate. The capacitor immediately after the HITBUS is the earliest sample in the resulting waveform, and the capacitor immediately before the HITBUS is the latest sample. 
+In order to continue sampling once the write signal reaches the end of the SCA the write pointer wraps back to the first sample, at which time the RCO phase changes. This wrapping means the SCA functions as a ring, continuously sampling voltage values and over-writing the oldest sample taken. The wrapping of the write pointer is illustrated in \FigureRef{fig:calibration:LABRADOR-Digitiser-Chip:RCO-Schematic}. When a stop request is received, to initiate digitisation and read out, the chip issues a `HITBUS' causing the chip to stop sampling. Due to the changing state of the chip as they are latched the HITBUS removes around 8 samples from the waveform as the stored values are inaccurate. The capacitor immediately after the HITBUS is the earliest sample in the resulting waveform, and the capacitor immediately before the HITBUS is the latest sample. 
 
-Although the physical distance travelled when wrapping the write pointer is small the need to change phase causes a much larger time delay than between samples so, to avoid time gaps in the resulting waveforms, the write pointer begins wrapping at the $255^{\mbox{th}}$ sample. The remaining 4 tail samples, 256-259, are then used to fill in the resulting gap in time between the $255^{\mbox{th}}$ and $0^{\mbox{th}}$ samples.  The time taken for the write pointer to wrap, referred to as the `wrap-around', is another quantity that needs to be estimated and accounted for in calibration, which again varies from chip to chip and between RCO phases.
+\begin{figure}[htpb]
+  \includegraphics[width=\largefigwidth]{chapters/calibration/LAB3_RCO_Schematic_Second_Diagram.pdf}
+  \caption{A schematic the write pointer wrap around in the LABRADOR digitiser from \cite{Varner2007447}. As the write pointer returns to the first sample additional tail samples are taken in order to avoid a gap in sampling.}
+  \label{fig:calibration:LABRADOR-Digitiser-Chip:RCO-Schematic}
+\end{figure}
 
 
-One of the features of the LABRADOR chip is the ability to operate at a range of sampling speeds. For the TestBed implementation it is operated at a nominal sampling speed of $1 \giga \mbox{Sample} /\second$ which corresponds to a Nyquist frequency \footnote{The Nyquist frequency for a discretely sampled system indicates the maximum resolvable input frequency and is equal to half the sample rate.} of $500 \mega \hertz$. The borehole antennas have good response to frequencies up to $850 \mega \hertz$, which means that frequency content would be lost if these antennas had their signals input to a single channel each. In order to retain this high frequency content each of these antennas has its signal split and inserted into a pair of input channels, one offset from the other by $0.5 \nano \second$. This interleaving process leads to an effective doubling of the sampling speed for the borehole antennas, however the offset needs to be calibrated out in order to accurately reconstruct the original input waveforms. 
+Although the physical distance travelled when wrapping the write pointer is small the need to change phase causes a much larger time delay than between adjacent samples. To avoid time gaps in the resulting waveforms, the write pointer begins wrapping at the $255^{\mbox{th}}$ sample. The remaining 4 tail samples, 256-259, are then used to fill in the resulting gap in time between the $255^{\mbox{th}}$ and $0^{\mbox{th}}$ samples. This is illustrated in \FigureRef{fig:calibration:LABRADOR-Digitiser-Chip:RCO-Schematic}.  The time taken for the write pointer to wrap, referred to as the `wrap-around', is another quantity that needs to be estimated and accounted for in calibration, which again varies from chip to chip and between RCO phases.
+
+
+One of the features of the LABRADOR chip is the ability to operate at a range of sampling speeds. For the TestBed implementation it is operated at a nominal sampling speed of $1 \giga \mbox{Sample} /\second$ which corresponds to a Nyquist frequency of $500 \mega \hertz$. The borehole antennas have good response to frequencies up to $850 \mega \hertz$, which means that frequency content would be lost if these antennas had their signals input to a single channel each. In order to retain this high frequency content each of these antennas has its signal split and inserted into a pair of input channels, one offset from the other by $0.5 \nano \second$. This interleaving process leads to an effective doubling of the sampling speed for the borehole antennas, however the offset needs to be calibrated out in order to accurately reconstruct the original input waveforms. 
 
 As well as ensuring the timing information, on a per antenna basis, is as accurate as possible it is also necessary to correct for any offsets between channels. Due to the use of a common write signal each of the channels on a single chip will be aligned once the inter-sample, wrap-around and interleave calibrations are carried out. This is not true for channels on different chips and must be addressed in the final timing calibration, inter-chip jitter removal. Since timing differences between similar signals in pairs of antennas serves as the basis of event reconstruction this calibration is an integral part of distinguishing between noise sources and potential neutrino induced signals. 
 
@@ -48,16 +58,23 @@ As well as ensuring the timing information, on a per antenna basis, is as accura
 \subsubsection{Inter-sample times}
 \label{sec:calibration:LABRADOR-Digitiser-Chip:Inter-sample-times}
 
-The inter-sample times correspond to the time taken for the LABRADOR digitiser's write pointer to propagate between samples. By adjusting control voltages to the chip the global sampling speed can be adjusted, which acts by effecting a change to each of the inter-sample times. Using the selected operating parameters of the chips in the TestBed DAQ a series of dedicated calibration runs were taken in the northern hemisphere prior to deployment in Antarctica. Precise frequency sinusoial inputs were provided to the DAQ box and a series of runs taken, comprising of many thousands of events
+The inter-sample times are the time elapsed between recorded samples of an input signal, corresponding to the time taken for the LABRADOR digitiser's write pointer to propagate between samples. By adjusting control voltages to the chip the global sampling speed can be adjusted, which acts by effecting a change to each of the inter-sample times. Using the selected operating parameters of the chips in the TestBed DAQ a series of dedicated calibration runs were taken in the laboratory prior to deployment in Antarctica. Precise frequency sinusoidal inputs were provided to the DAQ box and a series of runs taken, comprising of many thousands of events
 
-The inter-sample times were calculated by measurements of these sine waves, input to each RF channel on the chip, using a method informed from \cite{AbbyThesis}. The number of zero-crossings between a pair of adjacent samples was scaled by the number of waveforms in which that sample was present. The resulting fractional zero-crossing occupancy is then scaled by half the period of the input sine wave to recover the inter-sample time:
+The inter-sample times were calculated by measurements of these sine waves, input to each RF channel on the chip, using a method informed from \cite{AbbyThesis}. In this technique the number of times an input sine wave crosses zero voltage between a pair of adjacent samples is counted. The time between a pair of samples can then be estimated using:
+
+\begin{equation}
+  \langle \Delta t_{i,i+1} \rangle = \frac{T_{input} \langle NZC_{i,i+1} \rangle}{2 N_{i,i+1}}
+  \label{eq:calibration:inter-sample-times}
+\end{equation}
+
+where $\langle \Delta t_{i,i+1} \rangle$ is the estimated time between sample $i$ and sample $i+1$, $NZC_{i,i+1}$ is the number of times zero voltage was crossed between these samples, $N_{i,i+1}$ is the number of events used and $T_{input}$ the period of the input sine wave. Since the time between adjacent samples differs between the two RCO phases separate estimates are made for each phase. This method can be applied to each pair of samples as follows:
 
 \begin{itemize}
 \item The voltage values of each waveform are zero-meaned 
 \item The RCO phase of each pair of adjacent samples is then determined as described in \SectionRef{sec:calibration:LABRADOR-Digitiser-Chip:RCO-phase-determination}
-\item The total number of times zero is crossed between each pair of samples is counted over the run (i.e. the voltage goes from positive to negative, or visa versa, between a pair of samples)
-\item The total number of zero-crossings is then divided by the total number of events for which that pair of samples were active
-\item This fractional zero-crossing occupancy is then scaled by the half-period of the input sine-wave, resulting in an estimate for the inter-sample times
+\item The total number of times zero is crossed between each pair of samples in each RCO phase is counted over the run (i.e. the voltage goes from positive to negative, or visa versa, between a pair of samples)
+\item The total number of zero-crossings is then divided by the total number of events for which that pair of samples were active in each RCO phase
+\item This fractional zero-crossing occupancy ($\frac{NZC_{i,i+1}}{N_{i,i+1}}$) is then scaled by the half-period of the input sine-wave according to \EquationRef{eq:calibration:inter-sample-times}, resulting in an estimate for the inter-sample times
 \end{itemize}
 
 
@@ -80,7 +97,7 @@ A complication to the calibration procedure is that the RCO phase of the LABRADO
 \subsubsection{Wrap-around times}
 \label{sec:calibration:LABRADOR-Digitiser-Chip:Wrap-around-times}
 
-The time taken to wrap between the end and beginning of the SCA, denoted $\varepsilon_{0}$ and $\varepsilon_{1}$ for the two RCO phases, is considerably larger than the inter-sample times. Rather than measuring the scaled zero-crossing occupancy, as described in \SectionRef{sec:calibration:LABRADOR-Digitiser-Chip:Inter-sample-times}, sine waves are fitted to the waveform before and after the wrap-around. By aligning the phase of the two fitted sine waves it is possible to estimate the wrap-around time. The full procedure is as follows:
+The time taken to wrap between the end and beginning of the SCA, denoted $\varepsilon_{0}$ and $\varepsilon_{1}$ for the two RCO phases, is considerably larger than the inter-sample times. Rather than measuring the scaled zero-crossing occupancy, sine waves are fitted to the waveform before and after the wrap-around. By aligning the phase of the two fitted sine waves it is possible to estimate the wrap-around time. The full procedure is as follows:
 
 \begin{itemize}
 \item The voltage values of each waveform are zero-meaned
@@ -103,7 +120,7 @@ The time taken to wrap between the end and beginning of the SCA, denoted $\varep
 \subsubsection{Interleaving}
 \label{sec:calibration:LABRADOR-Digitiser-Chip:Interleaving}
 
-To increase the effective sampling rate whilst maintaining the time window of the borehole antennas the signals from each are fed into two digitiser channels with one delayed relative to the other by $\sim 0.5 \nano \second$ (approximately half a sample). The resulting waveforms are then produced by interleaving the two digitised channels for each of these antennas in the offline software. The 8 deep antennas have their signals split in this way across pairs of channels on the first 2 chips. The third chip is operated in the normal manner with each channel supplied by a single antenna.
+To increase the effective sampling rate whilst maintaining the time window of the borehole antennas the signals from each are fed into two digitiser channels with one delayed relative to the other by $\sim 0.5 \nano \second$ (approximately half a sample) \footnote{Since the digitisation of stored voltage values takes a relatively long time ($\sim 50 \micro \second$) the settle time of the individual samples has no influence on the digitised values.}. The resulting waveforms are then produced by interleaving the two digitised channels for each of these antennas in the offline software. The 8 deep antennas have their signals split in this way across pairs of channels on the first 2 chips. The third chip is operated in the normal manner with each channel supplied by a single antenna.
 
 A calibration is performed to estimate the offset between each pair of channels that have their signals split, such that the resulting interleaved waveforms are as accurate as possible. This is achieved by attempting to align the phase of input sine waves between these pairs of channels as follows:
 
@@ -137,7 +154,7 @@ The three LABRADOR digitiser chips used in the TestBed are operated in parallel 
   \label{fig:calibration:LABRADOR-Digitiser-Chip:Swiss-flag}
 \end{figure}
 
-In \FigureRef{fig:calibration:LABRADOR-Digitiser-Chip:Swiss-flag} the measured phase of the clock channel, relative to the first sample, in two LABRADOR chips are plotted against each other. A feature of the TestBed implementation of the LABRADOR digitiser is that there are regions in this parameter space that are under-populated. This feature is used to resolve period ambiguity between the two chips which would otherwise result in an additional $\pm 25 \nano \second$ (1 clock period) offset between the time base in waveforms recorded in different LABRADOR chips.
+In \FigureRef{fig:calibration:LABRADOR-Digitiser-Chip:Swiss-flag} the measured phase of the clock channel, relative to the first sample, in two LABRADOR chips are plotted against each other. A feature of the TestBed implementation of the LABRADOR digitiser is that there are regions in this parameter space that are under-populated \footnote{This feature in timing offset between channels is believed to be due to a firmware mechanism that attempts to align the clocks between LABRADOR digitisers.}. This feature is used to resolve period ambiguity between the two chips which would otherwise result in an additional $\pm 25 \nano \second$ (1 clock period) offset between the time base in waveforms recorded in different LABRADOR chips.
 
 
 
@@ -153,7 +170,7 @@ In \SectionRef{sec:Analysis:Reconstruction} a method will be described for recon
   \label{fig:calibration:LABRADOR-Digitiser-Chip:Timing-Differences}
 \end{figure}
 
-The timing calibration with the largest affect is the inter-chip jitter removal, which corrects for offsets up to $25 \nano \second$ between waveforms recorded on different LABRADOR chips. A shift in the measured mean time offset between the antennas' waveforms is caused by application of cable delays, which account for the differing lengths of cable that signals must propagate through when travelling from the receive antenna to the digitiser. After application of all timing calibrations the resolution on time offsets between antennas is $\sim 100 \pico \second$.
+The timing calibration with the largest effect is the inter-chip jitter removal, which corrects for offsets up to $25 \nano \second$ between waveforms recorded on different LABRADOR chips. A shift in the measured mean time offset between the antennas' waveforms is caused by application of cable delays, which account for the differing lengths of cable that signals must propagate through when travelling from the receive antenna to the digitiser. After application of all timing calibrations the resolution on time offsets between antennas is $\sim 100 \pico \second$.
 
 
 \subsection{Voltage reversal}
@@ -166,12 +183,12 @@ Close to finalisation of the analysis described in \ChapterRef{chap:Analysis} a 
   \subfloat[Antenna 2]{\includegraphics[width=0.49\textwidth]{chapters/calibration/avWaveformHPolAnt2.pdf}}\\
   \subfloat[Antenna 3]{\includegraphics[width=0.49\textwidth]{chapters/calibration/avWaveformHPolAnt3.pdf}}\hfill
   \subfloat[Antenna 4]{\includegraphics[width=0.49\textwidth]{chapters/calibration/avWaveformHPolAnt4.pdf}}
-\caption{Averaged waveforms from HPol borehole antennas. The signal captured is from the HPol calibration pulser operated in 2012. There is a clear inversion of voltage values in antennas 3 and 4 compared with antennas 1 and 2.}
+\caption{Averaged waveforms from HPol borehole antennas. The signal captured is from the HPol calibration pulser operated in 2012. There is a clear inversion of voltage values in antennas 3 and 4 compared with antennas 1 and 2. The differing positions in time of the peak voltage is due to the position of the calibration pulser. This relative timing can be used to reconstruct the source location.}
 \label{fig:calibration:Voltage-Reversal}
 \end{figure}
 
 
-Checks were made on the vertically polarised (VPol) antenna's waveforms from VPol calibration pulser events. No such inversion was found for these antennas. A correction was applied in the analysis described in \ChapterRef{chap:Analysis} that switches positive for negative (and visa versa) voltages for the affected HPol antennas, resulting in a significant improvement in the reconstruction of calibration signals. The affect on measured timing offsets for calibration pulser waveforms is shown in \FigureRef{fig:calibration:Voltage-Reversal-DeltaT}, where the application of a correction for the voltage flip results in the removal of a second peak in the distribution.
+Checks were made on the vertically polarised (VPol) antenna's waveforms from VPol calibration pulser events. No such inversion was found for these antennas. A correction was applied in the analysis described in \ChapterRef{chap:Analysis} that switches positive for negative (and visa versa) voltages for the affected HPol antennas, resulting in a significant improvement in the reconstruction of calibration signals. The effect on measured timing offsets for calibration pulser waveforms is shown in \FigureRef{fig:calibration:Voltage-Reversal-DeltaT}, where the application of a correction for the voltage flip results in the removal of a second peak in the distribution.
 
 \begin{figure}[htpb]
   \subfloat[With voltage reversal correction]{\includegraphics[width=0.49\textwidth]{chapters/calibration/DeltaT-HPol-1-4-Flip.pdf}}\hfill
@@ -197,7 +214,7 @@ A number of iterations of the IRS digitiser were tested in the laboratory to asc
 \begin{figure}[htpb]
   \subfloat[Uncalibrated waveform]{\includegraphics[width=0.49\textwidth]{chapters/calibration/DDA1_Channel6_NoCalibration.pdf}}\hfill
   \subfloat[Calibrated waveform]{\includegraphics[width=0.49\textwidth]{chapters/calibration/DDA1_Channel6_Calibrated.pdf}}
-  \caption{The results of applying the latest iteration of timing calibrations to a sine wave input to a channel on the IRS2 chip. The timing calibration was produced by Thomas Meures.}
+  \caption{The results of applying the latest iteration of timing calibrations to a $215 \mega \hertz$ sine wave input to a channel on the IRS2 chip. The timing calibration was produced by Thomas Meures.}
   \label{fig:calibration:ARA1-3-development:DDA-Waveforms}
 \end{figure}
 
@@ -215,7 +232,7 @@ Testing and development work was undertaken ahead of deployment for ARA 1-3. Amo
 
 During the 2012-2013 austral summer I travelled to the South Pole to install and commission the DAQs for ARA 2 and ARA 3. After installation of the new systems in the ice work was undertaken in setting up the data flow from each station to a server located in the IceCube Laboratory. Once data flow was established systems were put in place to allow a subset of data to be transferred via satellite to a data warehouse in the northern hemisphere. 
 
-Upon completion of the installation and deployment activities systems were developed to allow monitoring and controlling of the stations from the north during the course of the austral winter. As part of this work I took responsibility for monitoring and controlling station operations for the duration of 2013, with little down time experienced in ARA 2 and ARA 3 during the year. The event rate between April and September 2013 for ARA 2 is shown in \FigureRef{fig:calibration:ARA1-3-development:ARA2-Rate}. Due to disk space limits the trigger threshold was changed at the beginning of May. The affect of this change was to lower the event rate to a manageable level for the remainder of the year. 
+Upon completion of the installation and deployment activities systems were developed to allow monitoring and controlling of the stations from the north during the course of the austral winter. As part of this work I took responsibility for monitoring and controlling station operations for the duration of 2013, with little down time experienced in ARA 2 and ARA 3 during the year. The event rate between April and September 2013 for ARA 2 is shown in \FigureRef{fig:calibration:ARA1-3-development:ARA2-Rate}. Due to disk space limits the trigger threshold was changed at the beginning of May. The affect of this change was to lower the event rate to a manageable level for the remainder of the year. In addition there are two shorter drops in event rate, one in late May and the other in September. These correspond to periods of running where the calbration pulsers (which run at $1 \hertz$) were not in operation.
 
 \begin{figure}
   \includegraphics[width=\largefigwidth]{chapters/calibration/ARA02-EventRate.pdf}

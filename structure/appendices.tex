@@ -1,134 +1,82 @@
-%% The "\appendix" call has already been made in the declaration
-%% of the "appendices" environment (see thesis.tex).
-\chapter{Combining Multiple Triggers}
-\label{chap:appendix:trigger_efficiencies}
+\chapter{Thermal Coincidence Trigger}
+\label{chap:appendix:trigger}
 
-\chapterquote{It should be done with the same degree of alacrity and nonchalance 
-              that you would display in authorising a highly intelligent trained
-              bear to remove your appendix.}
-{Daniel S. Greenberg}
+The ARA trigger system looks at the rate at which $N$ of $M$ antennas have power above a threshold in a time window $t$. A power threshold is set for each antenna which results in a rate of threshold passing $R_{single}$ from thermal noise. The thresholds are set such that they acheive the same $R_{single}$ rate for each of the antennas contributing to the trigger. This section will describe how the global trigger rate (the rate at which the trigger condition is met) can be determined from the singles rate $R_{single}$.
 
-Consider the case in which there are two triggers of interest, one for each of the two leading jets.
-The case in which the leading jet passes the appropriate trigger is denoted $T_{10}$ and the case where the second jet passes its trigger as $T_{01}$ while the case in which both do is labelled $T_{11}$.
-In the absence of any prescales or inefficiencies, we would expect all $N$ of our events to be in category $T_{11}$, since our trigger boundaries are chosen to ensure that all jets fall on the trigger efficiency plateau.
-If the amount of data taken corresponds to a luminosity $\luminosity_{true}$ then we have a \xs of $\sigma_{true} = N / \luminosity_{true}$.
 
-\section{Correcting for Inefficiency in the Absence of Prescale}
-Taking specific detector effects into account, which may lower the efficiencies of the leading and subleading triggers to $e_L$ and $e_S$ respectively, we can see that the distribution of events will be as summarised in \TableRef{tab:appendix:trig_inefficiencies}.
 
-\begin{table}
-\begin{center}
-  \begin{tabular}{ c c }
-    Trigger Category & Number of events  \\
-    \midrule
-    $T_{00}$         & $N(1-e_L)(1-e_S)$ \\
-    $T_{10}$         & $N e_L (1-e_S)$   \\ 
-    $T_{01}$         & $N e_S (1-e_L)$   \\
-    $T_{11}$         & $N e_L e_S$       \\       
-  \end{tabular}
-  \caption{Number of events in each trigger category after allowing for trigger
-           inefficiencies}
-  \label{tab:appendix:trig_inefficiencies}
-\end{center}
-\end{table}
-
-Obviously events in the category $T_{00}$ are not recorded, but we still see $N_{visible} = N(e_L + e_S - e_L e_S)$ events. Multiplying the luminosity by an overall efficiency correction of $e_{eff} = e_L + e_S - e_L e_S$ allows us to recover the correct \xs:
+\section{Single antenna, $N$ hits}
+Let us first consider the case of a single antenna which has ``hits'' at the rate $\Gamma$, where a hit is the power received in the antenna crossing the threshold. The rate for $N$ hits is then given by the hit rate multiplied by the probability that the hit is followed by $N-1$ additional hits within the coincidence window $t$:
 
 \begin{equation}
-  \sigma_{corrected} = \frac{N_{visible}}{e_{eff} \luminosity_{true}} = \frac{N(e_L + e_S - e_L e_S)}{(e_L + e_S - e_L e_S) \luminosity_{true}} = \sigma_{true}
+  \Gamma_{N} = \Gamma P_{N-1}
 \end{equation}
 
-\section{Correcting for Prescale in the Absence of Inefficiency}
-\label{sec:appendix:prescale_only}
-Allowing now for prescales of $P_L$ and $P_S$ for the leading and subleading triggers respectively, we can see that the distribution of events will be as summarised in \TableRef{tab:appendix:trig_prescales}.
-
-\begin{table}
-\begin{center}
-  \begin{tabular}{ c c }
-    Trigger Category & Number of events      \\
-    \midrule
-    $T_{00}$         & $N(1-1/P_L)(1-1/P_S)$ \\
-    $T_{10}$         & $N/P_L (1-1/P_S)$     \\ 
-    $T_{01}$         & $N/P_S (1-1/P_L)$     \\
-    $T_{11}$         & $N/(P_L P_S)$          \\       
-  \end{tabular}
-  \caption{Number of events in each trigger category after allowing for trigger
-           prescales}
-  \label{tab:appendix:trig_prescales}
-\end{center}
-\end{table}
-
-Analogously to the trigger efficiency case, we can apply a prescale correction of $1/P_{eff} = 1/P_L + 1/P_S - 1/(P_L P_S)$ to the luminosity to recover the correct \xs. 
+The probability of $N-1$ hits, $P_{N-1}$, is given by Poisson statistics. The expected number of hits in a coincidence window $t$ is:
 
 \begin{equation}
-  \sigma_{corrected} = \frac{N_{visible}}{\luminosity_{true}/P_{eff}} = \frac{N(1/P_L + 1/P_S - 1/(P_L P_S))}{\luminosity_{true} (1/P_L + 1/P_S - 1/(P_L P_S))} = \sigma_{true}
+  \mu = \Gamma t\\
+\end{equation}
+hence
+\begin{equation}
+  P_{N} = e^{-\mu}\frac{\mu^{N}}{N!}
+\end{equation}
+so we have
+\begin{equation}
+  \Gamma_{N} = \Gamma e^{-\mu}\frac{\mu^{N-1}}{(N-1)!}
 \end{equation}
 
-In general, statistical precision will be improved by instead dividing events into separately weighted trigger categories, based on the trigger decision that would have been taken in the absence of prescale.
+\section{$M$ antennas, $N$ with one or more hits}
 
-\section{Correcting for Inefficiency and Prescale Simultaneously}
-In the case in which efficiencies of $e_L$ and $e_S$ are present together with prescales of $P_L$ and $P_S$, recovering the correct \xs becomes more complicated.
+The rate for single hits among $M$ antennas is
+\begin{equation}
+  \Gamma_{1} = M\Gamma
+\end{equation}
 
-If we could recover the prescale-only (PO) numbers, then recovering the correct \xs would be a matter of following the prescription from \SectionRef{sec:appendix:prescale_only}.
-In fact, using the simplified approach presented there, knowing only $N^{PO}_{visible} = N^{PO}_{11} + N^{PO}_{10} + N^{PO}_{01}$ would be sufficient.
-
-Consider the relationships, shown in \EquationRef{eq:appendix:relationships}, between the final observed (F) numbers of events observed and the numbers after prescale-only, where $L$ denotes events passing the leading jet trigger and $S$ denotes those passing the second trigger, while $LS$ denotes those passing both triggers.
+The rate at which we have $N$ out of $M$ antennas with one or more hits is the rate at which single hits occur ($\Gamma$) multiplied by the number of ways of choosing $N-1$ antennas, weighted by the probability that $N-1$ antennas have one or more hits and the rest have none. The probability for zero hits in an antenna is:
 
 \begin{equation}
-\begin{split}
-  N^{F}_{L}  &= N^{PO}_{L} e_L \\
-  N^{F}_{S}  &= N^{PO}_{S} e_S \\
-  N^{F}_{LS} &= N^{PO}_{LS} e_L e_S
-  \label{eq:appendix:relationships}
-\end{split}
+  P_{0} = e^{-\mu}
 \end{equation}
 
-\noindent Expanding the first two of these equations out, we can see that
+and the probability for non-zero hits is therefore $1-P_{0} = 1-e^{-\mu}$. Combining the combinatoric term (from the ways of choosing $N-1$ antennas) and the probability factors we arrive at:
 
 \begin{equation}
-\begin{split}
-  N^{F}_{10} + N^{F}_{11} &= ( N^{PO}_{10} + N^{PO}_{11} ) e_L \\
-  N^{F}_{10} / e_L + N^{F}_{11} / e_L &= N^{PO}_{10} + N^{PO}_{11}
-  \label{eq:appendix:leading_only}
-\end{split}
+  \begin{split}
+  P_{N-1} &= \frac{(M-1)!}{(M-N)!(N-1)!}(1-P_{0})^{N-1}(P_{0})^{M-N}\\
+  &= C^{N-1}_{M-1}  (1-P_{0})^{N-1}(\frac{1}{P_{0}})^{N-1}(P_{0})^{M-1}\\
+  &= C^{N-1}_{M-1}  (\frac{1}{P_{0}}-1)^{N-1}(P_{0})^{M-1}\\
+  &= C^{N-1}_{M-1}  (e^{\mu}-1)^{N-1}(P_{0})^{M-1}\\
+  \end{split}
 \end{equation}
 
-\noindent and
+
+So the rate at which the trigger condition is met is then:
 
 \begin{equation}
-\begin{split}
-  N^{F}_{01} + N^{F}_{11} &= ( N^{PO}_{01} + N^{PO}_{11} ) e_S \\
-  N^{F}_{01} / e_S + N^{F}_{11} / e_S &= N^{PO}_{01} + N^{PO}_{11}
-  \label{eq:appendix:subleading_only}
-\end{split}
+  \begin{split}
+    \Gamma_{N} = M \Gamma P_{N-1} &= M \Gamma C^{N-1}_{M-1} (e^{\mu}-1)^{N-1}(P_{0})^{M-1}
+  \end{split}
 \end{equation}
 
-\noindent Combining \EquationRef{eq:appendix:leading_only} and \EquationRef{eq:appendix:subleading_only}
-we have
+The trigger condition is also met when more than $N$ out of $M$ antennas, so a full treatment would sum the contributions from $N$ of $M$, $N+1$ of $M$, ..., $M$ of $M$ antennas. We will only consider the $N$ of $M$ term for now, as the other terms can be found by changing the value of $N$.
 
-\begin{gather}
-  \label{eq:appendix:final_PO_connection}
-  N^{PO}_{10} + N^{PO}_{11} + N^{PO}_{01} + N^{PO}_{11} = N^{F}_{10} / e_L + N^{F}_{11} / e_L + N^{F}_{01} / e_S + N^{F}_{11} / e_S \\
-  N^{PO}_{10} + N^{PO}_{11} + N^{PO}_{01} + (N^{F}_{11}/(e_L e_S)) = N^{F}_{10} / e_L + N^{F}_{01} / e_S + N^{F}_{11} ( 1 / e_L + 1 / e_S ) \\
-  N^{PO}_{10} + N^{PO}_{01} + N^{PO}_{11}  = N^{F}_{10} / e_L + N^{F}_{01} / e_S + N^{F}_{11} ( 1 / e_L + 1 / e_S - 1/(e_L e_S) )
-\end{gather}
+If the hits are rare then we have $\mu \ll 1$, then $e^{\mu}-1 \rightarrow \mu = \Gamma t$ and $P_{0} \rightarrow 1$. So we have:
 
-\noindent so the sum $N^{PO}_{10} + N^{PO}_{01} + N^{PO}_{11}$ can be reconstructed
-if events are weighted based on their final trigger category as shown in \TableRef{tab:appendix:trig_weights}.
+\begin{equation}
+  \begin{split}
+    \Gamma_{N} &= M \Gamma \frac{(M-1)!}{(M-N)!(N-1)!} \Gamma^{N-1} t^{N-1} \\
+    &= N \frac{M(M-1)!}{(M-N)!N(N-1)!} \Gamma^{N} t^{N-1}\\
+    &= N C^{N}_{M}     \Gamma^{N} t^{N-1}\\
+  \end{split}
+\end{equation}
 
-\begin{table}
-\begin{center}
-  \begin{tabular}{ c c }
-    Trigger Category & Required weight \\
-    \midrule
-    $T_{00}$         & 0               \\
-    $T_{10}$         & $1/e_L$         \\ 
-    $T_{01}$         & $1/e_S$         \\
-    $T_{11}$         & $1/e_L/e_S$     \\       
-  \end{tabular}
-  \caption{Required weights for each trigger category necessary to allow reconstruction
-           of the total number of events that would have been observed without trigger
-           inefficiency.}
-  \label{tab:appendix:trig_weights}
-\end{center}
-\end{table}
+Now using the nomenclature from the ARA trigger systems we have $R_{global} = \Gamma_{N}$ and that $\Gamma = R_{single}$ we have:
+
+\begin{equation}
+  R_{global} = NC^{N}_{M}R^{N}_{single}t^{N-1}\\
+  \label{eq:ARA-Trigger-Rate}
+\end{equation}
+
+
+It is clear that as the number of coincident antennas $N$ increases the rate falls by a factor of $R_{single}t$. In the case of the TestBed the singles rate $R_{single} \sim 10 \kilo\hertz$ and the time window $t = 100 \nano\second$ so the contributions fall by a factor of a thousand. \EquationRef{eq:ARA-Trigger-Rate} is therefore a good leading order approximation to the trigger rate expected from thermal noise in ARA stations using such a coincidence trigger.
