@@ -180,7 +180,7 @@ The power and data rate restrictions from ARA's location mean that it is not pos
 
 In the triggering chain of each antenna a coaxial tunnel diode is used to provide a uni-polar signal that is proportional to the RF power integrated over a few nano seconds. These signals are then fed into a discriminator which determines whether the RF power has crossed an an adjustable threshold. The discriminator is implemented via a field programmable gate array (FPGA) using low-voltage differential signal comparators. For each antenna that passes the defined threshold a one-shot \footnote{the one-shot corresponds to a `trigger passed' signal being asserted for a limited period of time} is generated in the FPGA, these signals can then in turn be assessed by firmware logic to determine if a trigger condition has been met. In the TestBed the trigger condition is that 3 of the 8 VPol and HPol borehole antennas produce signals that pass threshold within a $100 \nano\second$ window. 
 
-The TestBed coincidence trigger leads to a dependence on the individual threshold-crossing rates, or singles rates $R_{single}$ of each antenna caused by thermal noise. In \SectionRef{chap:appendix:trigger} it is shown that the rate at which the coincidence trigger is passed, $R_{global}$, is to first order given by:
+The TestBed coincidence trigger leads to a dependence on the individual threshold-crossing rates, or singles rates $R_{single}$ of each antenna caused by thermal noise. In \AppendixRef{chap:appendix:trigger} it is shown that the rate at which the coincidence trigger is passed, $R_{global}$, is to first order given by:
 
 \begin{equation}
   R_{global} = N C^{N}_{M}R_{single}^{N}t^{N-1}
