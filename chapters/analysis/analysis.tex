@@ -126,12 +126,12 @@ In \FigureRef{fig:analysis:Reconstruction:CSW-Example} the calculated time diffe
 
 
 \begin{figure}[htpb]
-  \subfloat[Individual waveforms calibration pulser event]{\includegraphics[width=0.49\textwidth]{chapters/analysis/CSW-Coherent-Waveforms-VPol-CP-Med.pdf}}\hfill
-  \subfloat[CSW calibration pulser event]{\includegraphics[width=0.49\textwidth]{chapters/analysis/CSW-CSW-VPol-CP-Med.pdf}}\\
-  \subfloat[Individual waveforms noise event]{\includegraphics[width=0.49\textwidth]{chapters/analysis/CSW-Coherent-Waveforms-VPol-Noise-Med.pdf}}\hfill
-  \subfloat[CSW noise event]{\includegraphics[width=0.49\textwidth]{chapters/analysis/CSW-CSW-VPol-Noise-Med.pdf}}\\
-  \subfloat[Simulated neutrino event]{\includegraphics[width=0.49\textwidth]{chapters/analysis/CSW-Coherent-Waveforms-VPol-Nu-Med.pdf}}\hfill
-  \subfloat[Simulated neutrino event]{\includegraphics[width=0.49\textwidth]{chapters/analysis/CSW-CSW-VPol-Nu-Med.pdf}}
+  \subfloat[Individual waveforms calibration pulser event]{\includegraphics[width=0.45\textwidth]{chapters/analysis/CSW-Coherent-Waveforms-VPol-CP-Med.pdf}}\hfill
+  \subfloat[CSW calibration pulser event]{\includegraphics[width=0.45\textwidth]{chapters/analysis/CSW-CSW-VPol-CP-Med.pdf}}\\
+  \subfloat[Individual waveforms noise event]{\includegraphics[width=0.45\textwidth]{chapters/analysis/CSW-Coherent-Waveforms-VPol-Noise-Med.pdf}}\hfill
+  \subfloat[CSW noise event]{\includegraphics[width=0.45\textwidth]{chapters/analysis/CSW-CSW-VPol-Noise-Med.pdf}}\\
+  \subfloat[Simulated neutrino event]{\includegraphics[width=0.45\textwidth]{chapters/analysis/CSW-Coherent-Waveforms-VPol-Nu-Med.pdf}}\hfill
+  \subfloat[Simulated neutrino event]{\includegraphics[width=0.45\textwidth]{chapters/analysis/CSW-CSW-VPol-Nu-Med.pdf}}
   \caption{(a), (c) and (e) show individual antenna waveforms aligned in time using the calculated offsets that maximise the correlation between antennas and the CSW. The blue, red, green and magenta lines show antennas 1, 2, 3 and 4 respectively. (b), (d) and (f) show the resulting coherently summed wave, where the time aligned waveforms are summed and scaled by the total number of antennas.} 
   \label{fig:analysis:Reconstruction:CSW-Example}
 \end{figure}
@@ -263,12 +263,12 @@ Each event has it's frequency content considered to identify CW signals. Discret
 
 
 \begin{figure}[htpb]
-  \subfloat[Noise Waveform]{\includegraphics[width=0.49\textwidth]{chapters/analysis/Waveform-VPol-Ant2-Noise-Med.pdf}}\hfill
-  \subfloat[Noise Probability Spectrum]{\includegraphics[width=0.49\textwidth]{chapters/analysis/ProdProb-VPol-Noise-Med.pdf}}\\
-  \subfloat[CW Contaminated Waveform]{\includegraphics[width=0.49\textwidth]{chapters/analysis/Waveform-VPol-Ant2-WB-Med.pdf}}\hfill
-  \subfloat[CW Probability Spectrum]{\includegraphics[width=0.49\textwidth]{chapters/analysis/ProdProb-VPol-WB-Med.pdf}}\\
-  \subfloat[Simulated Neutrino Waveform]{\includegraphics[width=0.49\textwidth]{chapters/analysis/Waveform-VPol-Ant2-MC-Med.pdf}}\hfill
-  \subfloat[Simulated Neutrino Probability Spectrum]{\includegraphics[width=0.49\textwidth]{chapters/analysis/ProdProb-VPol-MC-Med.pdf}}
+  \subfloat[Noise Waveform]{\includegraphics[width=0.43\textwidth]{chapters/analysis/Waveform-VPol-Ant2-Noise-Med.pdf}}\hfill
+  \subfloat[Noise Probability Spectrum]{\includegraphics[width=0.43\textwidth]{chapters/analysis/ProdProb-VPol-Noise-Med.pdf}}\\
+  \subfloat[CW Contaminated Waveform]{\includegraphics[width=0.43\textwidth]{chapters/analysis/Waveform-VPol-Ant2-WB-Med.pdf}}\hfill
+  \subfloat[CW Probability Spectrum]{\includegraphics[width=0.43\textwidth]{chapters/analysis/ProdProb-VPol-WB-Med.pdf}}\\
+  \subfloat[Simulated Neutrino Waveform]{\includegraphics[width=0.43\textwidth]{chapters/analysis/Waveform-VPol-Ant2-MC-Med.pdf}}\hfill
+  \subfloat[Simulated Neutrino Probability Spectrum]{\includegraphics[width=0.43\textwidth]{chapters/analysis/ProdProb-VPol-MC-Med.pdf}}
   \caption{Example waveforms from VPol antenna 2 showing a thermal noise event, CW contaminated event and simulated neutrino event. Also shown are the product of probabilities distribution for all VPol antennas for these events. The dashed lines show the two probability thresholds, with any frequencies passing this threshold regarded as being well in excess of thermal noise levels. The upper threshold is to identify non-thermal excesses and the lower to identify broadband signals.}
   \label{fig:analysis:CWRemoval:Baselines:Waveforms}
 \end{figure}
@@ -421,13 +421,13 @@ The motivation and details of each of the cuts used in this analysis have been d
 
 \begin{table}
 \begin{center}
-  \begin{tabular}{ p{0.18\textwidth} p{0.38\textwidth} p{0.38\textwidth} }
+  \begin{tabular}{ p{0.24\textwidth} p{0.36\textwidth} p{0.34\textwidth} }
     \textbf{Cut}  & \textbf{Description} & \textbf{Cut value} \\    
     \hline
     pseudo-$\chi^{2}$ & & $< 2$ pass\\
     powherence & linear combination of CSWPeakVoltage and SumCorrVals & $> 380$ pass\\
-    CW - total bins & non-thermal excess & $=0$ pass\\
-    CW - total bins broadband check & lower threshold to check that an excess is broadband & $> 20$ pass\\
+    CW total bins & non-thermal excess & $=0$ pass\\
+    CW total bins broad band check & lower threshold to check that an excess is broadband & $> 20$ pass\\
     CWMinProb & minimum value of $\ln(\prod P_{i})$ & $< -400$ fail\\
     Geometry & downward pointing cut & $\theta > 40$ fail\\
     Geometry & South Pole infrastructure cut & $50^{\circ}$ wide region in $\phi$\\
@@ -485,8 +485,8 @@ The final analysis cuts and the result of their application to the analysis data
       \hline
       pseudo-$\chi^{2}$ & $3.49 \times 10^6$ & - & -\\
       powherence & $1.20 \times 10^6$ & $318$ & $2.29 \times 10^6$\\
-      CW - totalBins & $4.42 \times 10^5$ & $1.69 \times 10^3$ & $2.37 \times 10^6$\\
-      CW - minProb & $1.74 \times 10^5$ & $217$ & $2.12 \times 10^6$\\
+      CW totalBins & $4.42 \times 10^5$ & $1.69 \times 10^3$ & $2.37 \times 10^6$\\
+      CW minProb & $1.74 \times 10^5$ & $217$ & $2.12 \times 10^6$\\
       Geometry & $7.12 \times 10^3$ & $318$ & $2.76 \times 10^6$\\
       goodTimes & $0$ & $7.12 \times 10^3$ & $2.81 \times 10^6$\\
       \hline\hline
@@ -496,8 +496,8 @@ The final analysis cuts and the result of their application to the analysis data
       \hline
       pseudo-$\chi^{2}$ & $1.20 \times 10^6$ & - & -\\
       powherence & $5.14 \times 10^5$ & $144$ & $6.89 \times 10^5$\\
-      CW - totalBins & $4.31 \times 10^5$ & 44 & $4.46 \times 10^5$\\
-      CW - minProb & $1.47 \times 10^5$ & $4.47 \times 10^3$ & $1.00 \times 10^6$\\
+      CW totalBins & $4.31 \times 10^5$ & 44 & $4.46 \times 10^5$\\
+      CW minProb & $1.47 \times 10^5$ & $4.47 \times 10^3$ & $1.00 \times 10^6$\\
       Geometry & $9.15 \times 10^3$ & 183 & $9.03 \times 10^5$\\
       goodTimes & $0$ & $9.15 \times 10^3$ & $9.63 \times 10^5$\\      
       \end{tabular} 
