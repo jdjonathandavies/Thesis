@@ -1,0 +1,40 @@
+DearJonathan,
+ 
+Thanks for your corrections.
+I have reread through your thesis and find most corrections to be done and
+acceptable.
+I especially like your explainations on improvements and the new appendix.
+The pulese in Fig. 3.8 also looks nice.
+ 
+There area few places where I think corrections are missing.
+Most importantly an explanation how cosmic ray background is killed by the energy threshold
+(Askaryan radiation is not unique to neutrinos, hence we need to discriminate!)
+ I also can't find a description of antennas and limitations (you mentioned
+size is determined by the 30 cm borehole etc...), as well as a description of how
+the CR composition is determined.
+ 
+
+
+
+
+DONE—-Antenna limitations - pages 59-60
+DONE—CR composition determination from shower properties — page 38
+DONE--cosmic ray background
+
+
+
+
+Minor textual observations:
+ 
+DONE-p42 phot-pion -> photo-pion
+DONE-Fig. 3.6 seems to have nu and nubar components, that needs to be explained, as the other figures do separate them
+DONE-Fig 3.6 (red, dotted) -> (red, dash-dotted) 
+DONE-p63,64 acheived -> achieved
+DONE-p71 LABRADOR not defined yet ... 
+DONE-p90 affect -> effect (back to your old tricks!)
+DONE-p140 indipendent -> independent
+DONE-p140 functionality than the testBed -> functionality over the testBed
+ 
+If you can gett hese done over the weekend, I'll sign off on Monday.
+best
+ Andreas

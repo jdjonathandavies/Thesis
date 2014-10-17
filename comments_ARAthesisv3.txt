@@ -1,0 +1,139 @@
+- explain how cosmic ray backgrounds are killed by the energy threshold
+- in chapter 4, add a short paragraph showing the original raw bipolar signal
+- describe antennas and limitations (30 cmbore hole radius, etc ..)
+- add an example of a simulated Neutrino signal pulse to Fig. 6.10 on page 108
+- add a table of cut variables, with definitions and cut value
+- explain how cuts were chosen
+- add a short paragraph to the conclusion, describing possible imporvements to ARA stipulated by this thesis
+
+-p3, abstract:
+"This thesis will describe" -> This thesis describes 
+
+-p4 "indulged" -> indulging
+
+-p9 "^16O" -> ^{16}O
+-p9 "56^Fe" ->^{56}Fe
+-p17 "0.5-4.0 x 10^-{10}" -> (0.5-4.0) x 10^-{10} 
+-p17 "1.0-8.0 x 10^-{10}" -> (1.0-8.0) x 10^-{10} 
+
+-p20 cite Hess
+-p21 cite Askaryan [51,51]  as on page 
+
+-p23 define/describe weak charge
+
+What is contained in cosmic rays?
+Why are zero mass neutrinos a problem, e.g. why does SM describe them to be massless?
+
+-p24 which property of QCD leads to confinement?
+
+-p26 What about SuperK's announcement on 14th May 1998?
+
+-p31 any other hierarchy problems?
+
+-p33 Hess used an electroscope, not a spectrograph!
+
+-p33 "All but the most energetic charged particles will be bent by magnetic fields" -> All charged particles are bent" !!!
+-p33 whats the lifetime of a neutron at 100 TeV?
+
+-p36 How do we knwo the composition of cosmic rays?
+-p43 "56^Fe" ->^{56}Fe
+-p43, Fig 3.6 which is \nu_{e,\mu}, \bar{\nu}?
+
+-p45 what about the latest ICECUBE observations on UHE neutrinos? (e.g they are lower energy)
+
+-p46 "that where the the" -> that where the
+-p47, Fig 3.7 explain symbols
+
+Askaryan radiation is not unique to neutrinos, how do we distinguish CR backgrounds?
+ 
+-p48 "Bremmstrahlung" -> Bremsstrahlung
+
+-p58 "use for South Pole" -> used for South Pole
+
+-p61: Trigger section si a bit vague, what makes RF patterns interesting?
+
+-p62 explain formula 4.1
+-p62 how is the desired rate determined?
+-p65 why cant SBC be cold tested in a climate chamber?
+
+-p67 2x "asses" ->assess
+
+-p67 how do we knwo about firn ice thickness and raybending?
+
+-p72 "Large Analogue Bandwidth Recorded And Digitizer with Ordered Readout" -> Large Analogue Bandwidth Recorder And Digitizer with Ordered Readout
+
+-p73 there is a  betetr figure to explain the two wrap arounds \epsilon_{0,1}
+
+-p74 footnote on Nyquest frequency should be on page 64, where it is first introduced
+
+-p75 explain better how inter-sampel time determined, not fully clear
+
+-p76 "in Section 5.1.1"  -> in the next paragraph
+
+-p79 For the interleaving, what about settle time? How large is it?
+
+-p81 how do we get the offsets in Fig. 5.6?
+
+-p82,83 "affect" -> effect
+
+-p83 Fig. 5.8 comparing a) and c), is there no offset correction applied?
+
+-p85, Fig. 5.10 whats the input frequency?
+
+-p87, Fig. 5.11 explain features i May/September
+
+-p91 "into to two samples" -> into two samples 
+
+-p92 now the trigger requirement is 3 out of 16, before it was 3 out of 8?
+-p92 define GPS PPS
+
+-p93 what about Bkg Simulation of cosmic rays?
+
+-p95 CSW should be fully defined (e.g. equation 6.8)
+
+-p98 Fig. 6.2 legends?
+
+-p100,101 The origin of the bias in 6.3 c) is raybending?
+pulsers are too close for it to be an effect?
+ Why is there no bias in Fig. 6.4 b)?
+
+-p109, 114, 115
+define all cut variables (totalBins, CSWPeakVoltage, sumCorrVals, powherence, CW minProb, etc). If possible in a summary table?
+-p109 motivation for the cut of totalBins at 20?
+
+-p113 "Along with being reconstructable neutrino events" -> Along with being reconstructable, neutrino events
+
+-p114 which two types of events?
+
+-p115 Fig 6.14 How exactly was 380 choosen? What optimization was used? Reference Fig. 6.19
+
+-p116 Fig 6.15 a) The legend is not readable
+
+-p120 Have there been cross checks with data? E.g. simulated calibration events? Checks on the rejection pattern between data and Sim?
+ 
+-p124 Fig 6.20, reference 6.15 a) here for more clarity
+
+-p126 Fig 7.1 any explanation for the GOES faetures? Correleation with VPol seems not clear ...
+
+-p127 how long is the deadtime?
+
+-p128 Equation 7.1, How does this depend on the choice of cylinder?  Cite orignal work
+
+-p129 Fig. 7.3 a,b explain features
+
+-p130 Equation 7.3: there seems d\Omega dt dA missing ..., cite source!
+
+-p131 Fig. 7.4 why does the expected curve not cover E> 10^{20} which are interesting?
+Does it beat ANITA?
+
+-p132 "The expected level ... is also expected" -> The expected level ... is also anticipated?
+
+-p132 2x "anthroprogenic" -> anthropogenic
+
+-p133 What is the UHE neutrino flux limit? State it!
+
+-p134,135,136 provide complete arXive citations (e.g. not just 1307.7335)
+for [15,16,23,31,34,42,48,50,74]
+
+-p135 [24] "H.V."? -> V. Hess?
+-p135 [27] "and ters" ?? -> and others? Whats the Journal in front of \bf 105?
